@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 *{
@@ -9,8 +10,9 @@ const GlobalStyle = createGlobalStyle`
 	font-weight: bold;
 }
 
-body{
+body {
 	background: ${(props) => props.theme.Darkcolor};
+	color: ${(props) => props.theme.color};
 	
 }
 
@@ -26,14 +28,22 @@ a:-webkit-any-link {
 }
 `;
 
+export const FourOhFourContainer = styled.div`
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+`;
+
 export const theme = {
 	mode: 'Dark',
-	Darkcolor: '#006d77',
+	darkColor: '#006d77',
 	color: '#EDF6F9',
 	lightColor: '#83C5BE',
 	contrastColor: '#FFDDD2',
 	contrastDark: '#E29578',
-	darkColor: '#002f33',
+	Darkcolor: '#002f33',
 };
 
 export const invertTheme = {

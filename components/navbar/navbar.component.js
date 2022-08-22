@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { BiUser } from 'react-icons/bi';
 import DarkModeToggle from 'react-dark-mode-toggle';
 import { useDarkMode, useDarkModeUpdate } from '../hooks/DarkModeContext';
-import Logo from '../../images/Logo-sicrip.svg';
 import Link from 'next/link';
 import {
 	LogoContainer,
@@ -15,12 +14,19 @@ import {
 	NavTools,
 	NavbarContainer,
 	NavDarkMode,
-	NavWrapper,
+	MobileIcon,
+	CloseIcon,
+	BurgerIcon,
+	DarkModeMobile,
 } from './navbar.styles';
 
 const Navbar = () => {
 	const isDarkMode = useDarkMode();
 	const setIsDarkMode = useDarkModeUpdate();
+	const [isMobile, setIsMobile] = useState(true);
+	const [click, setClick] = useState(false);
+
+	const handleClick = () => setClick(!click);
 	useEffect(() => {
 		const state = JSON.parse(localStorage.getItem('theme'));
 		if (state) {
@@ -30,23 +36,19 @@ const Navbar = () => {
 	useEffect(() => {
 		localStorage.setItem('theme', isDarkMode);
 	}, [isDarkMode]);
-	// is Mobile
-	const [windowDimension, setWindowDimension] = useState(null);
 
-	useEffect(() => {
-		setWindowDimension(window.innerWidth);
-	}, []);
-
-	useEffect(() => {
-		function handleResize() {
-			setWindowDimension(window.innerWidth);
+	const windowDimension = () => {
+		if (window.innerWidth <= 980) {
+			setIsMobile(false);
+		} else {
+			setIsMobile(true);
 		}
-
-		window.addEventListener('resize', handleResize);
-		return () => window.removeEventListener('resize', handleResize);
+	};
+	// is Mobile
+	useEffect(() => {
+		windowDimension();
 	}, []);
 
-	const isMobile = windowDimension <= 900;
 	// is scrolling
 	const [scroll, setScroll] = useState(0);
 
@@ -59,59 +61,75 @@ const Navbar = () => {
 		});
 	});
 	return (
-		<NavWrapper>
-			<Nav className={scroll ? 'sticky' : ''}>
-				<NavbarContainer>
-					<LogoContainer>
+		<Nav className={scroll ? 'sticky' : ''}>
+			<NavbarContainer>
+				<LogoContainer>
+					<Link href="/">
+						<NavIconWrapper href="/" className={scroll ? 'sticky' : ''}>
+							<NavIcon className={scroll ? 'sticky' : ''} />
+						</NavIconWrapper>
+					</Link>
+				</LogoContainer>
+				<MobileIcon onClick={handleClick}>
+					<BurgerIcon className={click ? 'open' : ''}>
+						<span className={click ? 'active-one' : 'bar-one'} />
+						<span className={click ? 'active-two' : 'bar-two'} />
+						<span className={click ? 'active-three' : 'bar-three'} />
+					</BurgerIcon>
+				</MobileIcon>
+				<NavMenu onClick={handleClick} click={click}>
+					<NavItem>
 						<Link href="/">
-							<NavIconWrapper href="/" className={scroll ? 'sticky' : ''}>
-								<NavIcon className={scroll ? 'sticky' : ''} />
-							</NavIconWrapper>
+							<NavLink className={scroll ? 'sticky' : ''}>HOME</NavLink>
 						</Link>
-					</LogoContainer>
-					<NavMenu>
-						<NavItem>
-							<Link href="/">
-								<NavLink className={scroll ? 'sticky' : ''}>HOME</NavLink>
-							</Link>
-						</NavItem>
-						<NavItem>
-							<Link href="/music">
-								<NavLink className={scroll ? 'sticky' : ''}>MUSIC</NavLink>
-							</Link>
-						</NavItem>
-						<NavItem>
-							<Link href="/about">
-								<NavLink className={scroll ? 'sticky' : ''}>ÜBER MICH</NavLink>
-							</Link>
-						</NavItem>
-						<NavItem>
-							<Link href="/equipment">
-								<NavLink className={scroll ? 'sticky' : ''}>EQUIPMENT</NavLink>
-							</Link>
-						</NavItem>
-						<NavItem>
-							<Link href="/price">
-								<NavLink className={scroll ? 'sticky' : ''}>PREISE</NavLink>
-							</Link>
-						</NavItem>
-						<NavItem>
-							<Link href="/booking">
-								<NavLink className={scroll ? 'sticky' : ''}>ANFRAGE</NavLink>
-							</Link>
-						</NavItem>
-						<Link href="/login">
-							<NavTools className={scroll ? 'sticky' : ''}>
-								<BiUser />
-							</NavTools>
+					</NavItem>
+					<NavItem>
+						<Link href="/music">
+							<NavLink className={scroll ? 'sticky' : ''}>MUSIC</NavLink>
 						</Link>
-					</NavMenu>
-					<NavDarkMode>
-						<DarkModeToggle onChange={setIsDarkMode} checked={isDarkMode} size={40} />
-					</NavDarkMode>
-				</NavbarContainer>
-			</Nav>
-		</NavWrapper>
+					</NavItem>
+					<NavItem>
+						<Link href="/about">
+							<NavLink className={scroll ? 'sticky' : ''}>ÜBER MICH</NavLink>
+						</Link>
+					</NavItem>
+					<NavItem>
+						<Link href="/equipment">
+							<NavLink className={scroll ? 'sticky' : ''}>EQUIPMENT</NavLink>
+						</Link>
+					</NavItem>
+					<NavItem>
+						<Link href="/price">
+							<NavLink className={scroll ? 'sticky' : ''}>PREISE</NavLink>
+						</Link>
+					</NavItem>
+					<NavItem>
+						<Link href="/booking">
+							<NavLink className={scroll ? 'sticky' : ''}>ANFRAGE</NavLink>
+						</Link>
+					</NavItem>
+					<Link href="/login">
+						<NavTools className={scroll ? 'sticky' : ''}>
+							<BiUser />
+						</NavTools>
+					</Link>
+					{isMobile ? (
+						<NavDarkMode>
+							<DarkModeToggle onChange={setIsDarkMode} checked={isDarkMode} size={40} />
+						</NavDarkMode>
+					) : (
+						<NavItem>
+							<DarkModeMobile onClick={setIsDarkMode}>
+								Theme
+								<NavDarkMode onClick={setIsDarkMode}>
+									<DarkModeToggle onChange={setIsDarkMode} checked={isDarkMode} size={40} />
+								</NavDarkMode>
+							</DarkModeMobile>
+						</NavItem>
+					)}
+				</NavMenu>
+			</NavbarContainer>
+		</Nav>
 	);
 };
 

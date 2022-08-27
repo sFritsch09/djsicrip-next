@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	images: {
+		domains: ['hausboot.fra1.digitaloceanspaces.com', 'localhost'],
+	},
 	reactStrictMode: true,
 	swcMinify: true,
 	compiler: {

@@ -15,9 +15,10 @@ import {
 	NavbarContainer,
 	NavDarkMode,
 	MobileIcon,
-	CloseIcon,
 	BurgerIcon,
 	DarkModeMobile,
+	NavMenuMotion,
+	NavItemMotion,
 } from './navbar.styles';
 
 const Navbar = () => {
@@ -54,12 +55,21 @@ const Navbar = () => {
 
 	useEffect(() => {
 		document.addEventListener('scroll', () => {
-			const scrollCheck = window.scrollY > 0 && window.scrollY < 9000;
+			const scrollCheck = window.scrollY > 0;
 			if (scrollCheck !== scroll) {
 				setScroll(scrollCheck);
 			}
 		});
 	});
+	// animation
+	const navAnimation = {
+		offscreen: { x: -80, opacity: 0 },
+		onscreen: {
+			x: 0,
+			opacity: 1,
+			transition: { type: 'spring', bounce: 0.4, duration: 0.6 },
+		},
+	};
 	return (
 		<Nav className={scroll ? 'sticky' : ''}>
 			<NavbarContainer>
@@ -77,57 +87,95 @@ const Navbar = () => {
 						<span className={click ? 'active-three' : 'bar-three'} />
 					</BurgerIcon>
 				</MobileIcon>
-				<NavMenu onClick={handleClick} click={click}>
-					<NavItem>
-						<Link href="/">
-							<NavLink className={scroll ? 'sticky' : ''}>HOME</NavLink>
+				{isMobile ? (
+					<NavMenu onClick={handleClick} click={click}>
+						<NavItem>
+							<Link href="/">
+								<NavLink className={scroll ? 'sticky' : ''}>HOME</NavLink>
+							</Link>
+						</NavItem>
+						<NavItem>
+							<Link href="/music">
+								<NavLink className={scroll ? 'sticky' : ''}>MUSIC</NavLink>
+							</Link>
+						</NavItem>
+						<NavItem>
+							<Link href="/about">
+								<NavLink className={scroll ? 'sticky' : ''}>ÜBER MICH</NavLink>
+							</Link>
+						</NavItem>
+						<NavItem>
+							<Link href="/equipment">
+								<NavLink className={scroll ? 'sticky' : ''}>EQUIPMENT</NavLink>
+							</Link>
+						</NavItem>
+						<NavItem>
+							<Link href="/price">
+								<NavLink className={scroll ? 'sticky' : ''}>PREISE</NavLink>
+							</Link>
+						</NavItem>
+						<NavItem>
+							<Link href="/booking">
+								<NavLink className={scroll ? 'sticky' : ''}>ANFRAGE</NavLink>
+							</Link>
+						</NavItem>
+						<Link href="/login">
+							<NavTools className={scroll ? 'sticky' : ''}>
+								<BiUser />
+							</NavTools>
 						</Link>
-					</NavItem>
-					<NavItem>
-						<Link href="/music">
-							<NavLink className={scroll ? 'sticky' : ''}>MUSIC</NavLink>
-						</Link>
-					</NavItem>
-					<NavItem>
-						<Link href="/about">
-							<NavLink className={scroll ? 'sticky' : ''}>ÜBER MICH</NavLink>
-						</Link>
-					</NavItem>
-					<NavItem>
-						<Link href="/equipment">
-							<NavLink className={scroll ? 'sticky' : ''}>EQUIPMENT</NavLink>
-						</Link>
-					</NavItem>
-					<NavItem>
-						<Link href="/price">
-							<NavLink className={scroll ? 'sticky' : ''}>PREISE</NavLink>
-						</Link>
-					</NavItem>
-					<NavItem>
-						<Link href="/booking">
-							<NavLink className={scroll ? 'sticky' : ''}>ANFRAGE</NavLink>
-						</Link>
-					</NavItem>
-					<Link href="/login">
-						<NavTools className={scroll ? 'sticky' : ''}>
-							<BiUser />
-						</NavTools>
-					</Link>
-					{isMobile ? (
 						<NavDarkMode>
 							<DarkModeToggle onChange={setIsDarkMode} checked={isDarkMode} size={40} />
 						</NavDarkMode>
-					) : (
-						<NavItem>
+					</NavMenu>
+				) : (
+					<NavMenuMotion
+						onClick={handleClick}
+						click={click}
+						initial="offscreen"
+						animate={click ? 'onscreen' : ''}
+						transition={{ staggerChildren: 0.1, delayChildren: 0.1 }}
+					>
+						<NavItemMotion variants={navAnimation}>
+							<Link href="/">
+								<NavLink className={scroll ? 'sticky' : ''}>HOME</NavLink>
+							</Link>
+						</NavItemMotion>
+						<NavItemMotion variants={navAnimation}>
+							<Link href="/music">
+								<NavLink className={scroll ? 'sticky' : ''}>MUSIC</NavLink>
+							</Link>
+						</NavItemMotion>
+						<NavItemMotion variants={navAnimation}>
+							<Link href="/about">
+								<NavLink className={scroll ? 'sticky' : ''}>ÜBER MICH</NavLink>
+							</Link>
+						</NavItemMotion>
+						<NavItemMotion variants={navAnimation}>
+							<Link href="/equipment">
+								<NavLink className={scroll ? 'sticky' : ''}>EQUIPMENT</NavLink>
+							</Link>
+						</NavItemMotion>
+						<NavItemMotion variants={navAnimation}>
+							<Link href="/price">
+								<NavLink className={scroll ? 'sticky' : ''}>PREISE</NavLink>
+							</Link>
+						</NavItemMotion>
+						<NavItemMotion variants={navAnimation}>
+							<Link href="/booking">
+								<NavLink className={scroll ? 'sticky' : ''}>ANFRAGE</NavLink>
+							</Link>
+						</NavItemMotion>
+						<NavItemMotion variants={navAnimation}>
 							<DarkModeMobile onClick={setIsDarkMode}>
 								Theme
 								<NavDarkMode onClick={setIsDarkMode}>
 									<DarkModeToggle onChange={setIsDarkMode} checked={isDarkMode} size={40} />
 								</NavDarkMode>
 							</DarkModeMobile>
-						</NavItem>
-					)}
-				</NavMenu>
+						</NavItemMotion>
+					</NavMenuMotion>
+				)}
 			</NavbarContainer>
 		</Nav>
 	);

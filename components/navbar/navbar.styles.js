@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 import Logo from '../../images/Logo-sicrip.svg';
-import { FaTimes, FaBars } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 export const Nav = styled.nav`
-	background: ${(props) =>
-		props.theme.mode === 'Dark' ? props.theme.Darkcolor : props.theme.Lightcolor};
 	height: 4em;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 1.2rem;
-	position: sticky;
+	position: fixed;
 	top: 0;
 	z-index: 20;
 	transition: background 0.3s ease-out;
@@ -20,6 +19,8 @@ export const Nav = styled.nav`
 			props.theme.mode === 'Dark' ? props.theme.darkColor : props.theme.lightColor};
 	}
 	@media screen and (max-width: 980px) {
+		background: ${(props) =>
+			props.theme.mode === 'Dark' ? props.theme.darkColor : props.theme.lightColor};
 		bottom: 0 !important;
 		left: 0 !important;
 		top: initial;
@@ -37,9 +38,8 @@ export const NavbarContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	height: 4em;
-
 	/* Container */
-	width: 100%;
+	max-width: 100%;
 	margin-right: auto;
 	margin-left: auto;
 	padding-right: 2em;
@@ -68,9 +68,6 @@ export const MobileIcon = styled.div`
 	}
 `;
 
-export const CloseIcon = styled(FaTimes)`
-	color: ${(props) => props.theme.color};
-`;
 export const BurgerIcon = styled.div`
 	color: ${(props) => props.theme.color};
 	width: 35px;
@@ -177,27 +174,24 @@ export const NavMenu = styled.ul`
 	text-align: center;
 	margin-right: 4em;
 	margin-bottom: 0;
-
-	@media screen and (max-width: 1150px) {
-		margin-right: 2em;
-	}
-	@media screen and (max-width: 980px) {
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-		margin-right: 0;
-		height: 100vh;
-		padding-top: 5em;
-		position: absolute;
-		bottom: 4em;
-		left: 0;
-		transform: translateX(${({ click }) => (click ? '0' : '100%')});
-		-webkit-transform: -webkit-translateX(${({ click }) => (click ? '0' : '100%')});
-		opacity: 1;
-		transition: transform 0.3s ease-out;
-		-webkit-transition: -webkit-transform 0.3s ease-out;
-		background: ${(props) => props.theme.darkColor};
-	}
+`;
+export const NavMenuMotion = styled(motion.ul)`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	width: 100%;
+	margin-right: 0;
+	height: 100vh;
+	padding-top: 4em;
+	position: absolute;
+	bottom: 4em;
+	left: 0;
+	transform: translateX(${({ click }) => (click ? '0' : '100%')});
+	-webkit-transform: -webkit-translateX(${({ click }) => (click ? '0' : '100%')});
+	opacity: 1;
+	transition: transform 0.3s ease-out;
+	-webkit-transition: -webkit-transform 0.3s ease-out;
+	background: ${(props) => props.theme.darkColor};
 `;
 
 // li tag
@@ -214,6 +208,12 @@ export const NavItem = styled.li`
 		height: 10vh;
 	}
 `;
+export const NavItemMotion = styled(motion.li)`
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+`;
 // a tag
 export const NavLink = styled.a`
 	color: ${(props) => props.theme.color};
@@ -226,16 +226,13 @@ export const NavLink = styled.a`
 	position: relative;
 	cursor: pointer;
 
-	@media screen and (max-width: 1100px) {
-		padding: 0.5rem 0.5rem;
-	}
 	@media screen and (max-width: 980px) {
 		text-align: center;
-		padding: 1rem;
+		padding: 0;
 		width: 100%;
 		display: table;
 		&:hover {
-			color: ${(props) => props.theme.lightColor};
+			color: ${(props) => props.theme.color};
 			transition: all 0.3s ease;
 		}
 	}
@@ -334,7 +331,7 @@ export const DarkModeMobile = styled.div`
 	align-items: center;
 	width: 100%;
 	height: 100%;
-	padding: 3em;
+	padding: 1em;
 	color: ${(props) => props.theme.color};
 	cursor: pointer;
 `;

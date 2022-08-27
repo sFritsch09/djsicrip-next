@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
+import Button from '@nextui-org/react/Button';
 
 const GlobalStyle = createGlobalStyle`
 *{
@@ -14,6 +15,13 @@ body {
 	background: ${(props) => props.theme.Darkcolor};
 	color: ${(props) => props.theme.color};
 	
+}
+:root {
+	--nextui-colors-primary: ${(props) => props.theme.contrastColor} !important;
+	--nextui-colors-secondary: ${(props) => props.theme.contrastDark} !important;
+	--nextui-colors-primarySolidContrast: ${(props) => props.theme.darkColor} !important;
+	--nextui-zIndices-2: 1;
+	--nextui-zIndices-1: 1;
 }
 
 
@@ -34,6 +42,32 @@ export const FourOhFourContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+`;
+export const CustomButton = styled(Button)`
+	background-color: ${(props) => props.theme.contrastColor};
+	color: ${(props) => props.theme.color};
+`;
+export const LogoWrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 300px;
+	height: 300px;
+	overflow: hidden;
+
+	@media screen and (min-width: 2000px) {
+		width: 500px;
+		height: 500px;
+	}
+	@media screen and (max-width: 1200px) {
+		width: 250px;
+		height: 250px;
+	}
+	@media screen and (max-width: 900px) {
+		width: 150px;
+		height: 150px;
+		padding: 0;
+	}
 `;
 
 export const theme = {

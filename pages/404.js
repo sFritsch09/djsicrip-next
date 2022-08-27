@@ -15,9 +15,7 @@ export default function FourOhFour() {
 			<Lottie options={defaultOptions} height={200} width={200} />
 			<div className="dark" style={{ marginTop: '2em' }}>
 				<Link href="/">
-					<Button ghost color="error" css={{ zIndex: '1' }}>
-						Go back home
-					</Button>
+					<Button ghost>Go back home</Button>
 				</Link>
 			</div>
 		</FourOhFourContainer>

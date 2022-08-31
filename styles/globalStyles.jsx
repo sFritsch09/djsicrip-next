@@ -22,6 +22,7 @@ body {
 	--nextui-colors-primarySolidContrast: ${(props) => props.theme.darkColor} !important;
 	--nextui-zIndices-2: 1;
 	--nextui-zIndices-1: 1;
+	--nextui-fontSizes-lg: 2.5rem;
 }
 
 
@@ -45,28 +46,37 @@ export const FourOhFourContainer = styled.div`
 `;
 export const CustomButton = styled(Button)`
 	background-color: ${(props) => props.theme.contrastColor};
-	color: ${(props) => props.theme.color};
+	color: ${(props) => props.theme.darkColor};
+	font-size: 2.5rem;
+	padding: 2rem;
+
+	@media screen and (max-width: 680px) {
+		font-size: 1.5rem;
+		padding: 0.5rem 0.2rem;
+		min-width: 10rem;
+	}
+
+	&:hover {
+		background-color: initial;
+		border: 3px solid ${(props) => props.theme.contrastColor};
+		color: ${(props) => props.theme.contrastColor};
+	}
 `;
 export const LogoWrapper = styled.div`
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
-	width: 300px;
-	height: 300px;
+	width: 100%;
+	height: 18em;
 	overflow: hidden;
+	padding: 0 8em;
 
-	@media screen and (min-width: 2000px) {
-		width: 500px;
-		height: 500px;
+	@media screen and (max-width: 980px) {
+		padding: 0 6em;
 	}
-	@media screen and (max-width: 1200px) {
-		width: 250px;
-		height: 250px;
-	}
-	@media screen and (max-width: 900px) {
-		width: 150px;
-		height: 150px;
-		padding: 0;
+	@media screen and (max-width: 680px) {
+		padding: 0 2em;
+		height: 10em;
 	}
 `;
 

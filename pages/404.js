@@ -1,22 +1,23 @@
-import Link from 'next/link';
-import { FourOhFourContainer } from '../styles/globalStyles';
-import Button from '@nextui-org/react/Button';
+import { useRouter } from 'next/router';
+import { CustomButton, FourOhFourContainer } from '../styles/globalStyles';
 import Lottie from 'react-lottie';
 
 export default function FourOhFour() {
+	const router = useRouter();
 	const defaultOptions = {
 		loop: true,
 		autoplay: true,
 		path: 'https://assets10.lottiefiles.com/packages/lf20_GIyuXJ.json',
+	};
+	const handleGoBack = () => {
+		router.push('/');
 	};
 	return (
 		<FourOhFourContainer>
 			<h1 style={{ marginTop: '2em' }}>Page Not Found</h1>
 			<Lottie options={defaultOptions} height={200} width={200} />
 			<div className="dark" style={{ marginTop: '2em' }}>
-				<Link href="/">
-					<Button ghost>Go back home</Button>
-				</Link>
+				<CustomButton onClick={handleGoBack}>Go back home</CustomButton>
 			</div>
 		</FourOhFourContainer>
 	);

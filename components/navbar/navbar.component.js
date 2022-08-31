@@ -3,6 +3,7 @@ import { BiUser } from 'react-icons/bi';
 import DarkModeToggle from 'react-dark-mode-toggle';
 import { useDarkMode, useDarkModeUpdate } from '../hooks/DarkModeContext';
 import Link from 'next/link';
+import { BiMusic, BiFace, BiBriefcaseAlt2, BiEuro, BiChat, BiHome } from 'react-icons/bi';
 import {
 	LogoContainer,
 	Nav,
@@ -19,15 +20,17 @@ import {
 	DarkModeMobile,
 	NavMenuMotion,
 	NavItemMotion,
+	IconWrapper,
+	LinkWrapper,
 } from './navbar.styles';
 
 const Navbar = () => {
 	const isDarkMode = useDarkMode();
 	const setIsDarkMode = useDarkModeUpdate();
 	const [isMobile, setIsMobile] = useState(true);
-	const [click, setClick] = useState(false);
+	const [active, setActive] = useState(false);
 
-	const handleClick = () => setClick(!click);
+	const handleClick = () => setActive(!active);
 	useEffect(() => {
 		const state = JSON.parse(localStorage.getItem('theme'));
 		if (state) {
@@ -63,7 +66,7 @@ const Navbar = () => {
 	});
 	// animation
 	const navAnimation = {
-		offscreen: { x: -80, opacity: 0 },
+		offscreen: { x: 80, opacity: 0 },
 		onscreen: {
 			x: 0,
 			opacity: 1,
@@ -81,14 +84,14 @@ const Navbar = () => {
 					</Link>
 				</LogoContainer>
 				<MobileIcon onClick={handleClick}>
-					<BurgerIcon className={click ? 'open' : ''}>
-						<span className={click ? 'active-one' : 'bar-one'} />
-						<span className={click ? 'active-two' : 'bar-two'} />
-						<span className={click ? 'active-three' : 'bar-three'} />
+					<BurgerIcon className={active ? 'open' : ''}>
+						<span className={active ? 'active-one' : 'bar-one'} />
+						<span className={active ? 'active-two' : 'bar-two'} />
+						<span className={active ? 'active-three' : 'bar-three'} />
 					</BurgerIcon>
 				</MobileIcon>
 				{isMobile ? (
-					<NavMenu onClick={handleClick} click={click}>
+					<NavMenu>
 						<NavItem>
 							<Link href="/">
 								<NavLink className={scroll ? 'sticky' : ''}>HOME</NavLink>
@@ -131,39 +134,81 @@ const Navbar = () => {
 				) : (
 					<NavMenuMotion
 						onClick={handleClick}
-						click={click}
+						$active={active}
 						initial="offscreen"
-						animate={click ? 'onscreen' : ''}
+						animate={active ? 'onscreen' : 'hidden'}
 						transition={{ staggerChildren: 0.1, delayChildren: 0.1 }}
 					>
 						<NavItemMotion variants={navAnimation}>
 							<Link href="/">
-								<NavLink className={scroll ? 'sticky' : ''}>HOME</NavLink>
+								<NavLink className={scroll ? 'sticky' : ''}>
+									<LinkWrapper>
+										<IconWrapper>
+											<BiHome />
+										</IconWrapper>
+										<div style={{ marginRight: '4em' }}>HOME</div>
+									</LinkWrapper>
+								</NavLink>
 							</Link>
 						</NavItemMotion>
 						<NavItemMotion variants={navAnimation}>
 							<Link href="/music">
-								<NavLink className={scroll ? 'sticky' : ''}>MUSIC</NavLink>
+								<NavLink className={scroll ? 'sticky' : ''}>
+									<LinkWrapper>
+										<IconWrapper>
+											<BiMusic />
+										</IconWrapper>
+										<div style={{ marginRight: '4em' }}>MUSIC</div>
+									</LinkWrapper>
+								</NavLink>
 							</Link>
 						</NavItemMotion>
 						<NavItemMotion variants={navAnimation}>
 							<Link href="/about">
-								<NavLink className={scroll ? 'sticky' : ''}>ÜBER MICH</NavLink>
+								<NavLink className={scroll ? 'sticky' : ''}>
+									<LinkWrapper>
+										<IconWrapper>
+											<BiFace />
+										</IconWrapper>
+										<div style={{ marginRight: '4em' }}>ÜBER MICH</div>
+									</LinkWrapper>
+								</NavLink>
 							</Link>
 						</NavItemMotion>
 						<NavItemMotion variants={navAnimation}>
 							<Link href="/equipment">
-								<NavLink className={scroll ? 'sticky' : ''}>EQUIPMENT</NavLink>
+								<NavLink className={scroll ? 'sticky' : ''}>
+									<LinkWrapper>
+										<IconWrapper>
+											<BiBriefcaseAlt2 />
+										</IconWrapper>
+										<div style={{ marginRight: '4em' }}>EQUIPMENT</div>
+									</LinkWrapper>
+								</NavLink>
 							</Link>
 						</NavItemMotion>
 						<NavItemMotion variants={navAnimation}>
 							<Link href="/price">
-								<NavLink className={scroll ? 'sticky' : ''}>PREISE</NavLink>
+								<NavLink className={scroll ? 'sticky' : ''}>
+									<LinkWrapper>
+										<IconWrapper>
+											<BiEuro />
+										</IconWrapper>
+										<div style={{ marginRight: '4em' }}>PREISE</div>
+									</LinkWrapper>
+								</NavLink>
 							</Link>
 						</NavItemMotion>
 						<NavItemMotion variants={navAnimation}>
 							<Link href="/booking">
-								<NavLink className={scroll ? 'sticky' : ''}>ANFRAGE</NavLink>
+								<NavLink className={scroll ? 'sticky' : ''}>
+									<LinkWrapper>
+										<IconWrapper>
+											<BiChat />
+										</IconWrapper>
+										<div style={{ marginRight: '4em' }}>ANFRAGE</div>
+									</LinkWrapper>
+								</NavLink>
 							</Link>
 						</NavItemMotion>
 						<NavItemMotion variants={navAnimation}>

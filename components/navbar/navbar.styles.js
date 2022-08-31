@@ -25,6 +25,7 @@ export const Nav = styled.nav`
 		left: 0 !important;
 		top: initial;
 		position: fixed;
+		display: block;
 		width: 100%;
 		opacity: 1;
 		&.is-hidden {
@@ -182,12 +183,12 @@ export const NavMenuMotion = styled(motion.ul)`
 	width: 100%;
 	margin-right: 0;
 	height: 100vh;
-	padding-top: 4em;
 	position: absolute;
+	padding-top: 3em;
 	bottom: 4em;
 	left: 0;
-	transform: translateX(${({ click }) => (click ? '0' : '100%')});
-	-webkit-transform: -webkit-translateX(${({ click }) => (click ? '0' : '100%')});
+	transform: translateX(${({ $active }) => ($active ? '0' : '100%')});
+	-webkit-transform: -webkit-translateX(${({ $active }) => ($active ? '0' : '100%')});
 	opacity: 1;
 	transition: transform 0.3s ease-out;
 	-webkit-transition: -webkit-transform 0.3s ease-out;
@@ -214,6 +215,15 @@ export const NavItemMotion = styled(motion.li)`
 	flex-direction: column;
 	width: 100%;
 `;
+export const IconWrapper = styled.div`
+	font-size: 2rem;
+	vertical-align: center;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	margin-right: 1em;
+	color: ${(props) => props.theme.contrastColor};
+`;
 // a tag
 export const NavLink = styled.a`
 	color: ${(props) => props.theme.color};
@@ -231,52 +241,44 @@ export const NavLink = styled.a`
 		padding: 0;
 		width: 100%;
 		display: table;
+		align-items: center;
 		&:hover {
 			color: ${(props) => props.theme.color};
 			transition: all 0.3s ease;
 		}
 	}
 
-	&::after {
-		content: '';
-		display: block;
-		position: absolute;
-		width: 100%;
-		bottom: 0;
-		height: 4px;
-		left: 0;
-		background: ${(props) => props.theme.color};
-		transition: width 0.3s;
-		transform: scaleX(0);
-		transform-origin: bottom right;
-		transition: transform 0.3s ease-out;
-	}
+	@media screen and (min-width: 980px) {
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 100%;
+			bottom: 0;
+			height: 4px;
+			left: 0;
+			background: ${(props) => props.theme.color};
+			transition: width 0.3s;
+			transform: scaleX(0);
+			transform-origin: bottom right;
+			transition: transform 0.3s ease-out;
+		}
 
-	&:hover::after {
-		transform: scaleX(1);
-		transform-origin: bottom left;
+		&:hover::after {
+			transform: scaleX(1);
+			transform-origin: bottom left;
+		}
 	}
 
 	&.sticky {
 		color: ${(props) => (props.theme.mode === 'Dark' ? props.theme.color : props.theme.color)};
 	}
+`;
 
-	@media screen and (max-width: 900px) {
-		text-align: center;
-		border-spacing: 30px;
-		margin: auto;
-		width: 100%;
-		display: table;
-		max-width: 100%;
-		white-space: nowrap;
-		&:hover {
-			color: ${(props) => props.theme.lightColor};
-			transition: all 0.3s ease;
-		}
-		&::after {
-			display: none;
-		}
-	}
+export const LinkWrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 
 export const NavTools = styled.a`

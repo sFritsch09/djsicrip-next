@@ -1,11 +1,10 @@
 import Head from 'next/head';
-import Logo from '../components/logo/logo.component';
-import { LogoWrapper } from '../styles/globalStyles';
+import { Logo, MusicCollection } from '../components';
+import { CustomButton, LogoWrapper } from '../styles/globalStyles';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Image from '@nextui-org/react/Image';
-import { CustomImage } from './home.styles';
+import { CustomImage, MusicContainer, MusicWrapper } from './home.styles';
 
 export default function Home() {
 	const settings = {
@@ -58,8 +57,21 @@ export default function Home() {
 				</div>
 			</Slider>
 			<LogoWrapper>
+				<div>
+					<CustomButton>Buchen</CustomButton>
+				</div>
 				<Logo />
 			</LogoWrapper>
+			<MusicContainer>
+				<MusicWrapper>
+					<MusicCollection
+					// onPlay={pause}
+					// itemPlay={onPlaying}
+					// play={handlePlay}
+					// pause={handlePause}
+					/>
+				</MusicWrapper>
+			</MusicContainer>
 		</div>
 	);
 }

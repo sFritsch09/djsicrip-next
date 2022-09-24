@@ -97,8 +97,7 @@ export const CoverWrapper = styled.div`
 	font-size: 1em;
 	justify-content: center;
 	align-items: center;
-	background: url('/Crip-Beatz.jpg');
-	/* background: url(${(props) => (props.cover === 'Cover' ? `${Img}` : props.cover)}); */
+	background: url(${(props) => (props.cover === 'Cover' ? '/Crip-Beatz.jpg' : props.cover)});
 	background-size: contain;
 	background-repeat: no-repeat;
 

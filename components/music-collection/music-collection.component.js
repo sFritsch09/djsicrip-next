@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useMusicUpdate } from '../hooks/MusicContext';
-import CoverB1 from '../../images/cover/Cover-IFeelTheLove.jpeg';
-import CoverA1 from '../../images/cover/Cover-TraceyInMyRoom.jpg';
 import {
 	CoverPause,
 	CoverPlay,
@@ -24,7 +22,7 @@ export const items = [
 		row: 1,
 		title: 'Tracey In My Room (Lazy Dog Bootleg Dub Mix)',
 		artist: 'EBTG vs. Soul Vision',
-		image: `${CoverA1}`,
+		image: '/images/cover/Cover-TraceyInMyRoom.jpg',
 		genre: 'House',
 		bpm: '125',
 		audio: 'audioA1',
@@ -34,7 +32,7 @@ export const items = [
 		row: 1,
 		title: 'I Feel The Love (Birdee Remix)',
 		artist: 'Body Heat Gang Band',
-		image: `${CoverB1}`,
+		image: '/images/cover/Cover-IFeelTheLove.jpeg',
 		genre: 'Disco',
 		bpm: '122',
 		audio: 'audioA2',

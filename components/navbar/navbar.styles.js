@@ -3,7 +3,7 @@ import Logo from '../../images/Logo-sicrip.svg';
 import { motion } from 'framer-motion';
 
 export const Nav = styled.nav`
-	height: 4em;
+	height: 5rem;
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -185,7 +185,7 @@ export const NavMenuMotion = styled(motion.ul)`
 	height: 100vh;
 	position: absolute;
 	padding-top: 3em;
-	bottom: 4em;
+	bottom: 80px;
 	left: 0;
 	transform: translateX(${({ $active }) => ($active ? '0' : '100%')});
 	-webkit-transform: -webkit-translateX(${({ $active }) => ($active ? '0' : '100%')});

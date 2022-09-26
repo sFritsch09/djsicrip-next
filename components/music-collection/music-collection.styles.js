@@ -1,13 +1,6 @@
 import styled, { css } from 'styled-components';
 import { BiPlay } from 'react-icons/bi';
 import { IoPauseOutline } from 'react-icons/io5';
-import Img from '../../images/Crip-Beatz.jpg';
-
-const Active = css`
-	width: 100%;
-	background: ${(props) => props.theme.lightColor};
-	transition: width 0.2s;
-`;
 
 const Item = css`
 	width: 100%;
@@ -18,44 +11,6 @@ const Item = css`
 	align-items: center;
 	color: ${(props) => props.theme.color};
 	border-bottom: 2px solid ${(props) => props.theme.color};
-`;
-
-export const NavContainer = styled.div`
-	width: 100%;
-	height: 2em;
-	display: flex;
-	align-items: center;
-	padding: 0 1em;
-	margin-bottom: 2em;
-	justify-content: space-evenly;
-	color: ${(props) => props.theme.color};
-
-	@media screen and (max-width: 680px) {
-		padding: 0;
-		margin-bottom: 1em;
-	}
-`;
-
-export const NavItem = styled.div`
-	cursor: pointer;
-	font-size: 2em;
-
-	@media screen and (max-width: 680px) {
-		font-size: 1em;
-	}
-
-	&::after {
-		width: 0;
-		content: '';
-		display: block;
-		height: 3px;
-		${(props) => (props.active ? Active : null)}
-	}
-
-	&:hover {
-		color: ${(props) => props.theme.contrastColor};
-		transition: width 0.3s;
-	}
 `;
 
 export const GridContainer = styled.div`

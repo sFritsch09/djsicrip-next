@@ -1,7 +1,37 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Image from '@nextui-org/react/Image';
 import { VscClose } from 'react-icons/vsc';
 
+const Active = css`
+	width: 100%;
+	background: ${(props) => props.theme.lightColor};
+	transition: width 0.2s;
+`;
+
+export const Angle = styled.div`
+	position: relative;
+	height: 2em;
+	padding-bottom: 2em;
+	background-color: ${(props) => props.theme.Darkcolor};
+	&:before {
+		transform: skewY(2.6deg);
+		transform-origin: 100% 0;
+		background: inherit;
+		content: '';
+		display: block;
+		height: 10em;
+		left: 0;
+		position: absolute;
+		right: 0;
+		backface-visibility: hidden; // for Chrome Windows
+		@media screen and (min-width: 2000px) {
+			top: -20px;
+		}
+		@media screen and (max-width: 900px) {
+			top: -6em;
+		}
+	}
+`;
 export const CustomImage = styled(Image)`
 	width: 100%;
 	height: 600px;
@@ -18,7 +48,7 @@ export const MusicContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding-bottom: 1em;
+	padding-bottom: 2em;
 	width: 100%;
 	height: 80em;
 	@media screen and (max-width: 980px) {
@@ -68,6 +98,44 @@ export const ImgContainer = styled.div`
 	width: 25%;
 	border-right: 1px solid ${(props) => props.theme.color};
 	display: flex;
+`;
+
+export const NavContainer = styled.div`
+	width: 100%;
+	height: 2em;
+	display: flex;
+	align-items: center;
+	padding: 0 1em;
+	margin-bottom: 2em;
+	justify-content: space-evenly;
+	color: ${(props) => props.theme.color};
+
+	@media screen and (max-width: 680px) {
+		padding: 0;
+		margin-bottom: 1em;
+	}
+`;
+
+export const NavItem = styled.div`
+	cursor: pointer;
+	font-size: 2em;
+
+	@media screen and (max-width: 680px) {
+		font-size: 1em;
+	}
+
+	&::after {
+		width: 0;
+		content: '';
+		display: block;
+		height: 3px;
+		${(props) => (props.active ? Active : null)}
+	}
+
+	&:hover {
+		color: ${(props) => props.theme.contrastColor};
+		transition: width 0.3s;
+	}
 `;
 
 export const TitleWrapper = styled.div`

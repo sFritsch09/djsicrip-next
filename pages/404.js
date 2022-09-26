@@ -14,7 +14,7 @@ export default function FourOhFour() {
 	};
 	return (
 		<FourOhFourContainer>
-			<h1 style={{ marginTop: '2em' }}>Page Not Found</h1>
+			<h1 style={{ marginTop: '5em' }}>Page Not Found</h1>
 			<Lottie options={defaultOptions} height={200} width={200} />
 			<div className="dark" style={{ marginTop: '2em' }}>
 				<CustomButton onClick={handleGoBack}>Go back home</CustomButton>

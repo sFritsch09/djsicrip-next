@@ -70,6 +70,7 @@ export const LogoWrapper = styled.div`
 	height: 18em;
 	overflow: hidden;
 	padding: 0 8em;
+	padding-top: 2em;
 
 	@media screen and (max-width: 980px) {
 		padding: 0 6em;

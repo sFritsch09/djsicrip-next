@@ -20,6 +20,9 @@ import {
 	TitleWrapper,
 	SongTitle,
 	Artist,
+	NavContainer,
+	NavItem,
+	Angle,
 } from './home.styles';
 
 export default function Home() {
@@ -101,6 +104,43 @@ export default function Home() {
 		setOpen(false);
 		handlePlay();
 	};
+	// Navbar MusicCollection
+	const [state, setState] = useState({
+		status: 'active',
+	});
+
+	const { status } = state;
+	let coll = items.active;
+	const handleClick = (name) => {
+		switch (name) {
+			case 'showA':
+				setState({ status: 'active' });
+				break;
+			case 'showB':
+				setState({ status: 'activeB' });
+				break;
+			case 'showC':
+				setState({ status: 'activeC' });
+				break;
+			case 'showD':
+				setState({ status: 'activeD' });
+				break;
+			default:
+				setState({ status: 'active' });
+		}
+	};
+	useEffect(() => {
+		let coll = items.active;
+		if (status === 'active') {
+			coll = items.active;
+		} else if (status === 'activeB') {
+			coll = items.activeB;
+		} else if (status === 'activeC') {
+			coll = items.activeC;
+		} else if (status === 'activeD') {
+			coll = items.activeD;
+		}
+	}, [status]);
 	return (
 		<div>
 			<Head>
@@ -138,6 +178,7 @@ export default function Home() {
 					/>
 				</div>
 			</Slider>
+			<Angle />
 			<LogoWrapper>
 				<div>
 					<CustomButton>Buchen</CustomButton>
@@ -146,17 +187,33 @@ export default function Home() {
 			</LogoWrapper>
 			<MusicContainer>
 				<MusicWrapper>
+					<NavContainer>
+						<NavItem active={status === 'active'} onClick={() => handleClick('showA')}>
+							House
+						</NavItem>
+						<NavItem active={status === 'activeB'} onClick={() => handleClick('showB')}>
+							Classics
+						</NavItem>
+						<NavItem active={status === 'activeC'} onClick={() => handleClick('showC')}>
+							Party
+						</NavItem>
+						<NavItem active={status === 'activeD'} onClick={() => handleClick('showD')}>
+							Hip Hop
+						</NavItem>
+					</NavContainer>
 					<MusicCollection
 						onPlay={pause}
 						itemPlay={onPlaying}
 						play={handlePlay}
 						pause={handlePause}
+						status={status}
+						active={status}
 					/>
 				</MusicWrapper>
 			</MusicContainer>
 			{!isMobile ? (
 				<PlayerContainer show={open}>
-					{items.map((item, index) =>
+					{coll.map((item, index) =>
 						onPlaying === item.audio ? (
 							<React.Fragment key={index}>
 								<ImgCover cover={item.image} />
@@ -192,7 +249,7 @@ export default function Home() {
 			) : (
 				<PlayerContainer show={open}>
 					<ImgContainer>
-						{items.map((item, index) =>
+						{coll.map((item, index) =>
 							onPlaying === item.audio ? (
 								<React.Fragment key={index}>
 									<ImgCover cover={item.image} />

@@ -45,23 +45,12 @@ export const Product = styled.div`
 					display: flex;
 					align-items: center;
 					justify-content: space-between;
-					z-index: 4;
+					z-index: 1;
+					height: 4em;
+
 					@media screen and (max-width: 800px) {
 						margin-bottom: 70px;
 						z-index: 4;
-					}
-
-					button {
-						height: 56px;
-						padding: 0 24px;
-						background: ${(props) => props.theme.contrastColor};
-						color: ${(props) => props.theme.Darkcolor};
-						border: none;
-						font-size: 14px;
-						line-height: 1;
-						@media screen and (max-width: 800px) {
-							height: 30px;
-						}
 					}
 					svg {
 						color: ${(props) => props.theme.color};

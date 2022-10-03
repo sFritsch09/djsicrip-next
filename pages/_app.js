@@ -2,6 +2,7 @@ import { DarkModeProvider } from '../components/hooks/DarkModeContext';
 import GlobalStyle from '../styles/globalStyles';
 import { Navbar } from '../components';
 import { MusicProvider } from '../components/hooks/MusicContext';
+import { ScrollProvider } from '../components/hooks/ScrollContext';
 
 function MyApp({ Component, pageProps }) {
 	return (
@@ -9,7 +10,9 @@ function MyApp({ Component, pageProps }) {
 			<GlobalStyle />
 			<Navbar />
 			<MusicProvider>
-				<Component {...pageProps} />
+				<ScrollProvider>
+					<Component {...pageProps} />
+				</ScrollProvider>
 			</MusicProvider>
 		</DarkModeProvider>
 	);

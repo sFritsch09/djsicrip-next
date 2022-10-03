@@ -14,8 +14,8 @@ const GlobalStyle = createGlobalStyle`
 body {
 	background: ${(props) => props.theme.Darkcolor};
 	color: ${(props) => props.theme.color};
-	
 }
+
 :root {
 	--nextui-colors-primary: ${(props) => props.theme.contrastColor} !important;
 	--nextui-colors-secondary: ${(props) => props.theme.contrastDark} !important;
@@ -49,6 +49,7 @@ export const CustomButton = styled(Button)`
 	color: ${(props) => props.theme.darkColor};
 	font-size: 2.5rem;
 	padding: 2rem;
+	z-index: 3;
 
 	@media screen and (max-width: 680px) {
 		font-size: 1.5rem;

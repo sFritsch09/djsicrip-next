@@ -7,6 +7,7 @@ import { VscClose as Close } from 'react-icons/vsc';
 import { IoArrowDownCircleOutline as DownArrow } from 'react-icons/io5';
 
 import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
+import { CustomButton } from '../../styles/globalStyles.jsx';
 
 const Gallery = ({ header, desc, image, title, arrowClick, imageClick }) => {
 	const scrollContext = useScrollUpdate();
@@ -26,7 +27,7 @@ const Gallery = ({ header, desc, image, title, arrowClick, imageClick }) => {
 	useEffect(() => {
 		x.onChange(() => {
 			x.get() > -100 ? setState(false) : setState(true);
-			x.get() < -100 ? scrollContext(true) : scrollContext(false);
+			x.get() < -20 ? scrollContext(true) : scrollContext(false);
 		});
 	}, [x, scrollContext]);
 
@@ -44,7 +45,7 @@ const Gallery = ({ header, desc, image, title, arrowClick, imageClick }) => {
 						<h1>{header}</h1>
 						<p>{desc}</p>
 						<div className="btn-row">
-							<button>Mieten</button>
+							<CustomButton>Mieten</CustomButton>
 							<DownArrow onClick={arrowClick} />
 						</div>
 					</motion.div>
@@ -58,7 +59,6 @@ const Gallery = ({ header, desc, image, title, arrowClick, imageClick }) => {
 							initial={{ y: -30, opacity: 0 }}
 							animate={{ y: 0, opacity: 1 }}
 							exit={{ y: -30, opacity: 0 }}
-							transition={{ ease: ease }}
 							className="product-drag-header"
 						>
 							<div className="company-name">{title}</div>
@@ -80,7 +80,7 @@ const Gallery = ({ header, desc, image, title, arrowClick, imageClick }) => {
 						dragConstraints={{ left: -400, right: 0 }}
 						whileTap={{ cursor: 'grabbing' }}
 					>
-						<ProductImage image={image} onClick={imageClick} />
+						<ProductImage image={image} onClick={imageClick} onTouchStart={imageClick} />
 					</motion.div>
 				</div>
 				<motion.div style={{ paddingBottom: down }} className="product-drag">

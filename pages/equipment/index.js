@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useScroll } from '../../components/hooks/ScrollContext';
 import useScrollBlock from '../../components/hooks/useScrollBlock';
 
@@ -38,12 +38,12 @@ const Equipment = () => {
 	const [blockScroll, allowScroll] = useScrollBlock();
 	//scrolltargets
 	// const targetElement = document.querySelector('html');
-	useLayoutEffect(() => {
+	useEffect(() => {
 		if (hideScroll) {
-			// targetElement.classList.add('no-scroll');
+			document.body.classList.add('no-scroll');
 			blockScroll();
 		} else {
-			// targetElement.classList.remove('no-scroll');
+			document.body.classList.remove('no-scroll');
 			allowScroll();
 		}
 	}, [hideScroll, allowScroll, blockScroll]); // Empty array ensures effect is only run on mount and unmount

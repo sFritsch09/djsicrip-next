@@ -23,6 +23,9 @@ body {
 	--nextui-zIndices-2: 1;
 	--nextui-zIndices-1: 1;
 	--nextui-fontSizes-lg: 2.5rem;
+	--nextui-colors-border: ${(props) => props.theme.lightColor} !important;
+	--nextui-colors-foreground: ${(props) => props.theme.contrastColor} !important;
+	--nextui-colors-text: ${(props) => props.theme.color} !important;
 }
 
 
@@ -50,6 +53,7 @@ export const CustomButton = styled(Button)`
 	font-size: 2.5rem;
 	padding: 2rem;
 	z-index: 3;
+	position: relative;
 
 	@media screen and (max-width: 680px) {
 		font-size: 1.5rem;
@@ -63,6 +67,30 @@ export const CustomButton = styled(Button)`
 		color: ${(props) => props.theme.contrastColor};
 	}
 `;
+
+export const ToolTip = styled.div`
+	position: relative;
+
+	.tooltip {
+		position: absolute;
+		padding: 0.5rem 0.2rem;
+		bottom: 50%;
+		right: 0;
+		display: block;
+		opacity: 0;
+		visibility: hidden;
+		transform: translateX(-15rem) translateX(${(props) => props.position}px);
+		z-index: 6;
+	}
+
+	&:hover {
+		.tooltip {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+`;
+
 export const LogoWrapper = styled.div`
 	display: flex;
 	justify-content: space-between;

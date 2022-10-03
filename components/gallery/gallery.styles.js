@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Product = styled.div`
 	overflow-x: hidden;
 	.product-inner {
-		padding: 0px 32px;
+		padding: 0px 6rem;
 		@media screen and (max-width: 800px) {
 			padding: 0 20px;
 			padding-bottom: 20px;
@@ -152,6 +152,10 @@ export const Product = styled.div`
 				.product-drag-label {
 					display: flex;
 					justify-content: flex-end;
+					padding-right: 20em;
+					@media screen and (max-width: 900px) {
+						padding-right: 0;
+					}
 					h6 {
 						color: ${(props) => props.theme.color};
 						font-size: 14px;

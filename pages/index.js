@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React, { useState, useEffect, useRef } from 'react';
 import { Logo, MusicCollection, items } from '../components';
-import { CustomButton, LogoWrapper } from '../styles/globalStyles';
+import { CustomButton, LogoWrapper, ToolTip } from '../styles/globalStyles';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -24,6 +24,7 @@ import {
 	NavItem,
 	Angle,
 } from './home.styles';
+import { Image } from '@nextui-org/react';
 
 export default function Home() {
 	const settings = {
@@ -108,6 +109,7 @@ export default function Home() {
 	const [state, setState] = useState({
 		status: 'active',
 	});
+	const [xPosition, setXPosition] = useState(0);
 
 	const { status } = state;
 	let coll = items.active;
@@ -180,9 +182,12 @@ export default function Home() {
 			</Slider>
 			<Angle />
 			<LogoWrapper>
-				<div>
+				<ToolTip onMouseMove={(e) => setXPosition(e.clientX)} position={xPosition}>
 					<CustomButton>Buchen</CustomButton>
-				</div>
+					<span className="tooltip">
+						<Image src="/images/speed.gif" alt="gif here" />
+					</span>
+				</ToolTip>
 				<Logo animation={animate} />
 			</LogoWrapper>
 			<MusicContainer>

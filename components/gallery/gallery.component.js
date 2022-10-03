@@ -88,7 +88,7 @@ const Gallery = ({ header, desc, image, title, arrowClick, imageClick }) => {
 						<div className="product-drag-label">
 							<motion.h6 style={{ x, opacity: fadeOut }}>
 								<Chevron className="arrow-left" />
-								Drag To Enlarge
+								Zieh zum vergrößern
 							</motion.h6>
 						</div>
 						<div className="product-drag-progress-background">

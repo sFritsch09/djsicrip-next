@@ -158,6 +158,9 @@ export const NavIcon = styled(Logo)`
 	height: auto;
 	color: ${(props) => props.theme.color};
 
+	&:hover {
+		color: ${(props) => props.theme.lightColor};
+	}
 	@media screen and (max-width: 1250px) {
 		width: 15rem;
 	}

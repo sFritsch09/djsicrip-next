@@ -26,6 +26,9 @@ body {
 	--nextui-colors-border: ${(props) => props.theme.lightColor} !important;
 	--nextui-colors-foreground: ${(props) => props.theme.contrastColor} !important;
 	--nextui-colors-text: ${(props) => props.theme.color} !important;
+	--nextui-colors-accents0: ${(props) => props.theme.lightColor} !important;
+	--nextui-colors-accents7: ${(props) =>
+		props.theme.mode === 'Dark' ? props.theme.Darkcolor : props.theme.color} !important;
 }
 
 

@@ -152,30 +152,26 @@ export default function Home() {
 			</Head>
 			<Slider {...settings}>
 				<div>
+					<CustomImage alt="First Pic" src={'/images/darkTurntables.jpeg'} objectFit="cover" />
+				</div>
+				<div>
 					<CustomImage
 						alt="First Pic"
-						src={'https://hausboot.fra1.digitaloceanspaces.com/hompage-blau.jpg'}
+						src={'https://source.unsplash.com/cKwPLSR5XAo'}
 						objectFit="cover"
 					/>
 				</div>
 				<div>
 					<CustomImage
 						alt="First Pic"
-						src={'https://hausboot.fra1.digitaloceanspaces.com/View-river2.jpg'}
+						src={'https://source.unsplash.com/5WrxWltrCTg'}
 						objectFit="cover"
 					/>
 				</div>
 				<div>
 					<CustomImage
 						alt="First Pic"
-						src={'https://hausboot.fra1.digitaloceanspaces.com/View-pond.jpg'}
-						objectFit="cover"
-					/>
-				</div>
-				<div>
-					<CustomImage
-						alt="First Pic"
-						src={'https://hausboot.fra1.digitaloceanspaces.com/View-sluice.jpg'}
+						src={'https://source.unsplash.com/9P1pZy3gwxg'}
 						objectFit="cover"
 					/>
 				</div>

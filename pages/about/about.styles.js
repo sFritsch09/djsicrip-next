@@ -61,6 +61,11 @@ export const ImageWrapper = styled(motion.div)`
 	margin: 0 6em;
 	overflow: hidden;
 
+	img {
+		object-position: ${(props) => props.pos};
+		scale: ${(props) => props.scale};
+	}
+
 	@media screen and (max-width: 980px) {
 		margin: 0 2em;
 		height: 600px;
@@ -74,7 +79,8 @@ export const FaqWrapper = styled.div`
 	width: 100%;
 	margin-top: 2em;
 	padding: 2em 12em;
-	color: ${(props) => (props.mode === 'Dark' ? props.theme.contrastDark : props.theme.color)};
+	color: ${(props) =>
+		props.theme.mode === 'Dark' ? props.theme.contrastDark : props.theme.lightColor};
 
 	@media screen and (max-width: 980px) {
 		padding: 1em 2em;

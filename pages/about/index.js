@@ -1,7 +1,8 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { Collapse, Text, Link } from '@nextui-org/react';
 import { FaqWrapper, ImageWrapper, Single } from './about.styles';
+import { useEffect, useState } from 'react';
 
 export default function About() {
 	// FAQ
@@ -9,11 +10,12 @@ export default function About() {
 	const items = [
 		{
 			question: 'Wie lange legst du schon auf?',
-			answer: 'Ich lege schon seit 10 Jahren auf.',
+			answer: 'Ich lege schon seit mehr als 10 Jahren auf.',
 		},
 		{
-			question: 'Welche Musik hörst du am liebsten?',
-			answer: 'Ich höre gern Soulful House und Disco House. Was ich genau höre findest du hier:',
+			question: 'Prduzierst du auch Musik?',
+			answer:
+				'Ja, ich bearbeite Songs damit sie besser für Übergänge passen, produziere komplette Songs oder Remix. All das findest du hier:',
 			linkText: 'Music',
 			link: '/music',
 		},
@@ -60,6 +62,21 @@ export default function About() {
 	];
 
 	// Framer
+	const { scrollYProgress } = useScroll();
+	const position = useTransform(scrollYProgress, [0, 1], [10, 80]);
+	const scale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
+	const [pos, setPos] = useState('50% 10%');
+	const [scaler, setScaler] = useState(1);
+	useEffect(() => {
+		return position.onChange((latest) => {
+			setPos(`50% ${latest}%`);
+		});
+	}, [position]);
+	useEffect(() => {
+		return scale.onChange((latest) => {
+			setScaler(latest);
+		});
+	}, [scale]);
 	const transition = { duration: 0.6, ease: 'backOut' };
 
 	const firstName = {
@@ -123,7 +140,9 @@ export default function About() {
 						<div className="top">
 							<motion.div className="model">
 								<motion.span className="first" variants={firstName}>
-									<motion.span variants={letter}>S</motion.span>
+									<motion.span animate={{ y: position, opacity: 1 }} variants={letter}>
+										S
+									</motion.span>
 									<motion.span variants={letter}>e</motion.span>
 									<motion.span variants={letter}>b</motion.span>
 									<motion.span variants={letter}>a</motion.span>
@@ -147,7 +166,7 @@ export default function About() {
 					</div>
 				</div>
 			</Single>
-			<ImageWrapper variants={image} initial="initial" animate="animate">
+			<ImageWrapper variants={image} initial="initial" animate="animate" pos={pos} scale={scaler}>
 				<Image
 					src="/images/profile-green.jpg"
 					alt="profile"
@@ -155,7 +174,7 @@ export default function About() {
 					height="100%"
 					layout="fill"
 					objectFit="cover"
-					objectPosition="50% 10%"
+					// objectPosition="50% 10%"
 				/>
 			</ImageWrapper>
 			<FaqWrapper>

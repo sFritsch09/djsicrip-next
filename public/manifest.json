@@ -1,0 +1,27 @@
+{
+	"theme_color": "#83C5BE",
+	"background_color": "#006d77",
+	"display": "browser",
+	"scope": "/",
+	"start_url": "/",
+	"app_name": "DJ Si Crip",
+	"description": "Book DJ Si Crip - Musician and Producer",
+	"short_name": "SiCrip",
+	"icons": [
+		{
+			"src": "favicon.ico",
+			"sizes": "64x64 32x32 24x24 16x16",
+			"type": "image/x-icon"
+		},
+		{
+			"src": "logo192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "logo512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	]
+}

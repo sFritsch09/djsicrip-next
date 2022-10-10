@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BiUser } from 'react-icons/bi';
 import DarkModeToggle from 'react-dark-mode-toggle';
-import { useDarkMode, useDarkModeUpdate } from '../hooks/DarkModeContext';
+import { useDarkMode } from '../hooks/DarkModeContext';
 import Link from 'next/link';
 import { BiMusic, BiFace, BiBriefcaseAlt2, BiEuro, BiChat, BiHome } from 'react-icons/bi';
 import {
@@ -25,22 +25,19 @@ import {
 } from './navbar.styles';
 
 const Navbar = () => {
-	const isDarkMode = useDarkMode();
-	const setIsDarkMode = useDarkModeUpdate();
+	const [isDarkMode, setIsDarkMode] = useDarkMode();
 	const [isMobile, setIsMobile] = useState(true);
 	const [active, setActive] = useState(false);
 
 	const handleClick = () => setActive(!active);
-	useEffect(() => {
-		const state = JSON.parse(localStorage.getItem('theme'));
-		if (state) {
-			setIsDarkMode(state);
-		}
-	}, []);
-	useEffect(() => {
-		localStorage.setItem('theme', isDarkMode);
-	}, [isDarkMode]);
 
+	const setDarkMode = (prevTheme) => {
+		if (typeof window === 'undefined') {
+			return;
+		}
+		localStorage.setItem('theme', prevTheme);
+		setIsDarkMode(prevTheme);
+	};
 	const windowDimension = () => {
 		if (window.innerWidth <= 980) {
 			setIsMobile(false);
@@ -128,7 +125,7 @@ const Navbar = () => {
 							</NavTools>
 						</Link>
 						<NavDarkMode>
-							<DarkModeToggle onChange={setIsDarkMode} checked={isDarkMode} size={40} />
+							<DarkModeToggle onChange={(e) => setDarkMode(e)} checked={isDarkMode} size={40} />
 						</NavDarkMode>
 					</NavMenu>
 				) : (
@@ -212,10 +209,10 @@ const Navbar = () => {
 							</Link>
 						</NavItemMotion>
 						<NavItemMotion variants={navAnimation}>
-							<DarkModeMobile onClick={setIsDarkMode}>
+							<DarkModeMobile onClick={(e) => setDarkMode(e)}>
 								Theme
-								<NavDarkMode onClick={setIsDarkMode}>
-									<DarkModeToggle onChange={setIsDarkMode} checked={isDarkMode} size={40} />
+								<NavDarkMode onClick={(e) => setDarkMode(e)}>
+									<DarkModeToggle onChange={(e) => setDarkMode(e)} checked={isDarkMode} size={40} />
 								</NavDarkMode>
 							</DarkModeMobile>
 						</NavItemMotion>

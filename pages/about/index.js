@@ -1,10 +1,14 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image';
-import { Collapse, Text, Link } from '@nextui-org/react';
-import { FaqWrapper, ImageWrapper, Single } from './about.styles';
+import Image from 'next/future/image';
+import { FaqWrapper, ImageWrapper, Single } from '../../styles/about.styles';
 import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+import profile from '../../public/images/profile-green.jpg';
 
 export default function About() {
+	const AboutCollapse = dynamic(() => import('../../components/collapse/about.collapse'), {
+		ssr: false,
+	});
 	// FAQ
 
 	const items = [
@@ -168,27 +172,20 @@ export default function About() {
 			</Single>
 			<ImageWrapper variants={image} initial="initial" animate="animate" pos={pos} scale={scaler}>
 				<Image
-					src="/images/profile-green.jpg"
+					src={profile}
 					alt="profile"
-					width="100%"
-					height="100%"
 					layout="fill"
-					objectFit="cover"
+					fill
+					placeholder="blur"
+					style={{ objectFit: 'cover' }}
+					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw,33vw"
+					priority
 					// objectPosition="50% 10%"
 				/>
 			</ImageWrapper>
 			<FaqWrapper>
 				<div className="faq">
-					<Collapse.Group bordered>
-						{items.map((item, index) => (
-							<Collapse key={index} title={item.question}>
-								<Text>{item.answer} </Text>
-								<Link color="secondary" href={item.link}>
-									{item.linkText}
-								</Link>
-							</Collapse>
-						))}
-					</Collapse.Group>
+					<AboutCollapse items={items} />
 				</div>
 			</FaqWrapper>
 		</div>

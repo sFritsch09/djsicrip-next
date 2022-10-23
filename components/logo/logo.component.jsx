@@ -63,7 +63,7 @@ const Logo = ({ animation }) => {
 				whileHover="hover"
 				playing="hover"
 			>
-				<LogoContainer variants={textMotion} onHoverStart={animate}>
+				<LogoContainer variants={textMotion}>
 					<motion.svg
 						className="logo"
 						version="1.0"

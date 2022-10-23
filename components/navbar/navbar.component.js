@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { BiUser } from 'react-icons/bi';
 import DarkModeToggle from 'react-dark-mode-toggle';
 import { useDarkMode } from '../hooks/DarkModeContext';
@@ -30,6 +31,21 @@ const Navbar = () => {
 	const [active, setActive] = useState(false);
 
 	const handleClick = () => setActive(!active);
+	const router = useRouter();
+	const getLocale = () => {
+		console.log(router);
+	};
+	const changeLocale = (locale) => {
+		// router.push(
+		// 	{
+		// 		route: router.pathname,
+		// 		query: router.query,
+		// 	},
+		// 	router.asPath,
+		// 	{ locale }
+		// );
+		console.log('%c Language: ', 'color: yellow;', router.locale);
+	};
 
 	const setDarkMode = (prevTheme) => {
 		if (typeof window === 'undefined') {
@@ -75,7 +91,7 @@ const Navbar = () => {
 			<NavbarContainer>
 				<LogoContainer>
 					<Link href="/">
-						<NavIconWrapper href="/" className={scroll ? 'sticky' : ''}>
+						<NavIconWrapper href="/" className={isMobile && scroll ? 'sticky' : ''}>
 							<NavIcon className={scroll ? 'sticky' : ''} />
 						</NavIconWrapper>
 					</Link>
@@ -89,7 +105,7 @@ const Navbar = () => {
 				</MobileIcon>
 				{isMobile ? (
 					<NavMenu>
-						<NavItem>
+						<NavItem onClick={() => getLocale()}>
 							<Link href="/">
 								<NavLink className={scroll ? 'sticky' : ''}>HOME</NavLink>
 							</Link>
@@ -109,8 +125,8 @@ const Navbar = () => {
 								<NavLink className={scroll ? 'sticky' : ''}>EQUIPMENT</NavLink>
 							</Link>
 						</NavItem>
-						<NavItem>
-							<Link href="/price">
+						<NavItem onClick={() => changeLocale()}>
+							<Link href="/price" locale="en">
 								<NavLink className={scroll ? 'sticky' : ''}>PREISE</NavLink>
 							</Link>
 						</NavItem>

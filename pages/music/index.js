@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import { Container } from './music.styles';
+import { Container } from '../../styles/music.styles';
 
 const SoundCloud = dynamic(
 	() => {

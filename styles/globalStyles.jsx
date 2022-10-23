@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
-import Button from '@nextui-org/react/Button';
+import { Button } from '@nextui-org/react';
 
 const GlobalStyle = createGlobalStyle`
 *{
@@ -23,12 +23,15 @@ body {
 	--nextui-zIndices-2: 1;
 	--nextui-zIndices-1: 1;
 	--nextui-fontSizes-lg: 2.5rem;
-	--nextui-colors-border: ${(props) => props.theme.lightColor} !important;
+	--nextui-colors-border: ${(props) => props.theme.contrastDark} !important;
 	--nextui-colors-foreground: ${(props) => props.theme.contrastColor} !important;
 	--nextui-colors-text: ${(props) => props.theme.color} !important;
-	--nextui-colors-accents0: ${(props) => props.theme.lightColor} !important;
+	--nextui-colors-accents0: ${(props) => props.theme.darkColor} !important;
 	--nextui-colors-accents7: ${(props) =>
 		props.theme.mode === 'Dark' ? props.theme.Darkcolor : props.theme.color} !important;
+	--nextui-colors-primarySolidHover: ${(props) => props.theme.darkColor} !important;
+	--nextui-colors-backgroundContrast: ${(props) => props.theme.darkColor} !important;
+	--nextui-colors-accents7: ${(props) => props.theme.contrastColor} !important;
 }
 
 
@@ -40,6 +43,23 @@ a:-webkit-any-link {
     color: inherit;
     cursor: pointer;
     text-decoration: none;
+}
+
+.main {
+	margin-top: 12em;
+	padding: 1em 15em;
+
+	@media screen and (max-width: 980px) {
+		padding: 1em 2em;
+	}
+
+	thead > tr:first-child, th {
+		background-color: ${(props) => props.theme.lightColor};
+	}
+
+	div {
+		border-color: ${(props) => props.theme.lightColor}; 
+	}
 }
 `;
 

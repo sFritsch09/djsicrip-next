@@ -23,10 +23,14 @@ import {
 	NavContainer,
 	NavItem,
 	Angle,
-} from './home.styles';
+} from '../styles/home.styles';
 import { Image } from '@nextui-org/react';
+// Modal
+import { Modal, useModal, Text } from '@nextui-org/react';
 
 export default function Home() {
+	// Modal
+	const { setVisible, bindings } = useModal();
 	const settings = {
 		dots: false,
 		infinite: true,
@@ -150,6 +154,36 @@ export default function Home() {
 				<meta name="description" content="DJ Si Crip - Never trust a DJ who can't dance!" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
+			<Modal
+				blur
+				preventClose
+				width="600px"
+				aria-labelledby="modal-title"
+				aria-describedby="modal-description"
+				{...bindings}
+			>
+				<Modal.Header>
+					<Text id="modal-title" size={18}>
+						Hinweis!
+					</Text>
+				</Modal.Header>
+				<Modal.Body>
+					<Text id="modal-description" size={20}>
+						Meine Webseite ist noch nicht fertiggestellt und ist noch in Arbeit 🚧 Bis dahin können
+						Anfragen über Email oder Mobil angenommen werden ✨
+						<br />
+						<br />
+						📧 Email: sfritsch09@gmail.com
+						<br />
+						📱 Mobil: 017632694016
+					</Text>
+				</Modal.Body>
+				<Modal.Footer>
+					<CustomButton auto onClick={() => setVisible(false)}>
+						OK
+					</CustomButton>
+				</Modal.Footer>
+			</Modal>
 			<Slider {...settings}>
 				<div>
 					<CustomImage alt="First Pic" src={'/images/darkTurntables.jpeg'} objectFit="cover" />
@@ -179,7 +213,7 @@ export default function Home() {
 			<Angle />
 			<LogoWrapper>
 				<ToolTip onMouseMove={(e) => setXPosition(e.clientX)} position={xPosition}>
-					<CustomButton>Buchen</CustomButton>
+					<CustomButton onClick={() => setVisible(true)}>Buchen</CustomButton>
 					<span className="tooltip">
 						<Image src="/images/speed.gif" alt="gif here" />
 					</span>

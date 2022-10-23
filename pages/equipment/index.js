@@ -3,7 +3,7 @@ import { useScroll } from '../../components/hooks/ScrollContext';
 import useScrollBlock from '../../components/hooks/useScrollBlock';
 
 import Gallery from '../../components/gallery/gallery.component';
-import { Container, Section, Section2, Section3, Spacer } from './equipment.styles';
+import { Container, Section, Spacer } from '../../styles/equipment.styles';
 
 const Equipment = () => {
 	// images
@@ -73,7 +73,7 @@ const Equipment = () => {
 					/>
 				</Section>
 
-				<Section2 ref={titleRef2}>
+				<Section ref={titleRef2}>
 					<Gallery
 						arrowClick={handleClick3}
 						imageClick={handleClick2}
@@ -82,8 +82,8 @@ const Equipment = () => {
 						image={Soundboks}
 						title="Soundboks 3"
 					/>
-				</Section2>
-				<Section3 ref={titleRef3}>
+				</Section>
+				<Section ref={titleRef3}>
 					<Gallery
 						arrowClick={handleClick4}
 						imageClick={handleClick3}
@@ -92,7 +92,7 @@ const Equipment = () => {
 						image={TraktorZ2}
 						title="Kontrol Z2"
 					/>
-				</Section3>
+				</Section>
 				<Section ref={titleRef4}>
 					<Gallery
 						arrowClick={handleClick5}

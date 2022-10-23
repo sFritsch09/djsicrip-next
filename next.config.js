@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ['hausboot.fra1.digitaloceanspaces.com', 'localhost'],
+		domains: ['unsplash.com', 'localhost'],
 	},
+	basePath: '',
 	reactStrictMode: true,
 	swcMinify: true,
 	compiler: {
@@ -17,6 +18,11 @@ const nextConfig = {
 		});
 
 		return config;
+	},
+	i18n: {
+		locales: ['en', 'de'],
+		defaultLocale: 'de',
+		localeDetection: false,
 	},
 };
 

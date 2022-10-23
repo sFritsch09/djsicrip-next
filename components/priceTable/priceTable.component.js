@@ -1,5 +1,4 @@
 import { Table } from '@nextui-org/react';
-import { Container } from './priceTable.styles';
 
 export default function Price() {
 	const eventData = [
@@ -9,7 +8,7 @@ export default function Price() {
 		{ name: 'Abschlussfeier', price: 450 },
 	];
 	return (
-		<Container>
+		<div className="main">
 			{
 				<Table
 					aria-label="Pricelist"
@@ -34,6 +33,6 @@ export default function Price() {
 				</Table>
 			}
 			*Es kommen zusätzlich Fahrtkosten hinzu von 80 bis 100€
-		</Container>
+		</div>
 	);
 }

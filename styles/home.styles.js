@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import Image from '@nextui-org/react/Image';
+import { Image } from '@nextui-org/react';
 import { VscClose } from 'react-icons/vsc';
 
 const Active = css`

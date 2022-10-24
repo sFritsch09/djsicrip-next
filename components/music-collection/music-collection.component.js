@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useMusicUpdate } from '../hooks/MusicContext';
+import Image from 'next/future/image';
 import {
 	CoverPause,
 	CoverPlay,
@@ -42,7 +43,6 @@ export const items = {
 			row: 1,
 			title: 'Under constructions 🚧',
 			artist: 'EBTG vs. Soul Vision',
-			image: 'Cover',
 			genre: 'House',
 			bpm: '125',
 		},
@@ -51,7 +51,6 @@ export const items = {
 			row: 1,
 			title: 'Under constructions 🚧',
 			artist: 'EBTG vs. Soul Vision',
-			image: 'Cover',
 			genre: 'House',
 			bpm: '125',
 		},
@@ -60,7 +59,6 @@ export const items = {
 			row: 2,
 			title: 'Under constructions 🚧',
 			artist: 'EBTG vs. Soul Vision',
-			image: 'Cover',
 			genre: 'House',
 			bpm: '125',
 		},
@@ -69,7 +67,6 @@ export const items = {
 			row: 2,
 			title: 'Under constructions 🚧',
 			artist: 'EBTG vs. Soul Vision',
-			image: 'Cover',
 			genre: 'House',
 			bpm: '125',
 		},
@@ -78,7 +75,6 @@ export const items = {
 			row: 2,
 			title: 'Under constructions 🚧',
 			artist: 'EBTG vs. Soul Vision',
-			image: 'Cover',
 			genre: 'House',
 			bpm: '125',
 		},
@@ -87,7 +83,6 @@ export const items = {
 			row: 2,
 			title: 'Under constructions 🚧',
 			artist: 'EBTG vs. Soul Vision',
-			image: 'Cover',
 			genre: 'House',
 			bpm: '125',
 		},
@@ -150,7 +145,16 @@ const Collection = ({ status, onPlay, play, pause, itemPlay }) => {
 					{
 						// NOTE Cover
 					}
-					<CoverWrapper onClick={() => setAudioSrc(item.audio)} cover={item.image}>
+					<CoverWrapper onClick={() => setAudioSrc(item.audio)}>
+						<div className="cover">
+							<Image
+								src={item.image ?? '/Crip-Beatz.jpg'}
+								alt="Cover"
+								fill
+								// placeholder="blur"
+								sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw,18vw"
+							/>
+						</div>
 						{onPlay === 'pause' && itemPlay === item.audio ? (
 							<PlayWrapper onClick={play}>
 								<CoverPause />

@@ -61,11 +61,6 @@ export const ImageWrapper = styled(motion.div)`
 	margin: 0 6em;
 	overflow: hidden;
 
-	img {
-		object-position: ${(props) => props.pos};
-		scale: ${(props) => props.scale};
-	}
-
 	@media screen and (max-width: 980px) {
 		margin: 0 2em;
 		height: 600px;

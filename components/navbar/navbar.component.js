@@ -51,8 +51,13 @@ const Navbar = () => {
 		if (typeof window === 'undefined') {
 			return;
 		}
-		localStorage.setItem('theme', prevTheme);
-		setIsDarkMode(prevTheme);
+		if (prevTheme === typeof Boolean) {
+			localStorage.setItem('theme', prevTheme);
+			setIsDarkMode(prevTheme);
+		} else {
+			localStorage.setItem('theme', !isDarkMode);
+			setIsDarkMode(!isDarkMode);
+		}
 	};
 	const windowDimension = () => {
 		if (window.innerWidth <= 980) {

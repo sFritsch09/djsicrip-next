@@ -170,17 +170,15 @@ export default function About() {
 					</div>
 				</div>
 			</Single>
-			<ImageWrapper variants={image} initial="initial" animate="animate" pos={pos} scale={scaler}>
+			<ImageWrapper variants={image} initial="initial" animate="animate">
 				<Image
 					src={profile}
 					alt="profile"
-					layout="fill"
 					fill
 					placeholder="blur"
-					style={{ objectFit: 'cover' }}
+					style={{ objectFit: 'cover', objectPosition: pos, scale: scaler }}
 					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw,33vw"
 					priority
-					// objectPosition="50% 10%"
 				/>
 			</ImageWrapper>
 			<FaqWrapper>

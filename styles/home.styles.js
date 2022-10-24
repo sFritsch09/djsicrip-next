@@ -34,8 +34,8 @@ export const Angle = styled.div`
 `;
 export const CustomImage = styled(Image)`
 	width: 100%;
-	height: 600px;
-	background-position: 50% 45%;
+	height: 600px !important;
+	background-position: 50% 45% !important;
 	background-size: cover !important;
 	background-repeat: no-repeat;
 	transition: all 0.5s ease;
@@ -172,7 +172,7 @@ export const SongTitle = styled.div`
 	}
 `;
 
-export const ImgCover = styled.img`
+export const ImgCover = styled(Image)`
 	background: url(${(props) => (props.cover === 'Cover' ? `${Img}` : props.cover)});
 	background-size: cover;
 	background-repeat: no-repeat;

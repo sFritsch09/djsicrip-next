@@ -52,7 +52,6 @@ export const CoverWrapper = styled.div`
 	font-size: 1em;
 	justify-content: center;
 	align-items: center;
-	background: url(${(props) => (props.cover === 'Cover' ? '/Crip-Beatz.jpg' : props.cover)});
 	background-size: contain;
 	background-repeat: no-repeat;
 
@@ -60,6 +59,14 @@ export const CoverWrapper = styled.div`
 		content: '';
 		float: left;
 		padding-top: 100%;
+	}
+
+	.cover {
+		z-index: 0;
+		position: relative;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
 	}
 `;
 
@@ -73,6 +80,8 @@ export const PlayWrapper = styled.div`
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
+	position: absolute;
+	z-index: 1;
 
 	@media screen and (max-width: 680px) {
 		width: 3em;
@@ -88,10 +97,12 @@ export const CoverPlay = styled(BiPlay)`
 	font-size: 3em;
 	margin-left: 8%;
 	color: ${(props) => (props.theme.mode === 'Dark' ? props.theme.color : props.theme.Darkcolor)};
+	z-index: 1;
 `;
 export const CoverPause = styled(IoPauseOutline)`
 	font-size: 3em;
 	color: ${(props) => (props.theme.mode === 'Dark' ? props.theme.color : props.theme.Darkcolor)};
+	z-index: 1;
 `;
 
 export const TitleWrapper = styled.div`

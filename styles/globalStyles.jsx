@@ -73,8 +73,8 @@ export const FourOhFourContainer = styled.div`
 export const CustomButton = styled(Button)`
 	background-color: ${(props) => props.theme.contrastColor};
 	color: ${(props) => props.theme.darkColor};
-	font-size: 2.5rem;
-	padding: 2rem;
+	font-size: 2.5rem !important;
+	padding: 2rem !important;
 	z-index: 3;
 	position: relative;
 

@@ -16,7 +16,6 @@ import {
 	Close,
 	CloseWrapper,
 	ImgContainer,
-	ImgCover,
 	TitleWrapper,
 	SongTitle,
 	Artist,
@@ -251,7 +250,12 @@ export default function Home() {
 					{coll.map((item, index) =>
 						onPlaying === item.audio ? (
 							<React.Fragment key={index}>
-								<ImgCover cover={item.image} />
+								<Image
+									src={item.image ?? '/Crip-Beatz.jpg'}
+									alt="Cover"
+									placeholder="blur"
+									sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw,18vw"
+								/>
 							</React.Fragment>
 						) : null
 					)}
@@ -287,7 +291,12 @@ export default function Home() {
 						{coll.map((item, index) =>
 							onPlaying === item.audio ? (
 								<React.Fragment key={index}>
-									<ImgCover cover={item.image} />
+									<Image
+										src={item.image ?? '/Crip-Beatz.jpg'}
+										alt="Cover"
+										placeholder="blur"
+										sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw,18vw"
+									/>
 									<TitleWrapper>
 										<Artist>{item.artist}</Artist>
 										<SongTitle>{item.title}</SongTitle>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMusicUpdate } from '../hooks/MusicContext';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import {
 	CoverPause,
 	CoverPlay,
@@ -14,10 +14,26 @@ import {
 	PlayWrapper,
 	ArtistTitle,
 } from './music-collection.styles';
+import { AnimatePresence } from 'framer-motion';
 
+const MusicAnimation = {
+	initial: {
+		x: 80,
+		opacity: 0,
+	},
+	animate: {
+		x: 0,
+		opacity: 1,
+		transition: {
+			ease: 'backInOut',
+			duration: 0.65,
+		},
+	},
+};
 export const items = {
 	active: [
 		{
+			key: 1,
 			column: 1,
 			row: 1,
 			title: 'Tracey In My Room (Lazy Dog Bootleg Dub Mix)',
@@ -28,6 +44,7 @@ export const items = {
 			audio: 'audioA1',
 		},
 		{
+			key: 2,
 			column: 2,
 			row: 1,
 			title: 'I Feel The Love (Birdee Remix)',
@@ -37,8 +54,8 @@ export const items = {
 			bpm: '122',
 			audio: 'audioA2',
 		},
-
 		{
+			key: 3,
 			column: 3,
 			row: 1,
 			title: 'Under constructions 🚧',
@@ -47,6 +64,7 @@ export const items = {
 			bpm: '125',
 		},
 		{
+			key: 4,
 			column: 4,
 			row: 1,
 			title: 'Under constructions 🚧',
@@ -55,6 +73,7 @@ export const items = {
 			bpm: '125',
 		},
 		{
+			key: 5,
 			column: 1,
 			row: 2,
 			title: 'Under constructions 🚧',
@@ -63,6 +82,7 @@ export const items = {
 			bpm: '125',
 		},
 		{
+			key: 6,
 			column: 2,
 			row: 2,
 			title: 'Under constructions 🚧',
@@ -71,6 +91,7 @@ export const items = {
 			bpm: '125',
 		},
 		{
+			key: 7,
 			column: 3,
 			row: 2,
 			title: 'Under constructions 🚧',
@@ -79,6 +100,7 @@ export const items = {
 			bpm: '125',
 		},
 		{
+			key: 8,
 			column: 4,
 			row: 2,
 			title: 'Under constructions 🚧',
@@ -89,6 +111,7 @@ export const items = {
 	],
 	activeB: [
 		{
+			key: 9,
 			column: 1,
 			row: 1,
 			title: 'Tracey In My Room (Lazy Dog Bootleg Dub Mix)',
@@ -101,6 +124,7 @@ export const items = {
 	],
 	activeC: [
 		{
+			key: 10,
 			column: 1,
 			row: 1,
 			title: 'Tracey In My Room (Lazy Dog Bootleg Dub Mix)',
@@ -113,6 +137,7 @@ export const items = {
 	],
 	activeD: [
 		{
+			key: 11,
 			column: 1,
 			row: 1,
 			title: 'Tracey In My Room (Lazy Dog Bootleg Dub Mix)',
@@ -140,51 +165,61 @@ const Collection = ({ status, onPlay, play, pause, itemPlay }) => {
 	}
 	return (
 		<GridContainer>
-			{coll.map((item, index) => (
-				<ItemA key={index} column={item.column} row={item.row}>
-					{
-						// NOTE Cover
-					}
-					<CoverWrapper onClick={() => setAudioSrc(item.audio)}>
-						<div className="cover">
-							<Image
-								src={item.image ?? '/Crip-Beatz.jpg'}
-								alt="Cover"
-								fill
-								// placeholder="blur"
-								sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw,18vw"
-							/>
-						</div>
-						{onPlay === 'pause' && itemPlay === item.audio ? (
-							<PlayWrapper onClick={play}>
-								<CoverPause />
-							</PlayWrapper>
-						) : onPlay === 'play' && itemPlay === item.audio ? (
-							<PlayWrapper onClick={pause}>
-								<CoverPlay />
-							</PlayWrapper>
-						) : (
-							<PlayWrapper onClick={play}>
-								<CoverPlay />
-							</PlayWrapper>
-						)}
-					</CoverWrapper>
-					{
-						// NOTE Track title
-					}
-					<TitleWrapper>
-						<TrackTitle>{item.title}</TrackTitle>
-					</TitleWrapper>
-					{
-						// NOTE Genre, BPM
-					}
-					<ArtistTitle>{item.artist}</ArtistTitle>
-					<SubTitleWrapper>
-						<SubTitle>{item.genre}</SubTitle>
-						<SubTitle>{item.bpm}</SubTitle>
-					</SubTitleWrapper>
-				</ItemA>
-			))}
+			<AnimatePresence mode="wait">
+				{coll.map((item) => (
+					<ItemA
+						key={item.key}
+						layout
+						variants={MusicAnimation}
+						initial={'initial'}
+						animate={'animate'}
+						column={item.column}
+						row={item.row}
+					>
+						{
+							// NOTE Cover
+						}
+						<CoverWrapper onClick={() => setAudioSrc(item.audio)}>
+							<div className="cover">
+								<Image
+									src={item.image ?? '/Crip-Beatz.jpg'}
+									alt="Cover"
+									fill
+									// placeholder="blur"
+									sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw,18vw"
+								/>
+							</div>
+							{onPlay === 'pause' && itemPlay === item.audio ? (
+								<PlayWrapper onClick={play}>
+									<CoverPause />
+								</PlayWrapper>
+							) : onPlay === 'play' && itemPlay === item.audio ? (
+								<PlayWrapper onClick={pause}>
+									<CoverPlay />
+								</PlayWrapper>
+							) : (
+								<PlayWrapper onClick={play}>
+									<CoverPlay />
+								</PlayWrapper>
+							)}
+						</CoverWrapper>
+						{
+							// NOTE Track title
+						}
+						<TitleWrapper>
+							<TrackTitle>{item.title}</TrackTitle>
+						</TitleWrapper>
+						{
+							// NOTE Genre, BPM
+						}
+						<ArtistTitle>{item.artist}</ArtistTitle>
+						<SubTitleWrapper>
+							<SubTitle>{item.genre}</SubTitle>
+							<SubTitle>{item.bpm}</SubTitle>
+						</SubTitleWrapper>
+					</ItemA>
+				))}
+			</AnimatePresence>
 		</GridContainer>
 	);
 };

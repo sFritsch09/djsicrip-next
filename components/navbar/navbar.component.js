@@ -95,11 +95,11 @@ const Navbar = () => {
 		<Nav className={scroll ? 'sticky' : ''}>
 			<NavbarContainer>
 				<LogoContainer>
-					<Link href="/">
-						<NavIconWrapper href="/" className={isMobile && scroll ? 'sticky' : ''}>
+					<NavIconWrapper className={isMobile && scroll ? 'sticky' : ''}>
+						<Link href="/">
 							<NavIcon className={scroll ? 'sticky' : ''} />
-						</NavIconWrapper>
-					</Link>
+						</Link>
+					</NavIconWrapper>
 				</LogoContainer>
 				<MobileIcon onClick={handleClick}>
 					<BurgerIcon className={active ? 'open' : ''}>

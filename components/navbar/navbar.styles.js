@@ -134,11 +134,8 @@ export const LogoContainer = styled.div`
 	}
 `;
 
-export const NavIconWrapper = styled.a`
-	text-decoration: none;
+export const NavIconWrapper = styled.div`
 	justify-content: flex-start;
-	width: 100%;
-	height: 100%;
 	position: relative;
 	transition: transform ease 0.6s, margin-bottom ease-out 0.4s;
 
@@ -154,8 +151,8 @@ export const NavIconWrapper = styled.a`
 
 export const NavIcon = styled(Logo)`
 	width: 20rem;
-	margin-top: 1.2rem;
-	height: auto;
+	margin-top: 6.2rem;
+	position: relative;
 	color: ${(props) => props.theme.color};
 
 	&:hover {
@@ -163,6 +160,9 @@ export const NavIcon = styled(Logo)`
 	}
 	@media screen and (max-width: 1250px) {
 		width: 15rem;
+	}
+	@media screen and (max-width: 960px) {
+		margin-top: 4.5rem;
 	}
 
 	&.sticky {
@@ -178,8 +178,10 @@ export const NavMenu = styled.ul`
 	text-align: center;
 	margin-right: 4em;
 	margin-bottom: 0;
+	z-index: 300;
 `;
 export const NavMenuMotion = styled(motion.ul)`
+	z-index: 300;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -204,6 +206,7 @@ export const NavItem = styled.li`
 	border-bottom: 2px solid transparent;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	flex-direction: column;
 	flex-shrink: 0;
 
@@ -228,20 +231,18 @@ export const IconWrapper = styled.div`
 	color: ${(props) => props.theme.contrastColor};
 `;
 // a tag
-export const NavLink = styled.a`
+export const NavLink = styled.div`
 	color: ${(props) => props.theme.color};
 	align-items: center;
-	text-decoration: none;
 	display: flex;
 	padding: 0.5rem 1rem;
-	height: 100%;
 	width: 100%;
 	position: relative;
 	cursor: pointer;
 
 	@media screen and (max-width: 980px) {
 		text-align: center;
-		padding: 0;
+		padding: 0.5rem 1rem;
 		width: 100%;
 		display: table;
 		align-items: center;
@@ -284,7 +285,7 @@ export const LinkWrapper = styled.div`
 	align-items: center;
 `;
 
-export const NavTools = styled.a`
+export const NavTools = styled.span`
 	cursor: pointer;
 	display: flex;
 	align-items: center;

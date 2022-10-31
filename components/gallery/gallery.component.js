@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Router from 'next/router';
 import { Product, ProductImage } from './gallery.styles.js';
 import { useScrollUpdate } from '../hooks/ScrollContext';
 //icons
@@ -9,7 +10,7 @@ import { IoArrowDownCircleOutline as DownArrow } from 'react-icons/io5';
 import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
 import { CustomButton } from '../../styles/globalStyles.jsx';
 
-const Gallery = ({ header, desc, image, title, arrowClick, imageClick }) => {
+const Gallery = ({ header, desc, image, title, arrowClick, imageClick, showButton }) => {
 	const scrollContext = useScrollUpdate();
 
 	const ease = [0.6, 0.05, -0.01, 0.99];
@@ -37,6 +38,13 @@ const Gallery = ({ header, desc, image, title, arrowClick, imageClick }) => {
 		x.set(0);
 	};
 
+	const handleRenting = () => {
+		Router.push({
+			pathname: '/booking',
+			query: { booking: 'rent' },
+		});
+	};
+
 	return (
 		<Product>
 			<div className="product-inner">
@@ -45,7 +53,7 @@ const Gallery = ({ header, desc, image, title, arrowClick, imageClick }) => {
 						<h1>{header}</h1>
 						<p>{desc}</p>
 						<div className="btn-row">
-							<CustomButton>Mieten</CustomButton>
+							{showButton ? <CustomButton onClick={handleRenting}>Mieten</CustomButton> : <div />}
 							<DownArrow onClick={arrowClick} />
 						</div>
 					</motion.div>
@@ -80,7 +88,7 @@ const Gallery = ({ header, desc, image, title, arrowClick, imageClick }) => {
 						dragConstraints={{ left: -400, right: 0 }}
 						whileTap={{ cursor: 'grabbing' }}
 					>
-						<ProductImage image={image} onClick={imageClick} onTouchStart={imageClick} />
+						<ProductImage image={image} onClick={imageClick} />
 					</motion.div>
 				</div>
 				<motion.div style={{ paddingBottom: down }} className="product-drag">

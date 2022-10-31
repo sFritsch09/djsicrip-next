@@ -72,9 +72,9 @@ const Equipment = () => {
 						title="Traktor Pro 3"
 					/>
 				</Section>
-
 				<Section ref={titleRef2}>
 					<Gallery
+						showButton
 						arrowClick={handleClick3}
 						imageClick={handleClick2}
 						header="Soundanlage"

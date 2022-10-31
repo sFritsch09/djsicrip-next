@@ -2,7 +2,7 @@ import { Radio } from '@nextui-org/react';
 import { useField } from 'formik';
 
 export default function RadioButton({ name, options, label, ...props }) {
-	const [field, meta, helpers] = useField(name);
+	const [_, meta, helpers] = useField(name);
 
 	const helperText = () => {
 		if (meta.touched && meta.error) {

@@ -20,8 +20,8 @@ body {
 	--nextui-colors-primary: ${(props) => props.theme.contrastColor} !important;
 	--nextui-colors-secondary: ${(props) => props.theme.contrastDark} !important;
 	--nextui-colors-primarySolidContrast: ${(props) => props.theme.darkColor} !important;
-	--nextui-zIndices-2: 1;
-	--nextui-zIndices-1: 1;
+	--nextui-zIndices-2: 1 !important;
+	--nextui-zIndices-1: 1 !important;
 	--nextui-fontSizes-lg: 2.5rem;
 	--nextui-colors-border: ${(props) => props.theme.contrastDark} !important;
 	--nextui-colors-foreground: ${(props) => props.theme.contrastColor} !important;
@@ -31,7 +31,6 @@ body {
 		props.theme.mode === 'Dark' ? props.theme.Darkcolor : props.theme.color} !important;
 	--nextui-colors-primarySolidHover: ${(props) => props.theme.darkColor} !important;
 	--nextui-colors-backgroundContrast: ${(props) => props.theme.darkColor} !important;
-	--nextui-colors-accents7: ${(props) => props.theme.contrastColor} !important;
 }
 
 

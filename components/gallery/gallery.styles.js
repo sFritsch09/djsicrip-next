@@ -45,7 +45,7 @@ export const Product = styled.div`
 					display: flex;
 					align-items: center;
 					justify-content: space-between;
-					z-index: 1;
+					z-index: 60;
 					height: 4em;
 
 					@media screen and (max-width: 800px) {

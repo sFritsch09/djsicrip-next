@@ -1,13 +1,15 @@
 import dynamic from 'next/dynamic';
-import { Button } from '@nextui-org/react';
-import { Formik, Form } from 'formik';
+import { Button, Switch } from '@nextui-org/react';
+import { Formik, Form, useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useState } from 'react';
-import { FormContainer, FormHeader } from '../../styles/booking.styles';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { FormContainer, FormHeader, Label } from '../../styles/booking.styles';
 import { SendButton } from '../../components/form/SendButton';
 import { SendIcon } from '../../components/form/SendIcon';
 // Modal
 import { Modal, useModal, Text } from '@nextui-org/react';
+import { Fragment } from 'react';
 
 const FORM_VALIDATION = Yup.object().shape({
 	name: Yup.string()
@@ -21,18 +23,46 @@ const FORM_VALIDATION = Yup.object().shape({
 		.required('Required')
 		.min(new Date().toISOString().slice(0, 10), 'Wähle ein korrektes Datum'),
 	event: Yup.string().required('Required'),
+	provided1: Yup.boolean(),
+	provided2: Yup.boolean(),
+	message: Yup.string(),
+});
+const FORM_VALIDATION2 = Yup.object().shape({
+	name: Yup.string()
+		.required('Required')
+		.matches(
+			/^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
+			'Name kann nur Alphabetisch sein'
+		),
+	email: Yup.string().required('Required').email('Bitte richtige Mail angeben'),
+	date: Yup.date()
+		.required('Required')
+		.min(new Date().toISOString().slice(0, 10), 'Wähle ein korrektes Datum'),
+	device: Yup.string().required('Required'),
+	message: Yup.string(),
 });
 
 export default function Booking() {
+	const router = useRouter();
+	useEffect(() => {
+		if (router.query.booking === 'rent') {
+			setForm(true);
+		}
+	}, [router]);
 	// Modal
 	const { setVisible, bindings } = useModal();
+	const [form, setForm] = useState(false);
 	const INITIAL_FORM_STATE = {
 		name: '',
 		email: '',
 		date: '',
 		event: '',
+		provided1: false,
+		provided2: false,
+		message: '',
+		device: '',
 	};
-	const [state, setState] = useState(INITIAL_FORM_STATE);
+	const [booking, setBooking] = useState(INITIAL_FORM_STATE);
 	const TextInput = dynamic(() => import('../../components/form/TextInput'), {
 		ssr: false,
 	});
@@ -42,6 +72,13 @@ export default function Booking() {
 	const RadioButton = dynamic(() => import('../../components/form/RadioButton'), {
 		ssr: false,
 	});
+	const CustomCheckbox = dynamic(() => import('../../components/form/Checkbox'), {
+		ssr: false,
+	});
+	const TextMessage = dynamic(() => import('../../components/form/Textarea'), {
+		ssr: false,
+	});
+
 	return (
 		<div className="main">
 			<Modal
@@ -76,15 +113,25 @@ export default function Booking() {
 			</Modal>
 			<Formik
 				initialValues={INITIAL_FORM_STATE}
-				validationSchema={FORM_VALIDATION}
+				validationSchema={!form ? FORM_VALIDATION : FORM_VALIDATION2}
 				onSubmit={(values) => {
 					console.log(values);
-					setState(values);
+					setBooking(values);
+					console.log('renting: ', form);
 				}}
 			>
 				<Form>
 					<FormContainer>
-						<FormHeader>Buchen</FormHeader>
+						<div>
+							<Label>{form ? 'Buchen' : 'Mieten'}</Label>
+							<Switch
+								color="primary"
+								name="booking"
+								checked={form}
+								onChange={(e) => setForm(e.target.checked)}
+							/>
+						</div>
+						<FormHeader>{form ? 'Mieten' : 'Buchen'}</FormHeader>
 						<TextInput label="Name" name="name" autoComplete="name" />
 						<TextInput
 							label="Email"
@@ -93,16 +140,42 @@ export default function Booking() {
 							contentRightStyling={false}
 							contentRight={
 								<SendButton>
-									<SendIcon />
+									<SendIcon fill={'#006d77'} />
 								</SendButton>
 							}
 						/>
-						<DateInput name="date" inputMode="none" min={new Date().toISOString().slice(0, 10)} />
-						<RadioButton
-							label="Event"
-							name="event"
-							options={['Hochzeit', 'Geburtstag', 'Firmenfeier']}
-						/>
+						<div>
+							<Label>Datum</Label>
+							<DateInput name="date" inputMode="none" min={new Date().toISOString().slice(0, 10)} />
+						</div>
+						{!form ? (
+							<Fragment>
+								<RadioButton
+									label="Event"
+									name="event"
+									options={['Hochzeit', 'Geburtstag', 'Firmenfeier']}
+								/>
+								<div>
+									<Label>Bereitgestellt</Label>
+									<CustomCheckbox name="provided1" label="Musik Anlage" />
+									<br />
+									<br />
+									<CustomCheckbox name="provided1" label="Tisch 1,5m Länge" />
+								</div>
+							</Fragment>
+						) : (
+							<div>
+								<RadioButton label="Gerät" name="device" options={['Musik Anlage - SoundBoks 3']} />
+							</div>
+						)}
+						<div>
+							<TextMessage
+								name="message"
+								label="Nachricht"
+								placeholder="Sonstige Infos"
+								width="100%"
+							/>
+						</div>
 						<div>
 							<Button type="submit" onClick={() => setVisible(true)} auto>
 								Submit

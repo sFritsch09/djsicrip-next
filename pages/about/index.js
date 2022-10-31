@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import { FaqWrapper, ImageWrapper, Single } from '../../styles/about.styles';
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
@@ -17,7 +17,7 @@ export default function About() {
 			answer: 'Ich lege schon seit mehr als 10 Jahren auf.',
 		},
 		{
-			question: 'Prduzierst du auch Musik?',
+			question: 'Produzierst du auch Musik?',
 			answer:
 				'Ja, ich bearbeite Songs damit sie besser für Übergänge passen, produziere komplette Songs oder Remix. All das findest du hier:',
 			linkText: 'Music',
@@ -26,7 +26,7 @@ export default function About() {
 		{
 			question: 'Welche Musik spielst du am liebsten?',
 			answer:
-				'Ich spiele am liebsten meine Ladies Playlist, wo alle mit singen/tanzen und ich die verrückte Seite meines Pupliukums herauskitzle.',
+				'Ich spiele am liebsten meine Ladies Playlist, wo alle mit singen/tanzen und ich die verrückte Seite meines Publiukums herauskitzle.',
 		},
 		{
 			question: 'Wie kann ich dich am Besten buchen?',

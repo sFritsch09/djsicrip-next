@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { BiPlay } from 'react-icons/bi';
 import { IoPauseOutline } from 'react-icons/io5';
+import { motion } from 'framer-motion';
 
 const Item = css`
 	width: 100%;
@@ -35,7 +36,7 @@ export const GridContainer = styled.div`
 	}
 `;
 
-export const ItemA = styled.div`
+export const ItemA = styled(motion.div)`
 	grid-column: ${(props) => props.column};
 	grid-row: ${(props) => props.row};
 	${Item}

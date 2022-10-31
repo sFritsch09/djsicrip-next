@@ -79,6 +79,7 @@ export const MusicWrapper = styled.div`
 
 // NOTE MusicPlayer
 export const PlayerContainer = styled.div`
+	z-index: 10;
 	width: 100%;
 	height: 80px;
 	position: fixed;
@@ -86,7 +87,7 @@ export const PlayerContainer = styled.div`
 	bottom: 0;
 	display: ${(props) => (props.show ? 'flex' : 'none')};
 	background-color: ${(props) =>
-		props.theme.mode === 'Dark' ? props.theme.Darkcolor : props.theme.lightColor};
+		props.theme.mode === 'Dark' ? props.theme.Darkcolor : props.theme.contrastDark};
 	box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
 
 	@media screen and (max-width: 980px) {
@@ -149,8 +150,7 @@ export const TitleWrapper = styled.div`
 `;
 
 export const Artist = styled.div`
-	color: ${(props) =>
-		props.theme.mode === 'Dark' ? props.theme.contrastDark : props.theme.contrastColor};
+	color: ${(props) => (props.theme.mode === 'Dark' ? props.theme.contrastDark : props.theme.color)};
 	margin-bottom: 10px;
 	margin-top: 5px;
 `;
@@ -160,7 +160,7 @@ export const SongTitle = styled.div`
 	white-space: nowrap;
 	animation: floatText 10s infinite linear;
 	color: ${(props) =>
-		props.theme.mode === 'Dark' ? props.theme.contrastColor : props.theme.contrastDark};
+		props.theme.mode === 'Dark' ? props.theme.contrastColor : props.theme.lightColor};
 
 	&:hover {
 		animation-play-state: paused;
@@ -213,7 +213,7 @@ export const PlayerWrapper = styled.div`
 		width: 100%;
 		padding: 10px 25px;
 		background-color: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.Darkcolor : props.theme.lightColor};
+			props.theme.mode === 'Dark' ? props.theme.Darkcolor : props.theme.contrastDark};
 
 		@media screen and (max-width: 900px) {
 			padding: 2px 5px;

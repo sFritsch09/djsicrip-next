@@ -78,9 +78,9 @@ export const CustomButton = styled(Button)`
 	position: relative;
 
 	@media screen and (max-width: 680px) {
-		font-size: 1.5rem;
-		padding: 0.5rem 0.2rem;
-		min-width: 10rem;
+		padding: 0.5rem 1rem !important;
+		min-width: 9rem !important;
+		font-size: 1.5rem !important;
 	}
 
 	&:hover {

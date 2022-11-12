@@ -154,6 +154,7 @@ export const NavIcon = styled(Logo)`
 	margin-top: 6.2rem;
 	position: relative;
 	color: ${(props) => props.theme.color};
+	z-index: 1;
 
 	&:hover {
 		color: ${(props) => props.theme.lightColor};

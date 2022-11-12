@@ -1,4 +1,3 @@
-import React, { useCallback } from 'react';
 import {
 	AboutContact,
 	AboutContainer,
@@ -86,7 +85,14 @@ const About = () => {
 					</div>
 				</AboutHeader>
 				<AboutImageWrapper>
-					<AboutImage />
+					<AboutImage>
+						<Image
+							alt="me"
+							fill
+							style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
+							src="/images/Me03.JPG"
+						/>
+					</AboutImage>
 				</AboutImageWrapper>
 				<StackHeader big>Tech Stack</StackHeader>
 				<StackHeader>Frontend:</StackHeader>

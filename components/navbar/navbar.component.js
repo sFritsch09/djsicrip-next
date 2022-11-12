@@ -24,6 +24,7 @@ import {
 	IconWrapper,
 	LinkWrapper,
 } from './navbar.styles';
+import { Switch } from '@nextui-org/react';
 
 const Navbar = () => {
 	const [isDarkMode, setIsDarkMode] = useDarkMode();
@@ -145,8 +146,13 @@ const Navbar = () => {
 								<BiUser />
 							</NavTools>
 						</Link>
+						{
+							// <NavDarkMode>
+							// <DarkModeToggle onChange={(e) => setDarkMode(e)} checked={isDarkMode} size={40} />
+							// </NavDarkMode>
+						}
 						<NavDarkMode>
-							<DarkModeToggle onChange={(e) => setDarkMode(e)} checked={isDarkMode} size={40} />
+							<Switch onChange={(e) => setDarkMode(e)} checked={isDarkMode} />
 						</NavDarkMode>
 					</NavMenu>
 				) : (
@@ -232,8 +238,8 @@ const Navbar = () => {
 						<NavItemMotion variants={navAnimation}>
 							<DarkModeMobile onClick={(e) => setDarkMode(e)}>
 								Theme
-								<NavDarkMode onClick={(e) => setDarkMode(e)}>
-									<DarkModeToggle onChange={(e) => setDarkMode(e)} checked={isDarkMode} size={40} />
+								<NavDarkMode>
+									<Switch checked={isDarkMode} disabled />
 								</NavDarkMode>
 							</DarkModeMobile>
 						</NavItemMotion>

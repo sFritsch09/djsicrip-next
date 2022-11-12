@@ -8,11 +8,11 @@ export const AboutContainer = styled.div`
 	max-width: 1200px;
 
 	.box {
-		width: 650px;
-		height: 250px;
+		margin-left: 12em;
+		padding: 1em;
+		width: 100%;
 		position: relative;
 		display: flex;
-		justify-content: center;
 		flex-direction: column;
 
 		.title {
@@ -69,7 +69,6 @@ export const AboutContainer = styled.div`
 			position: relative;
 			display: flex;
 			align-items: center;
-			height: 30px;
 			margin-top: -10px;
 
 			.block {
@@ -178,19 +177,18 @@ export const AboutContainer = styled.div`
 		}
 	}
 	@media screen and (max-width: 900px) {
-		width: 250px;
-
 		.box {
-			width: 250px;
-			height: 250px;
+			margin-left: 0;
 			.title {
 				h1 {
 					font-size: 48px;
+
+					span {
+						right: -2px;
+					}
 				}
 			}
 			.role {
-				height: 22px;
-
 				p {
 					font-size: 18px;
 				}
@@ -204,18 +202,14 @@ export const AboutImageWrapper = styled.div`
 	margin-bottom: 2em;
 `;
 export const AboutImage = styled.div`
-	background-image: url('https://hausboot.fra1.digitaloceanspaces.com/Me03.JPG');
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: 50% 20%;
 	width: 500px;
-	height: 500px;
+	height: 600px;
 	animation: fader 0.8s ease-in-out 1.8s forwards;
 	opacity: 0;
 
 	@media screen and (max-width: 900px) {
 		width: 250px;
-		height: 250px;
+		height: 350px;
 	}
 
 	@keyframes fader {

@@ -48,6 +48,7 @@ export const AboutWrapper = styled.div`
 	text-decoration: none;
 	color: inherit;
 	padding: 0.5em 0;
+	z-index: 21;
 
 	&:hover {
 		background-color: ${(props) => props.theme.lightColor};

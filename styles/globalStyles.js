@@ -16,6 +16,16 @@ body {
 	color: ${(props) => props.theme.color};
 }
 
+.page-container {
+	display: flex;
+	  flex-direction: column;
+	  min-height: 100vh;
+}
+
+.content-wrap {
+	flex: 1;
+}
+
 :root {
 	--nextui-colors-primary: ${(props) => props.theme.contrastColor} !important;
 	--nextui-colors-secondary: ${(props) => props.theme.contrastDark} !important;
@@ -49,6 +59,7 @@ a:-webkit-any-link {
 	padding: 1em 15em;
 
 	@media screen and (max-width: 980px) {
+	margin-top: 0;
 		padding: 1em 2em;
 	}
 

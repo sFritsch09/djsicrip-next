@@ -8,7 +8,7 @@ import { VscClose as Close } from 'react-icons/vsc';
 import { IoArrowDownCircleOutline as DownArrow } from 'react-icons/io5';
 
 import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
-import { CustomButton } from '../../styles/globalStyles.jsx';
+import { CustomButton } from '../../styles/globalStyles.js';
 
 const Gallery = ({ header, desc, image, title, arrowClick, imageClick, showButton }) => {
 	const scrollContext = useScrollUpdate();

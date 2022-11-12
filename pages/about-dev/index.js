@@ -1,0 +1,171 @@
+import React, { useCallback } from 'react';
+import {
+	AboutContact,
+	AboutContainer,
+	AboutHeader,
+	AboutImage,
+	AboutImageWrapper,
+	ReactLogo,
+	StackChild,
+	StackHeader,
+	StackRow,
+	AboutContactHeader,
+} from '../../styles/about-dev.styles';
+import reactLogo from '../../public/images/techstack/react-logo.png';
+import styledLogo from '../../public/images/techstack/styledComponents-logo.png';
+import nextUiLogo from '../../public/images/techstack/nextui.png';
+import framerLogo from '../../public/images/techstack/framerMotion-logo.png';
+import nodeLogo from '../../public/images/techstack/node-logo.webp';
+import expressLogo from '../../public/images/techstack/express-logo.png';
+import googleLogo from '../../public/images/techstack/google-logo.png';
+import nginxLogo from '../../public/images/techstack/nginx-logo.png';
+import dockerLogo from '../../public/images/techstack/docker-logo.webp';
+import githubLogo from '../../public/images/techstack/github.webp';
+import kubernetesLogo from '../../public/images/techstack/Kubernetes.png';
+
+import { RiMailFill, RiLinkedinBoxFill, RiGithubFill } from 'react-icons/ri';
+import Image from 'next/image';
+import Link from 'next/link';
+
+const About = () => {
+	const parentVariant = {
+		show: {
+			transition: { staggerChildren: 0.3, delayChildrend: 0.2 },
+		},
+	};
+	const childrenVariant = {
+		initial: {
+			y: -60,
+			opacity: 0,
+		},
+		show: {
+			y: 0,
+			opacity: 1,
+			transition: {
+				ease: 'backInOut',
+				duration: 0.95,
+			},
+		},
+	};
+
+	const techStack = {
+		frontend: [
+			{ title: 'React', logo: reactLogo },
+			{ title: 'Styled Components', logo: styledLogo },
+			{ title: 'Next UI', logo: nextUiLogo },
+			{ title: 'Framer Motion', logo: framerLogo },
+		],
+		backend: [
+			{ title: 'Node.js', logo: nodeLogo },
+			{ title: 'Express', logo: expressLogo },
+			{ title: 'Google API', logo: googleLogo },
+			{ title: 'Nginx', logo: nginxLogo },
+		],
+		ciCd: [
+			{ title: 'Github Actions', logo: githubLogo },
+			{ title: 'Docker', logo: dockerLogo },
+			{ title: 'Kubernetes', logo: kubernetesLogo },
+		],
+	};
+	return (
+		<div className="main">
+			<AboutContainer>
+				<AboutHeader>
+					<div className="box">
+						<div className="title">
+							<span className="block"></span>
+							<h1>
+								Sebastian Fritsch<span></span>
+							</h1>
+						</div>
+
+						<div className="role">
+							<div className="block"></div>
+							<p>DevOps Engineer</p>
+						</div>
+					</div>
+				</AboutHeader>
+				<AboutImageWrapper>
+					<AboutImage />
+				</AboutImageWrapper>
+				<StackHeader big>Tech Stack</StackHeader>
+				<StackHeader>Frontend:</StackHeader>
+				<StackRow border="true" whileInView="show" variants={parentVariant} initial="initial">
+					{techStack.frontend.map((frontend) => (
+						<StackChild variants={childrenVariant} key={frontend.title}>
+							<ReactLogo>
+								<Image
+									alt={frontend.title}
+									fill
+									src={frontend.logo}
+									style={{ objectFit: 'contain' }}
+								/>
+							</ReactLogo>
+							{frontend.title}
+						</StackChild>
+					))}
+				</StackRow>
+				<StackHeader>Backend:</StackHeader>
+				<StackRow border="true" whileInView="show" variants={parentVariant} initial="initial">
+					{techStack.backend.map((backend) => (
+						<StackChild variants={childrenVariant} key={backend.title}>
+							<ReactLogo>
+								<Image
+									alt={backend.title}
+									fill
+									src={backend.logo}
+									style={{ objectFit: 'contain' }}
+								/>
+							</ReactLogo>
+							{backend.title}
+						</StackChild>
+					))}
+				</StackRow>
+				<StackHeader>CI/CD:</StackHeader>
+				<StackRow border="true" whileInView="show" variants={parentVariant} initial="initial">
+					{techStack.ciCd.map((ciCd) => (
+						<StackChild variants={childrenVariant} key={ciCd.title}>
+							<ReactLogo>
+								<Image alt={ciCd.title} fill src={ciCd.logo} style={{ objectFit: 'contain' }} />
+							</ReactLogo>
+							{ciCd.title}
+						</StackChild>
+					))}
+				</StackRow>
+				<AboutContact>
+					<AboutContactHeader>
+						<h1>Kontakt</h1>
+					</AboutContactHeader>
+					<div>
+						<div>
+							<RiLinkedinBoxFill size="30" />
+						</div>
+						<div style={{ marginLeft: '1em' }}>
+							<Link href="https://www.linkedin.com/in/sebastian-fritsch-3676831bb" target="_blank">
+								Sebastian Fritsch
+							</Link>
+						</div>
+					</div>
+					<div>
+						<div>
+							<RiMailFill size="30" />
+						</div>
+						<div style={{ marginLeft: '1em' }}>sfritsch09@gmail.com</div>
+					</div>
+					<div>
+						<div>
+							<RiGithubFill size="30" />
+						</div>
+						<div style={{ marginLeft: '1em' }}>
+							<Link href="https://github.com/sFritsch09" target="_blank">
+								sfritsch09
+							</Link>
+						</div>
+					</div>
+				</AboutContact>
+			</AboutContainer>
+		</div>
+	);
+};
+
+export default About;

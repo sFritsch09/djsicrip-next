@@ -23,12 +23,15 @@ export const AboutContainer = styled.div`
 			height: 150px;
 
 			.block {
-				width: 0%;
+				width: 100%;
+				position: absolute;
+				transform: scaleX(0);
 				height: inherit;
 				background: ${(props) => props.theme.contrastDark};
-				position: absolute;
 				animation: mainBlock 1.4s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+				-webkit-animation: mainBlock 1.4s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
 				display: flex;
+				transform-origin: bottom left;
 			}
 
 			h1 {
@@ -50,7 +53,6 @@ export const AboutContainer = styled.div`
 					-webkit-border-radius: 50%;
 					-moz-border-radius: 50%;
 					border-radius: 50%;
-
 					background: ${(props) => props.theme.contrastDark};
 					-webkit-animation: load 0.6s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
 					animation: popIn 0.8s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
@@ -96,16 +98,14 @@ export const AboutContainer = styled.div`
 
 	@keyframes mainBlock {
 		0% {
-			width: 0%;
-			left: 0;
+			transform: scaleX(0);
 		}
 		50% {
-			width: 100%;
-			left: 0;
+			transform: scaleX(1);
 		}
 		100% {
-			width: 0;
-			left: 100%;
+			transform-origin: bottom right;
+			transform: scaleX(0);
 		}
 	}
 

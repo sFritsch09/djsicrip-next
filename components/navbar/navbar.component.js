@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { BiUser } from 'react-icons/bi';
-import DarkModeToggle from 'react-dark-mode-toggle';
+import { SunIcon } from '../../images/SunIcon';
+import { MoonIcon } from '../../images/MoonIcon';
 import { useDarkMode } from '../hooks/DarkModeContext';
 import Link from 'next/link';
 import { BiMusic, BiFace, BiBriefcaseAlt2, BiEuro, BiChat, BiHome } from 'react-icons/bi';
@@ -152,7 +153,13 @@ const Navbar = () => {
 							// </NavDarkMode>
 						}
 						<NavDarkMode>
-							<Switch onChange={(e) => setDarkMode(e)} checked={isDarkMode} />
+							<Switch
+								css={{ color: '#006d77' }}
+								onChange={(e) => setDarkMode(e)}
+								checked={isDarkMode}
+								iconOn={<SunIcon filled />}
+								iconOff={<MoonIcon filled />}
+							/>
 						</NavDarkMode>
 					</NavMenu>
 				) : (
@@ -239,7 +246,7 @@ const Navbar = () => {
 							<DarkModeMobile onClick={(e) => setDarkMode(e)}>
 								Theme
 								<NavDarkMode>
-									<Switch checked={isDarkMode} disabled />
+									<div>{isDarkMode ? <SunIcon fill="#FFDDD2" /> : <MoonIcon fill="#006d77" />}</div>
 								</NavDarkMode>
 							</DarkModeMobile>
 						</NavItemMotion>

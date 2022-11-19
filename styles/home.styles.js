@@ -313,7 +313,8 @@ export const PlayerWrapper = styled.div`
 		z-index: 0;
 		width: 100%;
 		height: 5px;
-		background-color: ${(props) => props.theme.color};
+		background-color: ${(props) =>
+			props.theme.mode === 'Dark' ? props.theme.contrastColor : props.theme.contrastDark};
 		border-radius: 2px;
 	}
 
@@ -328,7 +329,7 @@ export const PlayerWrapper = styled.div`
 
 	.rhap_progress-bar-show-download {
 		background-color: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.contrastColor : props.theme.contrastDark};
+			props.theme.mode === 'Dark' ? props.theme.contrastDark : props.theme.contrastColor};
 	}
 
 	.rhap_download-progress {
@@ -336,7 +337,7 @@ export const PlayerWrapper = styled.div`
 		position: absolute;
 		z-index: 1;
 		background-color: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.contrastDark : props.theme.contrastColor};
+			props.theme.mode === 'Dark' ? props.theme.contrastColor : props.theme.contrastColor};
 		border-radius: 2px;
 	}
 
@@ -442,8 +443,7 @@ export const PlayerWrapper = styled.div`
 		position: relative;
 		width: 100%;
 		height: 4px;
-		background: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.contrastColor : props.theme.contrastDark};
+		background: ${(props) => props.theme.contrastColor};
 		border-radius: 2px;
 	}
 

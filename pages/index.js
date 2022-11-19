@@ -265,6 +265,7 @@ export default function Home() {
 							onPlay={handleOnPlay}
 							ref={playerRef}
 							src={playing}
+							volume={0.5}
 							customAdditionalControls={[]}
 							progressJumpSteps={{
 								forward: 30000,
@@ -311,6 +312,7 @@ export default function Home() {
 							onPlay={handleOnPlay}
 							ref={playerRef}
 							src={playing}
+							volume={0.5}
 							customAdditionalControls={[]}
 							progressJumpSteps={{
 								forward: 30000,

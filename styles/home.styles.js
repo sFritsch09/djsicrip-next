@@ -1,11 +1,14 @@
 import styled, { css } from 'styled-components';
-import { Image } from '@nextui-org/react';
+import Image from 'next/image';
 import { VscClose } from 'react-icons/vsc';
 
 const Active = css`
 	width: 100%;
 	background: ${(props) => props.theme.lightColor};
 	transition: width 0.2s;
+`;
+const TextAnimation = css`
+	animation: floatText 10s infinite linear;
 `;
 
 export const Angle = styled.div`
@@ -32,15 +35,49 @@ export const Angle = styled.div`
 		}
 	}
 `;
-export const CustomImage = styled(Image)`
+
+export const ImageWrapper = styled.div`
 	width: 100%;
+	position: relative;
 	height: 600px !important;
-	background-position: 50% 45% !important;
-	background-size: cover !important;
-	background-repeat: no-repeat;
+	@media screen and (max-width: 980px) {
+		height: 400px !important;
+	}
+`;
+export const CustomImage = styled(Image)`
+	filter: ${(props) => (props.theme.mode === 'Dark' ? 'brightness(70%)' : 'brightness(100%)')};
 	transition: all 0.5s ease;
 	&:hover {
 		transform: scale(1.1);
+	}
+	mask-image: linear-gradient(to bottom, transparent 1%, black 30%);
+	-webkit-mask-image: linear-gradient(to bottom, transparent 1%, black 30%);
+	position: relative;
+`;
+
+export const ImageText = styled.div`
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	font-size: 10em;
+	background: -webkit-linear-gradient(45deg, #0072f5 -20%, #ff4ecd 50%);
+	background: ${(props) =>
+		`linear-gradient(45deg, ${props.theme.contrastColor} 40%, ${props.theme.contrastDark} 50%)`};
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	letter-spacing: -10px;
+
+	@media screen and (max-width: 980px) {
+		font-size: 5em;
+		letter-spacing: -5px;
+	}
+	@media screen and (max-width: 700px) {
+		font-size: 3em;
+		letter-spacing: -4px;
 	}
 `;
 
@@ -50,14 +87,14 @@ export const MusicContainer = styled.div`
 	align-items: center;
 	padding-bottom: 2em;
 	width: 100%;
-	height: 80em;
+	height: fit-content;
 	@media screen and (max-width: 980px) {
 		padding-bottom: 8em;
 		height: 140em;
 	}
 	@media screen and (max-width: 680px) {
 		padding-bottom: 8em;
-		height: 80em;
+		height: fit-content;
 	}
 `;
 
@@ -87,7 +124,7 @@ export const PlayerContainer = styled.div`
 	bottom: 0;
 	display: ${(props) => (props.show ? 'flex' : 'none')};
 	background-color: ${(props) =>
-		props.theme.mode === 'Dark' ? props.theme.Darkcolor : props.theme.contrastDark};
+		props.theme.mode === 'Dark' ? props.theme.darkColor : props.theme.contrastDark};
 	box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
 
 	@media screen and (max-width: 980px) {
@@ -153,15 +190,18 @@ export const Artist = styled.div`
 	color: ${(props) => (props.theme.mode === 'Dark' ? props.theme.contrastDark : props.theme.color)};
 	margin-bottom: 10px;
 	margin-top: 5px;
+	margin-left: 0.5em;
 `;
 
 export const SongTitle = styled.div`
-	padding-left: 5px;
 	white-space: nowrap;
-	animation: floatText 10s infinite linear;
 	color: ${(props) =>
 		props.theme.mode === 'Dark' ? props.theme.contrastColor : props.theme.lightColor};
+	${(props) => (props.animate ? TextAnimation : null)}
 
+	span {
+		margin-left: 0.5em;
+	}
 	&:hover {
 		animation-play-state: paused;
 	}
@@ -213,7 +253,7 @@ export const PlayerWrapper = styled.div`
 		width: 100%;
 		padding: 10px 25px;
 		background-color: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.Darkcolor : props.theme.contrastDark};
+			props.theme.mode === 'Dark' ? props.theme.darkColor : props.theme.contrastDark};
 
 		@media screen and (max-width: 900px) {
 			padding: 2px 5px;
@@ -337,7 +377,7 @@ export const PlayerWrapper = styled.div`
 		position: absolute;
 		z-index: 1;
 		background-color: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.contrastColor : props.theme.contrastColor};
+			props.theme.mode === 'Dark' ? props.theme.contrastColor : props.theme.lightColor};
 		border-radius: 2px;
 	}
 

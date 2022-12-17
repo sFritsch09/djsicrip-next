@@ -1,12 +1,13 @@
 import Head from 'next/head';
 import React, { useState, useEffect, useRef } from 'react';
-import { Logo, MusicCollection, items } from '../components';
+import { Logo, MusicCollection } from '../components';
 import { CustomButton, LogoWrapper, ToolTip } from '../styles/globalStyles';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import { useMusic, useMusicUpdate } from '../components/hooks/MusicContext';
+import PocketBase from 'pocketbase';
 import {
 	CustomImage,
 	MusicContainer,
@@ -22,12 +23,52 @@ import {
 	NavContainer,
 	NavItem,
 	Angle,
+	ImageWrapper,
+	ImageText,
 } from '../styles/home.styles';
 import { Image } from '@nextui-org/react';
 // Modal
 import { Modal, useModal, Text } from '@nextui-org/react';
+import { useDarkMode } from '../components/hooks/DarkModeContext';
 
 export default function Home() {
+	const [isDarkMode, _] = useDarkMode();
+
+	const imageOptions = [
+		{
+			src: isDarkMode
+				? 'https://pb.djsicrip.com/api/files/images/yi5rdkjtnhxxz0g/dark_turntables_brFb5AUtGp.webp'
+				: 'https://pb.djsicrip.com/api/files/images/58lq84mvfnf2fir/light_music_fair_nkiStOlX44.webp',
+			alt: 'turntables',
+			blurDataURL: isDarkMode
+				? 'https://pb.djsicrip.com/api/files/images/yi5rdkjtnhxxz0g/dark_turntables_brFb5AUtGp.webp?thumb=100x300'
+				: 'https://pb.djsicrip.com/api/files/images/58lq84mvfnf2fir/light_music_fair_nkiStOlX44.webp?thumb=100x300',
+			pos: isDarkMode ? '50% 40%' : '50% 90%',
+			text: 'Firmenfeier 🥂',
+		},
+		{
+			src: isDarkMode
+				? 'https://pb.djsicrip.com/api/files/images/j0u76itog11eapd/dark_djset_SIuX1An8YA.webp'
+				: 'https://pb.djsicrip.com/api/files/images/y3t8hycdzky7gve/light_outside_xM9J2F2Wsy.webp',
+			alt: 'setup',
+			blurDataURL: isDarkMode
+				? 'https://pb.djsicrip.com/api/files/images/j0u76itog11eapd/dark_djset_SIuX1An8YA.webp?thumb=100x300'
+				: 'https://pb.djsicrip.com/api/files/images/y3t8hycdzky7gve/light_outside_xM9J2F2Wsy.webp?thumb=100x300',
+			pos: isDarkMode ? '50% 70%' : '50% 50%',
+			text: 'Hochzeiten 💒',
+		},
+		{
+			src: isDarkMode
+				? 'https://pb.djsicrip.com/api/files/images/swrkh0jkq71850u/dark_logo_old_pLokmp0N4y.jpg'
+				: 'https://pb.djsicrip.com/api/files/images/9xhfn7yuzvhbvrq/light_fritsch09_ccT8SM8nZv.webp',
+			alt: 'setup',
+			blurDataURL: isDarkMode
+				? 'https://pb.djsicrip.com/api/files/images/swrkh0jkq71850u/dark_logo_old_pLokmp0N4y.jpg?thumb=100x300'
+				: 'https://pb.djsicrip.com/api/files/images/9xhfn7yuzvhbvrq/light_fritsch09_ccT8SM8nZv.webp?thumb=100x300',
+			pos: isDarkMode ? '10% 20%' : '50% 60%',
+			text: 'Geburtstag 🎉',
+		},
+	];
 	// Modal
 	const { setVisible, bindings } = useModal();
 	const settings = {
@@ -55,29 +96,34 @@ export default function Home() {
 		windowDimension();
 	}, []);
 
+	// title length
+
+	const [animateTitle, setAnimateTitle] = useState(false);
+	const songRef = useRef();
+	const titleRef = useRef();
+	useEffect(() => {
+		let titleWidth = titleRef.current?.offsetWidth;
+		let songWidth = songRef.current?.offsetWidth;
+		if (titleWidth > songWidth - 100) {
+			setAnimateTitle(true);
+		} else {
+			setAnimateTitle(false);
+		}
+	}, [titleRef.current]);
+
 	// Music Player
 	const audioSrc = useMusic();
 	const setAudioSrc = useMusicUpdate();
 	const [playing, setPlaying] = useState('');
-	const [onPlaying, setOnPlaying] = useState('');
 	const [pause, setPause] = useState('');
 	const [open, setOpen] = useState(false);
-	const [animate, setAnimate] = useState(false);
 
 	const playerRef = useRef();
 
-	const AudioSrcA1 = '/audio/Tracey In My Room (Lazy Dog Bootleg Dub Mix).mp3';
-	const AudioSrcA2 = '/audio/I Feel The Love (Birdee Remix).mp3';
 	useEffect(() => {
-		if (audioSrc === 'audioA1') {
-			setPlaying(AudioSrcA1);
-			setOnPlaying('audioA1');
+		if (audioSrc) {
 			setOpen(true);
-		}
-		if (audioSrc === 'audioA2') {
-			setPlaying(AudioSrcA2);
-			setOnPlaying('audioA2');
-			setOpen(true);
+			setPlaying(audioSrc);
 		}
 		if (audioSrc === 'pause') {
 			setPlaying('');
@@ -97,11 +143,9 @@ export default function Home() {
 
 	const handleOnPlay = () => {
 		setPause('pause');
-		setAnimate(true);
 	};
 	const handleOnPause = () => {
 		setPause('play');
-		setAnimate(false);
 	};
 
 	const handleClosePlayer = () => {
@@ -110,42 +154,39 @@ export default function Home() {
 	};
 	// Navbar MusicCollection
 	const [state, setState] = useState({
-		status: 'active',
+		status: 'house',
 	});
 	const [xPosition, setXPosition] = useState(0);
 
 	const { status } = state;
-	let coll = items.active;
 	const handleClick = (name) => {
 		switch (name) {
 			case 'showA':
-				setState({ status: 'active' });
+				setState({ status: 'house' });
 				break;
 			case 'showB':
-				setState({ status: 'activeB' });
+				setState({ status: 'classic' });
 				break;
 			case 'showC':
-				setState({ status: 'activeC' });
+				setState({ status: 'party' });
 				break;
 			case 'showD':
-				setState({ status: 'activeD' });
+				setState({ status: 'hip hop' });
 				break;
 			default:
-				setState({ status: 'active' });
+				setState({ status: 'house' });
 		}
 	};
+	// fetching covers
+	const [covers, setCovers] = useState([]);
+	const pb = new PocketBase('https://pb.djsicrip.com');
+	const getCovers = async () => {
+		const covers = await pb.collection('covers').getList(1, 50, { $autoCancel: false });
+		setCovers(covers);
+	};
 	useEffect(() => {
-		let coll = items.active;
-		if (status === 'active') {
-			coll = items.active;
-		} else if (status === 'activeB') {
-			coll = items.activeB;
-		} else if (status === 'activeC') {
-			coll = items.activeC;
-		} else if (status === 'activeD') {
-			coll = items.activeD;
-		}
-	}, [status]);
+		getCovers();
+	}, []);
 	return (
 		<div>
 			<Head>
@@ -184,30 +225,19 @@ export default function Home() {
 				</Modal.Footer>
 			</Modal>
 			<Slider {...settings}>
-				<div>
-					<CustomImage alt="First Pic" src={'/images/darkTurntables.jpeg'} objectFit="cover" />
-				</div>
-				<div>
-					<CustomImage
-						alt="First Pic"
-						src={'https://source.unsplash.com/cKwPLSR5XAo'}
-						objectFit="cover"
-					/>
-				</div>
-				<div>
-					<CustomImage
-						alt="First Pic"
-						src={'https://source.unsplash.com/5WrxWltrCTg'}
-						objectFit="cover"
-					/>
-				</div>
-				<div>
-					<CustomImage
-						alt="First Pic"
-						src={'https://source.unsplash.com/9P1pZy3gwxg'}
-						objectFit="cover"
-					/>
-				</div>
+				{imageOptions.map((image, index) => (
+					<ImageWrapper key={index}>
+						<CustomImage
+							alt={image.alt}
+							src={image.src}
+							fill
+							placeholder="blur"
+							blurDataURL={image.blurDataURL}
+							style={{ objectFit: 'cover', objectPosition: image.pos }}
+						/>
+						<ImageText>{image.text}</ImageText>
+					</ImageWrapper>
+				))}
 			</Slider>
 			<Angle />
 			<LogoWrapper>
@@ -217,27 +247,28 @@ export default function Home() {
 						<Image src="/images/speed.gif" alt="gif here" />
 					</span>
 				</ToolTip>
-				<Logo animation={animate} />
+				<Logo animation={pause === 'pause'} />
 			</LogoWrapper>
 			<MusicContainer>
 				<MusicWrapper>
 					<NavContainer>
-						<NavItem active={status === 'active'} onClick={() => handleClick('showA')}>
+						<NavItem active={status === 'house'} onClick={() => handleClick('showA')}>
 							House
 						</NavItem>
-						<NavItem active={status === 'activeB'} onClick={() => handleClick('showB')}>
+						<NavItem active={status === 'classic'} onClick={() => handleClick('showB')}>
 							Classics
 						</NavItem>
-						<NavItem active={status === 'activeC'} onClick={() => handleClick('showC')}>
+						<NavItem active={status === 'party'} onClick={() => handleClick('showC')}>
 							Party
 						</NavItem>
-						<NavItem active={status === 'activeD'} onClick={() => handleClick('showD')}>
+						<NavItem active={status === 'hip hop'} onClick={() => handleClick('showD')}>
 							Hip Hop
 						</NavItem>
 					</NavContainer>
 					<MusicCollection
+						covers={covers.items?.filter((coll) => coll.genre === status)}
 						onPlay={pause}
-						itemPlay={onPlaying}
+						itemPlay={playing}
 						play={handlePlay}
 						pause={handlePause}
 						status={status}
@@ -247,11 +278,14 @@ export default function Home() {
 			</MusicContainer>
 			{!isMobile ? (
 				<PlayerContainer show={open}>
-					{coll.map((item, index) =>
-						onPlaying === item.audio ? (
-							<React.Fragment key={index}>
+					{covers.items?.map((item) =>
+						playing.includes(item.id) ? (
+							<React.Fragment key={item.id}>
 								<Image
-									src={item.image ?? '/Crip-Beatz.jpg'}
+									src={
+										`https://pb.djsicrip.com/api/files/covers/${item.id}/${item.cover}` ??
+										'/Crip-Beatz.jpg'
+									}
 									alt="Cover"
 									placeholder="blur"
 									sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw,18vw"
@@ -288,19 +322,24 @@ export default function Home() {
 				</PlayerContainer>
 			) : (
 				<PlayerContainer show={open}>
-					<ImgContainer>
-						{coll.map((item, index) =>
-							onPlaying === item.audio ? (
-								<React.Fragment key={index}>
+					<ImgContainer ref={songRef}>
+						{covers.items?.map((item) =>
+							playing.includes(item.id) ? (
+								<React.Fragment key={item.id}>
 									<Image
-										src={item.image ?? '/Crip-Beatz.jpg'}
+										src={
+											`https://pb.djsicrip.com/api/files/covers/${item.id}/${item.cover}` ??
+											'/Crip-Beatz.jpg'
+										}
 										alt="Cover"
 										placeholder="blur"
 										sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw,18vw"
 									/>
 									<TitleWrapper>
 										<Artist>{item.artist}</Artist>
-										<SongTitle>{item.title}</SongTitle>
+										<SongTitle animate={animateTitle}>
+											<span ref={titleRef}>{item.title}</span>
+										</SongTitle>
 									</TitleWrapper>
 								</React.Fragment>
 							) : null

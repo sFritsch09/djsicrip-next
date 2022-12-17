@@ -45,16 +45,16 @@ const vinylMotion = {
 		transition: {
 			ease: 'linear',
 			duration: 2,
-			loop: Infinity,
+			repeat: Infinity,
 		},
 	},
 };
 
 const Logo = ({ animation }) => {
-	const [animate, cycle] = useCycle(
-		{ scale: 1, rotate: 0 },
-		{ rotate: 360, transition: { ease: 'linear', duration: 2, loop: Infinity } }
-	);
+	// const [animate, cycle] = useCycle(
+	// 	{ scale: 1, rotate: 0 },
+	// 	{ rotate: 360, transition: { ease: 'linear', duration: 2, repeat: Infinity } }
+	// );
 	return (
 		<div>
 			<MainContainer
@@ -199,8 +199,8 @@ const Logo = ({ animation }) => {
 				<VinylWrapper
 					variants={vinylMotion}
 					whileHover="hover"
-					animate={animation ? 'hover' : animate}
-					onTap={() => cycle()}
+					animate={animation ? 'hover' : 'rest'}
+					onTap="hover"
 				>
 					<VinylImg />
 				</VinylWrapper>

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ['unsplash.com', 'localhost'],
+		domains: ['pb.djsicrip.com', 'localhost'],
 	},
 	basePath: '',
 	reactStrictMode: true,

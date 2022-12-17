@@ -13,6 +13,8 @@ export const Nav = styled.nav`
 	top: 0;
 	z-index: 20;
 	transition: background 0.3s ease-out;
+	background: ${(props) => (props.theme.mode === 'Dark' ? '' : 'rgba(255, 255, 255, 0)')};
+	backdrop-filter: blur(2px);
 
 	&.sticky {
 		background: ${(props) =>
@@ -33,6 +35,22 @@ export const Nav = styled.nav`
 			transition: transform 0.4s, opacity 0.2s;
 		}
 	}
+`;
+
+export const MobileNav = styled.div`
+	z-index: 30;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	right: 0;
+	bottom: 5rem;
+	transform: translateX(${({ active }) => (active ? '0' : '100%')});
+	-webkit-transform: -webkit-translateX(${({ active }) => (active ? '0' : '100%')});
+	transition: transform 0.3s ease-out;
+	-webkit-transition: -webkit-transform 0.3s ease-out;
+	background-color: ${(props) => props.theme.darkColor} !important;
+	opacity: 1;
 `;
 
 export const NavbarContainer = styled.div`
@@ -185,20 +203,16 @@ export const NavMenuMotion = styled(motion.ul)`
 	z-index: 300;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: flex-start;
 	width: 100%;
-	margin-right: 0;
-	height: 100vh;
+	padding: 0;
 	position: absolute;
-	padding-top: 3em;
-	bottom: 80px;
-	left: 0;
-	transform: translateX(${({ $active }) => ($active ? '0' : '100%')});
-	-webkit-transform: -webkit-translateX(${({ $active }) => ($active ? '0' : '100%')});
 	opacity: 1;
-	transition: transform 0.3s ease-out;
-	-webkit-transition: -webkit-transform 0.3s ease-out;
-	background: ${(props) => props.theme.darkColor};
+	padding-top: 5rem;
+	top: 0 !important;
+	left: 0;
+	right: 0;
+	background: ${(props) => props.theme.darkColor} !important;
 `;
 
 // li tag
@@ -213,7 +227,7 @@ export const NavItem = styled.li`
 
 	@media screen and (max-width: 980px) {
 		width: 100%;
-		height: 10vh;
+		height: 10%;
 	}
 `;
 export const NavItemMotion = styled(motion.li)`
@@ -221,6 +235,7 @@ export const NavItemMotion = styled(motion.li)`
 	align-items: center;
 	flex-direction: column;
 	width: 100%;
+	padding: 1em;
 `;
 export const IconWrapper = styled.div`
 	font-size: 2rem;

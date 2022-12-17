@@ -10,7 +10,6 @@ import {
 	StackRow,
 	AboutContactHeader,
 } from '../../styles/about-dev.styles';
-import reactLogo from '../../public/images/techstack/react-logo.png';
 import styledLogo from '../../public/images/techstack/styledComponents-logo.png';
 import nextUiLogo from '../../public/images/techstack/nextui.png';
 import framerLogo from '../../public/images/techstack/framerMotion-logo.png';
@@ -21,6 +20,8 @@ import nginxLogo from '../../public/images/techstack/nginx-logo.png';
 import dockerLogo from '../../public/images/techstack/docker-logo.webp';
 import githubLogo from '../../public/images/techstack/github.webp';
 import kubernetesLogo from '../../public/images/techstack/Kubernetes.png';
+import nextLogo from '../../public/images/techstack/Next-logo.png';
+import digitaloceanLogo from '../../public/images/techstack/Digitalocean-logo.png';
 
 import { RiMailFill, RiLinkedinBoxFill, RiGithubFill } from 'react-icons/ri';
 import Image from 'next/image';
@@ -49,7 +50,7 @@ const About = () => {
 
 	const techStack = {
 		frontend: [
-			{ title: 'React', logo: reactLogo },
+			{ title: 'NextJS', logo: nextLogo },
 			{ title: 'Styled Components', logo: styledLogo },
 			{ title: 'Next UI', logo: nextUiLogo },
 			{ title: 'Framer Motion', logo: framerLogo },
@@ -64,6 +65,7 @@ const About = () => {
 			{ title: 'Github Actions', logo: githubLogo },
 			{ title: 'Docker', logo: dockerLogo },
 			{ title: 'Kubernetes', logo: kubernetesLogo },
+			{ title: 'DigitalOcean', logo: digitaloceanLogo },
 		],
 	};
 	return (

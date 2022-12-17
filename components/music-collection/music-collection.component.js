@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { useMusicUpdate } from '../hooks/MusicContext';
 import Image from 'next/image';
 import {
@@ -16,184 +16,70 @@ import {
 } from './music-collection.styles';
 import { AnimatePresence } from 'framer-motion';
 
-const MusicAnimation = {
-	initial: {
-		x: 80,
-		opacity: 0,
-	},
-	animate: {
-		x: 0,
-		opacity: 1,
-		transition: {
-			ease: 'backInOut',
-			duration: 0.65,
+const Collection = ({ onPlay, play, pause, itemPlay, covers }) => {
+	const [isMobile, setIsMobile] = useState(false);
+	const windowDimension = () => {
+		if (window.innerWidth <= 980) {
+			setIsMobile(true);
+		} else {
+			setIsMobile(false);
+		}
+	};
+	// is Mobile
+	useEffect(() => {
+		windowDimension();
+	}, []);
+	const MusicAnimation = {
+		initial: {
+			x: isMobile ? 30 : 100,
+			opacity: 0,
 		},
-	},
-};
-export const items = {
-	active: [
-		{
-			key: 1,
-			column: 1,
-			row: 1,
-			title: 'Tracey In My Room (Lazy Dog Bootleg Dub Mix)',
-			artist: 'EBTG vs. Soul Vision',
-			image: '/images/cover/Cover-TraceyInMyRoom.jpg',
-			genre: 'House',
-			bpm: '125',
-			audio: 'audioA1',
+		animate: {
+			x: 0,
+			opacity: 1,
+			transition: {
+				ease: 'backInOut',
+				duration: 0.65,
+			},
 		},
-		{
-			key: 2,
-			column: 2,
-			row: 1,
-			title: 'I Feel The Love (Birdee Remix)',
-			artist: 'Body Heat Gang Band',
-			image: '/images/cover/Cover-IFeelTheLove.jpeg',
-			genre: 'Disco',
-			bpm: '122',
-			audio: 'audioA2',
-		},
-		{
-			key: 3,
-			column: 3,
-			row: 1,
-			title: 'Under constructions 🚧',
-			artist: 'EBTG vs. Soul Vision',
-			genre: 'House',
-			bpm: '125',
-		},
-		{
-			key: 4,
-			column: 4,
-			row: 1,
-			title: 'Under constructions 🚧',
-			artist: 'EBTG vs. Soul Vision',
-			genre: 'House',
-			bpm: '125',
-		},
-		{
-			key: 5,
-			column: 1,
-			row: 2,
-			title: 'Under constructions 🚧',
-			artist: 'EBTG vs. Soul Vision',
-			genre: 'House',
-			bpm: '125',
-		},
-		{
-			key: 6,
-			column: 2,
-			row: 2,
-			title: 'Under constructions 🚧',
-			artist: 'EBTG vs. Soul Vision',
-			genre: 'House',
-			bpm: '125',
-		},
-		{
-			key: 7,
-			column: 3,
-			row: 2,
-			title: 'Under constructions 🚧',
-			artist: 'EBTG vs. Soul Vision',
-			genre: 'House',
-			bpm: '125',
-		},
-		{
-			key: 8,
-			column: 4,
-			row: 2,
-			title: 'Under constructions 🚧',
-			artist: 'EBTG vs. Soul Vision',
-			genre: 'House',
-			bpm: '125',
-		},
-	],
-	activeB: [
-		{
-			key: 9,
-			column: 1,
-			row: 1,
-			title: 'Tracey In My Room (Lazy Dog Bootleg Dub Mix)',
-			artist: 'EBTG vs. Soul Vision',
-			image: '/images/cover/Cover-TraceyInMyRoom.jpg',
-			genre: 'House',
-			bpm: '125',
-			audio: 'audioA1',
-		},
-	],
-	activeC: [
-		{
-			key: 10,
-			column: 1,
-			row: 1,
-			title: 'Tracey In My Room (Lazy Dog Bootleg Dub Mix)',
-			artist: 'EBTG vs. Soul Vision',
-			image: '/images/cover/Cover-TraceyInMyRoom.jpg',
-			genre: 'House',
-			bpm: '125',
-			audio: 'audioA1',
-		},
-	],
-	activeD: [
-		{
-			key: 11,
-			column: 1,
-			row: 1,
-			title: 'Tracey In My Room (Lazy Dog Bootleg Dub Mix)',
-			artist: 'EBTG vs. Soul Vision',
-			image: '/images/cover/Cover-TraceyInMyRoom.jpg',
-			genre: 'House',
-			bpm: '125',
-			audio: 'audioA1',
-		},
-	],
-};
-
-const Collection = ({ status, onPlay, play, pause, itemPlay }) => {
+	};
 	const setAudioSrc = useMusicUpdate();
-
-	let coll = items.active;
-	if (status === 'active') {
-		coll = items.active;
-	} else if (status === 'activeB') {
-		coll = items.activeB;
-	} else if (status === 'activeC') {
-		coll = items.activeC;
-	} else if (status === 'activeD') {
-		coll = items.activeD;
-	}
 	return (
 		<GridContainer>
 			<AnimatePresence mode="wait">
-				{coll.map((item) => (
+				{covers?.map((item) => (
 					<ItemA
-						key={item.key}
+						key={item.id}
 						layout
 						variants={MusicAnimation}
 						initial={'initial'}
 						animate={'animate'}
-						column={item.column}
-						row={item.row}
 					>
 						{
 							// NOTE Cover
 						}
-						<CoverWrapper onClick={() => setAudioSrc(item.audio)}>
+						<CoverWrapper
+							onClick={() =>
+								setAudioSrc(`https://pb.djsicrip.com/api/files/covers/${item.id}/${item.track}`)
+							}
+						>
 							<div className="cover">
 								<Image
-									src={item.image ?? '/Crip-Beatz.jpg'}
+									src={
+										`https://pb.djsicrip.com/api/files/covers/${item.id}/${item.cover}` ??
+										'/Crip-Beatz.jpg'
+									}
 									alt="Cover"
 									fill
 									// placeholder="blur"
 									sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw,18vw"
 								/>
 							</div>
-							{onPlay === 'pause' && itemPlay === item.audio ? (
+							{onPlay === 'pause' && itemPlay.includes(item.id) ? (
 								<PlayWrapper onClick={play}>
 									<CoverPause />
 								</PlayWrapper>
-							) : onPlay === 'play' && itemPlay === item.audio ? (
+							) : onPlay === 'play' && itemPlay.includes(item.id) ? (
 								<PlayWrapper onClick={pause}>
 									<CoverPlay />
 								</PlayWrapper>
@@ -224,11 +110,11 @@ const Collection = ({ status, onPlay, play, pause, itemPlay }) => {
 	);
 };
 
-const MusicCollection = ({ onPlay, play, pause, itemPlay, active }) => {
+const MusicCollection = ({ onPlay, play, pause, itemPlay, covers }) => {
 	return (
-		<React.Fragment>
-			<Collection status={active} onPlay={onPlay} play={play} pause={pause} itemPlay={itemPlay} />
-		</React.Fragment>
+		<Fragment>
+			<Collection covers={covers} onPlay={onPlay} play={play} pause={pause} itemPlay={itemPlay} />
+		</Fragment>
 	);
 };
 

@@ -77,8 +77,9 @@ export default function Footer() {
 				</FooterSection>
 				<FooterSection>
 					<h3 className="header">Rechtliches</h3>
-					<div className="content">Datenschutz</div>
-					<div className="content">Impressum</div>
+					<Link href="/privacy">
+						<div className="content">Datenschutz & Impressum</div>
+					</Link>
 				</FooterSection>
 			</FooterWrapper>
 			<Link href="about-dev">

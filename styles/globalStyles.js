@@ -38,7 +38,7 @@ body {
 	--nextui-colors-text: ${(props) => props.theme.color} !important;
 	--nextui-colors-accents0: ${(props) => props.theme.darkColor} !important;
 	--nextui-colors-accents7: ${(props) =>
-		props.theme.mode === 'Dark' ? props.theme.Darkcolor : props.theme.color} !important;
+		props.theme.mode === 'Dark' ? props.theme.darkColor : props.theme.color} !important;
 	--nextui-colors-primarySolidHover: ${(props) =>
 		props.theme.mode === 'Dark' ? props.theme.contrastDark : props.theme.darkColor} !important;
 	--nextui-colors-backgroundContrast: ${(props) => props.theme.darkColor} !important;

@@ -1,18 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { BiPlay } from 'react-icons/bi';
 import { IoPauseOutline } from 'react-icons/io5';
 import { motion } from 'framer-motion';
-
-const Item = css`
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: stretch;
-	flex-direction: column;
-	align-items: center;
-	color: ${(props) => props.theme.color};
-	border-bottom: 2px solid ${(props) => props.theme.color};
-`;
 
 export const GridContainer = styled.div`
 	height: 100%;
@@ -20,7 +9,6 @@ export const GridContainer = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
-	column-gap: 5em;
 	row-gap: 5em;
 	align-items: center;
 	justify-items: center;
@@ -37,13 +25,18 @@ export const GridContainer = styled.div`
 `;
 
 export const ItemA = styled(motion.div)`
-	grid-column: ${(props) => props.column};
-	grid-row: ${(props) => props.row};
-	${Item}
+	width: 80%;
+	height: 100%;
+	display: flex;
+	justify-content: stretch;
+	flex-direction: column;
+	align-items: center;
+	color: ${(props) => props.theme.color};
+	border-bottom: 2px solid ${(props) => props.theme.color};
+	cursor: pointer;
 
 	@media screen and (max-width: 980px) {
-		grid-column: ${(props) => props.row};
-		grid-row: ${(props) => props.column};
+		width: 100%;
 	}
 `;
 
@@ -80,17 +73,16 @@ export const PlayWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	cursor: pointer;
 	position: absolute;
 	z-index: 1;
+	transition: transform 0.1s ease-out;
 
 	@media screen and (max-width: 680px) {
 		width: 3em;
 		height: 3em;
 	}
-	&:hover {
+	${ItemA}:hover & {
 		transform: scale(1.2);
-		transition: all 0.1s ease-in-out;
 	}
 `;
 
@@ -146,4 +138,5 @@ export const SubTitleWrapper = styled.div`
 
 export const SubTitle = styled.h4`
 	font-size: 1em;
+	text-transform: capitalize;
 `;

@@ -62,22 +62,27 @@ export const ImageText = styled.div`
 	align-items: center;
 	width: 100%;
 	height: 100%;
-	font-size: 10em;
-	background: -webkit-linear-gradient(45deg, #0072f5 -20%, #ff4ecd 50%);
-	background: ${(props) =>
-		`linear-gradient(45deg, ${props.theme.contrastColor} 40%, ${props.theme.contrastDark} 50%)`};
-	background-clip: text;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	letter-spacing: -10px;
 
-	@media screen and (max-width: 980px) {
-		font-size: 5em;
-		letter-spacing: -5px;
-	}
-	@media screen and (max-width: 700px) {
-		font-size: 3em;
-		letter-spacing: -4px;
+	span {
+		display: inline;
+		font-size: 10em;
+		background: ${(props) =>
+			`linear-gradient(45deg, ${props.theme.contrastColor} 40%, ${props.theme.contrastDark} 50%)`};
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		text-fill-color: transparent;
+		letter-spacing: -10px;
+		-webkit-box-decoration-break: clone;
+
+		@media screen and (max-width: 980px) {
+			font-size: 5em;
+			letter-spacing: -5px;
+		}
+		@media screen and (max-width: 700px) {
+			font-size: 3em;
+			letter-spacing: -4px;
+		}
 	}
 `;
 

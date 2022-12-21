@@ -235,7 +235,9 @@ export default function Home() {
 							blurDataURL={image.blurDataURL}
 							style={{ objectFit: 'cover', objectPosition: image.pos }}
 						/>
-						<ImageText>{image.text}</ImageText>
+						<ImageText>
+							<span>{image.text}</span>
+						</ImageText>
 					</ImageWrapper>
 				))}
 			</Slider>

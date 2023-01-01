@@ -177,7 +177,7 @@ export default function Home() {
 				setState({ status: 'house' });
 		}
 	};
-	// fetching covers
+	// // fetching covers
 	const [covers, setCovers] = useState([]);
 	const pb = new PocketBase('https://pb.djsicrip.com');
 	const getCovers = async () => {
@@ -185,7 +185,13 @@ export default function Home() {
 		setCovers(covers);
 	};
 	useEffect(() => {
-		getCovers();
+		let ignore = false;
+		if (!ignore) {
+			getCovers();
+		}
+		return () => {
+			ignore = true;
+		};
 	}, []);
 	return (
 		<div>

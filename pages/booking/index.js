@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import { Button, Switch } from '@nextui-org/react';
-import { Formik, Form, useFormik } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -43,6 +43,7 @@ const FORM_VALIDATION2 = Yup.object().shape({
 });
 
 export default function Booking() {
+	const [form, setForm] = useState(false);
 	const router = useRouter();
 	useEffect(() => {
 		if (router.query.booking === 'rent') {
@@ -51,7 +52,6 @@ export default function Booking() {
 	}, [router]);
 	// Modal
 	const { setVisible, bindings } = useModal();
-	const [form, setForm] = useState(false);
 	const INITIAL_FORM_STATE = {
 		name: '',
 		email: '',

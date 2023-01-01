@@ -35,9 +35,9 @@ const Navbar = () => {
 
 	const handleClick = () => setActive(!active);
 	const router = useRouter();
-	const getLocale = () => {
-		console.log(router);
-	};
+	// const getLocale = () => {
+	// 	console.log(router);
+	// };
 	const changeLocale = (locale) => {
 		// router.push(
 		// 	{
@@ -114,7 +114,7 @@ const Navbar = () => {
 							</BurgerIcon>
 						</MobileIcon>
 						<NavMenu>
-							<NavItem onClick={() => getLocale()}>
+							<NavItem>
 								<Link href="/">
 									<NavLink className={scroll ? 'sticky' : ''}>HOME</NavLink>
 								</Link>

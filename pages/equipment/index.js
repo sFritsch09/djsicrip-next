@@ -36,17 +36,18 @@ const Equipment = () => {
 	};
 	const hideScroll = useScroll();
 	const [blockScroll, allowScroll] = useScrollBlock();
-	//scrolltargets
-	// const targetElement = document.querySelector('html');
-	useEffect(() => {
-		if (hideScroll) {
-			document.body.classList.add('no-scroll');
-			blockScroll();
-		} else {
-			document.body.classList.remove('no-scroll');
-			allowScroll();
+	const handleScroll = () => {
+		if (typeof window !== 'undefined') {
+			if (hideScroll) {
+				document.body.classList.add('no-scroll');
+				blockScroll();
+			} else {
+				document.body.classList.remove('no-scroll');
+				allowScroll();
+			}
 		}
-	}, [hideScroll, allowScroll, blockScroll]); // Empty array ensures effect is only run on mount and unmount
+	};
+	handleScroll();
 
 	return (
 		<React.Fragment>

@@ -12,6 +12,9 @@ export const FooterContainer = styled.div`
 		padding-bottom: 6em;
 	}
 `;
+export const SeoText = styled.span`
+	color: ${(props) => props.theme.darkColor};
+`;
 
 export const FooterWrapper = styled.div`
 	display: flex;

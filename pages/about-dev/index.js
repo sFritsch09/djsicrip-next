@@ -22,6 +22,7 @@ import githubLogo from '../../public/images/techstack/github.webp';
 import kubernetesLogo from '../../public/images/techstack/Kubernetes.png';
 import nextLogo from '../../public/images/techstack/Next-logo.png';
 import digitaloceanLogo from '../../public/images/techstack/Digitalocean-logo.png';
+import { SocialProfileJsonLd } from 'next-seo';
 
 import { RiMailFill, RiLinkedinBoxFill, RiGithubFill } from 'react-icons/ri';
 import Image from 'next/image';
@@ -70,6 +71,16 @@ const About = () => {
 	};
 	return (
 		<div className="main">
+			<SocialProfileJsonLd
+				type="Person"
+				name="DJ Si Crip - Sebastian Fritsch"
+				url="https://djsicrip.com"
+				sameAs={[
+					'https://www.instagram.com/djsicrip2',
+					'https://www.linkedin.com/in/sebastian-fritsch-3676831bb',
+					'https://github.com/sFritsch09',
+				]}
+			/>
 			<AboutContainer>
 				<AboutHeader>
 					<div className="box">

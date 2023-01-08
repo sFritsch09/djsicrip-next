@@ -4,6 +4,8 @@ import { Navbar } from '../components';
 import { Footer } from '../components';
 import { MusicProvider } from '../components/hooks/MusicContext';
 import { ScrollProvider } from '../components/hooks/ScrollContext';
+import { DefaultSeo } from 'next-seo';
+import SEO from '../next-seo.config';
 
 function MyApp({ Component, pageProps }) {
 	return (
@@ -15,6 +17,7 @@ function MyApp({ Component, pageProps }) {
 					<MusicProvider>
 						<ScrollProvider>
 							<Component {...pageProps} />
+							<DefaultSeo {...SEO} />
 							<Footer />
 						</ScrollProvider>
 					</MusicProvider>

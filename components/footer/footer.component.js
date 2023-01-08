@@ -5,6 +5,7 @@ import {
 	FooterContainer,
 	FooterSection,
 	FooterWrapper,
+	SeoText,
 	SocialIconWrapper,
 } from './footer.styles';
 import {
@@ -16,10 +17,24 @@ import {
 	RiSpotifyFill,
 	RiTwitterFill,
 } from 'react-icons/ri';
+import { SocialProfileJsonLd } from 'next-seo';
 
 export default function Footer() {
 	return (
 		<FooterContainer>
+			<SocialProfileJsonLd
+				type="Person"
+				name="DJ Si Crip - Sebastian Fritsch"
+				url="https://djsicrip.com"
+				sameAs={[
+					'https://www.instagram.com/djsicrip2',
+					'https://www.linkedin.com/in/sebastian-fritsch-3676831bb',
+					'https://open.spotify.com/artist/1Givl5CVSswZ3r5PKiqUKh?si=MWmuCfLsTZK8_rovu07NLg',
+					'https://twitter.com/DjSiCrip',
+					'https://soundcloud.com/sebastian-fitch',
+					'https://www.facebook.com/djsicrip',
+				]}
+			/>
 			<FooterWrapper>
 				<FooterSection>
 					<h3 className="header">Kontakt</h3>
@@ -82,6 +97,7 @@ export default function Footer() {
 					</Link>
 				</FooterSection>
 			</FooterWrapper>
+			<SeoText>Best DJ in Mainz für Hochzeit, Firmenfeier mit Equipment und Musikanlage</SeoText>
 			<Link href="about-dev">
 				<AboutWrapper>Created By Sebastian Fritsch 💙💛</AboutWrapper>
 			</Link>

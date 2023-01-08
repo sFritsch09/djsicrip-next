@@ -57,7 +57,7 @@ export default function About() {
 			answer:
 				'Meine Webseite habe ich selbst entworfen Frontend + Backend und für Anfragen findest du hier meine Kontaktdaten:',
 			linkText: 'Kontakt',
-			link: '#',
+			link: '/about-dev',
 		},
 	];
 

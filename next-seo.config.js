@@ -1,5 +1,4 @@
 const DEFAULT_SEO = {
-	title: 'Best DJ Mainz',
 	description: 'Mainz DJ für Hochzeit, Firmenfeier. Professionell mit Equipment und Musikanlage',
 	openGraph: {
 		type: 'website',

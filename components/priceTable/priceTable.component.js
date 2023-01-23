@@ -1,11 +1,37 @@
 import { Table } from '@nextui-org/react';
 
 export default function Price() {
-	const eventData = [
-		{ name: 'Geburtstag', price: 200 },
-		{ name: 'Hochzeit', price: 650 },
-		{ name: 'Firmenfeier', price: 600 },
-		{ name: 'Abschlussfeier', price: 450 },
+	const columns = [
+		{
+			key: 'name',
+			label: 'NAME',
+		},
+		{
+			key: 'price',
+			label: 'PRICE',
+		},
+	];
+	const rows = [
+		{
+			key: '1',
+			name: 'Geburtstag',
+			price: '200',
+		},
+		{
+			key: '2',
+			name: 'Hochzeit',
+			price: '605',
+		},
+		{
+			key: '3',
+			name: 'Firmenfeier',
+			price: '600',
+		},
+		{
+			key: '4',
+			name: 'Abschlussfeier',
+			price: '450',
+		},
 	];
 	return (
 		<div className="main">
@@ -18,17 +44,15 @@ export default function Price() {
 					}}
 					bordered
 				>
-					<Table.Header>
-						<Table.Column>EVENT</Table.Column>
-						<Table.Column>PREIS*</Table.Column>
+					<Table.Header columns={columns}>
+						{(column) => <Table.Column key={column.key}>{column.label}</Table.Column>}
 					</Table.Header>
-					<Table.Body>
-						{eventData.map((event, index) => (
-							<Table.Row key={index}>
-								<Table.Cell>{event.name}</Table.Cell>
-								<Table.Cell>{event.price} €</Table.Cell>
+					<Table.Body items={rows}>
+						{(item) => (
+							<Table.Row key={item.key}>
+								{(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}
 							</Table.Row>
-						))}
+						)}
 					</Table.Body>
 				</Table>
 			}

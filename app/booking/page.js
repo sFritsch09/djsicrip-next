@@ -1,9 +1,10 @@
+'use client';
 import dynamic from 'next/dynamic';
 import { Button, Switch } from '@nextui-org/react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useSearchParams } from 'next/navigation';
 import { FormContainer, FormHeader, Label } from '../../styles/booking.styles';
 import { SendButton } from '../../components/form/SendButton';
 import { SendIcon } from '../../components/form/SendIcon';
@@ -44,12 +45,12 @@ const FORM_VALIDATION2 = Yup.object().shape({
 
 export default function Booking() {
 	const [form, setForm] = useState(false);
-	const router = useRouter();
+	const searchParams = useSearchParams();
 	useEffect(() => {
-		if (router.query.booking === 'rent') {
+		if (searchParams.get('booking') === 'rent') {
 			setForm(true);
 		}
-	}, [router]);
+	}, [searchParams]);
 	// Modal
 	const { setVisible, bindings } = useModal();
 	const INITIAL_FORM_STATE = {

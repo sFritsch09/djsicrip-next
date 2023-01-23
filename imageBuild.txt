@@ -3,7 +3,7 @@ package ci
 import (
 	"dagger.io/dagger"
 	"universe.dagger.io/docker"
-	"universe.dagger.io/docker/cli"
+	"universe.dagger.io/yarn"
 )
 
 dagger.#Plan & {
@@ -15,45 +15,98 @@ dagger.#Plan & {
 			REGISTRY_PASS:   dagger.#Secret
 		}
 		filesystem: {
-			".": read: {
+			"./": read: {
 				contents: dagger.#FS
-				exclude: [".next", "node_modules", "cue.mod", "README.md"]
+				exclude: [".next", "node_modules", "cue.mod", "README.md", "dagger.cue", "Dockerfile", "pb.dockerfile"]
 			}
+			"./_build": write: {
+				contents: actions.build.output
+			}
+
 		}
 	}
 	actions: {
 		// Next Build
-		deps: docker.#Dockerfile & {
-			source: client.filesystem.".".read.contents
-			// dockerfile: path: "Dockerfile.production"
-			// Use the stage `FROM base as deps`
-			target: "deps"
-		}
-		builder: docker.#Dockerfile & {
-			source: client.filesystem.".".read.contents
-			// Use the stage `FROM base as builder`
-			target: "builder"
-		}
-		run: docker.#Dockerfile & {
-			source: client.filesystem.".".read.contents
-			// Use the stage `FROM base as run`
-			target: "run"
-		}
-		build: docker.#Dockerfile & {
-			source: client.filesystem.".".read.contents
-			dockerfile: contents: #"""
-				FROM node:19.0-alpine AS deps
-				WORKDIR /app
-				COPY package.json yarn.lock ./
-				RUN yarn install --frozen-lockfile
-				"""#
-		}
 
-		load: cli.#Load & {
-			image: run.output
-			host:  client.network."unix:///var/run/docker.sock".connect
-			tag:   "myimage"
+		// _pull: docker.#Pull & {
+		//  source: "node:19.0-alpine"
+		// }
+		// deps: bash.#Run & {
+		//  input:   _copy.output
+		//  workdir: "/app"
+		//  script: contents: #"""
+		//   yarn install --frozen-lockfile
+		//   """#
+		// }
+		// Install Dependencies
+		// deps: yarn.#Command & {
+		//  project: "deps"
+		//  source:  client.filesystem."./".read.contents
+		//  args: ["install", "--frozen-lockfile"]
+		//  outputDir: "./src"
+		//  // source: actions.source.output
+		//  // name:   "install"
+		// }
+		// Build Next App
+		build: yarn.#Script & {
+			// project: "build"
+			source: client.filesystem."./".read.contents
+			name:   "build"
 		}
+		// root: bash.#Run & {
+		//  input: build.output
+		//  // workdir: "/app"
+		//  script: contents: #"""
+		//   addgroup -g 1001 -S nodejs
+		//   adduser -S nextjs -u 1001
+		//   chown nextjs:nodejs package.json yarn.lock node_modules public .next 
+		//   sudo su - nextjs
+		//   """#
+		// }
+		_pull: docker.#Pull & {
+			source: "node:19.4.0-alpine"
+		}
+		// _build_group: docker.#Run & {
+		//  input: actions._pull.output
+		//  command: {
+		//   name: "addgroup"
+		//   args: ["-g", "1001", "-S", "nodejs"]
+		//  }
+		// }
+		// _build_user: docker.#Run & {
+		//  input: actions._build_group.output
+		//  command: {
+		//   name: "adduser"
+		//   args: ["-S", "nextjs", "-u", "1001"]
+		//  }
+		// }
+		// _build_package: docker.#Copy & {
+		//  input:    actions._build_user.output
+		//  contents: actions.build.output
+		//  source:   "/"
+		//  dest:     "/app"
+		// }
+		// run: docker.#Set & {
+		//  input: actions._build_package.output
+		//  config: {
+		//   // workdir: "/app"
+		//   user: "nextjs"
+		//   env: NODE_ENV: "production"
+		//   expose: "3000/tcp": {}
+		//   cmd: ["sleep", "infinity"]
+		//  }
+		// }
+		// copy: docker.#Copy & {
+		//  input:    _pull.output
+		//  contents: deps2.output
+		//  dest:     "/app"
+		// }
+
+		// load: cli.#Load & {
+		//  image: run.output
+		//  host:  client.network."unix:///var/run/docker.sock".connect
+		//  tag:   "testimage"
+		// }
 		// push: docker.#Push & {
 		//  image: build.image
 		//  dest:  client.env.REGISTRY_DOMAIN

@@ -1,12 +1,6 @@
-import dynamic from 'next/dynamic';
+'use client';
 import { Container } from '../../styles/music.styles';
-
-const SoundCloud = dynamic(
-	() => {
-		return import('../../components/music/music.component');
-	},
-	{ ssr: false }
-);
+import { SoundCloud } from '../../components/music/music.component';
 
 export default function Music() {
 	return (

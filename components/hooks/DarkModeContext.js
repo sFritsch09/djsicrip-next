@@ -1,3 +1,4 @@
+'use client';
 import { useContext, useState, createContext, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme, invertTheme } from '../../styles/globalStyles';

@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from 'react';
+'use client';
+import { useRef, Fragment } from 'react';
 import { useScroll } from '../../components/hooks/ScrollContext';
 import useScrollBlock from '../../components/hooks/useScrollBlock';
 
@@ -50,7 +51,7 @@ const Equipment = () => {
 	handleScroll();
 
 	return (
-		<React.Fragment>
+		<Fragment>
 			<Spacer />
 			<Container>
 				<Section ref={titleRef5}>
@@ -105,7 +106,7 @@ const Equipment = () => {
 					/>
 				</Section>
 			</Container>
-		</React.Fragment>
+		</Fragment>
 	);
 };
 

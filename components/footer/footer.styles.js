@@ -1,3 +1,4 @@
+'use client';
 import styled from 'styled-components';
 
 export const FooterContainer = styled.div`
@@ -7,6 +8,8 @@ export const FooterContainer = styled.div`
 	padding-top: 2em;
 	flex-direction: column;
 	margin-top: 12em;
+	position: relative;
+	z-index: 2;
 
 	@media screen and (max-width: 980px) {
 		padding-bottom: 6em;

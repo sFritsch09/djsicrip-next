@@ -1,3 +1,4 @@
+'use client';
 import styled, { css } from 'styled-components';
 import Image from 'next/image';
 import { VscClose } from 'react-icons/vsc';
@@ -127,7 +128,7 @@ export const PlayerContainer = styled.div`
 	position: fixed;
 	transition: 0.6s;
 	bottom: 0;
-	display: ${(props) => (props.show ? 'flex' : 'none')};
+	display: ${(props) => (props.$show ? 'flex' : 'none')};
 	background-color: ${(props) =>
 		props.theme.mode === 'Dark' ? props.theme.darkColor : props.theme.contrastDark};
 	box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);

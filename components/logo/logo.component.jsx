@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion, useCycle } from 'framer-motion';
+'use client';
+import { motion } from 'framer-motion';
 import { LogoContainer, VinylImg, VinylWrapper, MainContainer } from './logo.styles';
 
 const pathVariants = {

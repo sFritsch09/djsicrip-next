@@ -1,3 +1,4 @@
+'use client';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -206,6 +207,7 @@ export const AboutImage = styled.div`
 	height: 600px;
 	animation: fader 0.8s ease-in-out 1.8s forwards;
 	opacity: 0;
+	position: relative;
 
 	@media screen and (max-width: 900px) {
 		width: 250px;

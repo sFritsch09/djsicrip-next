@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+'use client';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { BiUser } from 'react-icons/bi';
 import { SunIcon } from '../../images/SunIcon';
 import { MoonIcon } from '../../images/MoonIcon';

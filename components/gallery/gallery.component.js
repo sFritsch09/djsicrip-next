@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Router from 'next/router';
+'use client';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Product, ProductImage } from './gallery.styles.js';
 import { useScrollUpdate } from '../hooks/ScrollContext';
 //icons
@@ -37,12 +38,9 @@ const Gallery = ({ header, desc, image, title, arrowClick, imageClick, showButto
 		x.stop();
 		x.set(0);
 	};
-
+	const router = useRouter();
 	const handleRenting = () => {
-		Router.push({
-			pathname: '/booking',
-			query: { booking: 'rent' },
-		});
+		router.push('/booking?booking=rent');
 	};
 
 	return (

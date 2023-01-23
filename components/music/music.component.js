@@ -1,7 +1,7 @@
 import ReactSoundCloud from 'react-soundcloud-embedded';
 import { SoundCloudContainer } from './music.styles';
 
-const SoundCloud = () => {
+export const SoundCloud = () => {
 	const Bodyswerve = 'https://soundcloud.com/sebastian-fitch/want-to-bodyswerve-crip-beatz-edit';
 	const BreakNight = 'https://soundcloud.com/sebastian-fitch/break-night-oh-oh-crip-beatz-edit';
 	const Kickerz = 'https://soundcloud.com/sebastian-fitch/kickerz-crip-beatz-extended-tv-theme';
@@ -49,5 +49,3 @@ const SoundCloud = () => {
 		</SoundCloudContainer>
 	);
 };
-
-export default SoundCloud;

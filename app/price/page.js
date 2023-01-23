@@ -1,3 +1,4 @@
+'use client';
 import PriceTable from '../../components/priceTable/priceTable.component';
 import { Fragment } from 'react';
 

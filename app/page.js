@@ -1,3 +1,4 @@
+'use client';
 import Head from 'next/head';
 import React, { useState, useEffect, useRef } from 'react';
 import { Logo, MusicCollection } from '../components';
@@ -44,6 +45,17 @@ export default function Home() {
 				? 'https://pb.djsicrip.com/api/files/images/yi5rdkjtnhxxz0g/dark_turntables_brFb5AUtGp.webp?thumb=100x300'
 				: 'https://pb.djsicrip.com/api/files/images/58lq84mvfnf2fir/light_music_fair_nkiStOlX44.webp?thumb=100x300',
 			pos: isDarkMode ? '50% 40%' : '50% 90%',
+			text: 'DJ in Mainz 🎧',
+		},
+		{
+			src: isDarkMode
+				? 'https://pb.djsicrip.com/api/files/xaxun5rjt3q4ncb/almkbmbofl6dd7x/extrablatt_zTO35ZvB4L.jpeg'
+				: 'https://pb.djsicrip.com/api/files/xaxun5rjt3q4ncb/almkbmbofl6dd7x/extrablatt_zTO35ZvB4L.jpeg',
+			alt: 'turntables',
+			blurDataURL: isDarkMode
+				? 'https://pb.djsicrip.com/api/files/xaxun5rjt3q4ncb/almkbmbofl6dd7x/extrablatt_zTO35ZvB4L.jpeg?thumb=100x300'
+				: 'https://pb.djsicrip.com/api/files/xaxun5rjt3q4ncb/almkbmbofl6dd7x/extrablatt_zTO35ZvB4L.jpeg?thumb=100x300',
+			pos: isDarkMode ? '50% 0%' : '50% 0%',
 			text: 'Firmenfeier 🥂',
 		},
 		{
@@ -195,11 +207,6 @@ export default function Home() {
 	}, []);
 	return (
 		<div>
-			<Head>
-				<title>DJ Si Crip</title>
-				<meta name="description" content="DJ Si Crip - Never trust a DJ who can't dance!" />
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
 			<Modal
 				blur
 				preventClose
@@ -285,7 +292,7 @@ export default function Home() {
 				</MusicWrapper>
 			</MusicContainer>
 			{!isMobile ? (
-				<PlayerContainer show={open}>
+				<PlayerContainer $show={open}>
 					{covers.items?.map((item) =>
 						playing.includes(item.id) ? (
 							<React.Fragment key={item.id}>
@@ -329,7 +336,7 @@ export default function Home() {
 					</PlayerWrapper>
 				</PlayerContainer>
 			) : (
-				<PlayerContainer show={open}>
+				<PlayerContainer $show={open}>
 					<ImgContainer ref={songRef}>
 						{covers.items?.map((item) =>
 							playing.includes(item.id) ? (

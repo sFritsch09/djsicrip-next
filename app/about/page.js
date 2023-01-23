@@ -1,3 +1,4 @@
+'use client';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { FaqWrapper, ImageWrapper, Single } from '../../styles/about.styles';

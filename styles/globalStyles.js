@@ -1,3 +1,4 @@
+'use client';
 import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
 import { Button } from '@nextui-org/react';

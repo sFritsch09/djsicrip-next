@@ -1,3 +1,4 @@
+'use client';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Vinyl from '../../images/vinyl.svg';

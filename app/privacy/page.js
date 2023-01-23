@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import { ImpContainer, ImpHeader, ImpWrapper } from '../../styles/privacy.syles';
 
 export default function Impressum() {

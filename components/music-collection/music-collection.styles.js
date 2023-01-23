@@ -1,3 +1,4 @@
+'use client';
 import styled from 'styled-components';
 import { BiPlay } from 'react-icons/bi';
 import { IoPauseOutline } from 'react-icons/io5';

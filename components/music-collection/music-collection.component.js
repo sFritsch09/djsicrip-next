@@ -1,3 +1,4 @@
+'use client';
 import { Fragment, useState, useEffect } from 'react';
 import { useMusicUpdate } from '../hooks/MusicContext';
 import Image from 'next/image';

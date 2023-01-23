@@ -4,6 +4,9 @@ const nextConfig = {
 		domains: ['pb.djsicrip.com', 'localhost'],
 	},
 	basePath: '',
+	experimental: {
+		appDir: true,
+	},
 	reactStrictMode: true,
 	swcMinify: true,
 	compiler: {

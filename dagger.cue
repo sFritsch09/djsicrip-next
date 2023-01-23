@@ -10,9 +10,9 @@ dagger.#Plan & {
 	client: {
 		network: "unix:///var/run/docker.sock": connect: dagger.#Socket
 		env: {
-			REGISTRY_DOMAIN: string
-			REGISTRY_USER:   string | "_token_"
-			REGISTRY_PASS:   dagger.#Secret
+			REGISTRY_IMAGETAG: string
+			REGISTRY_USER:     string | "_token_"
+			REGISTRY_PASS:     dagger.#Secret
 		}
 		filesystem: {
 			".": read: {
@@ -48,11 +48,11 @@ dagger.#Plan & {
 		load: cli.#Load & {
 			image: run.output
 			host:  client.network."unix:///var/run/docker.sock".connect
-			tag:   "registry.djsicrip.com/webapp/djsicrip:0.8.1"
+			tag:   "djsicrip:0.8.2"
 		}
 		push: docker.#Push & {
 			image: run.output
-			dest:  client.env.REGISTRY_DOMAIN
+			dest:  client.env.REGISTRY_IMAGETAG
 			auth: {
 				username: client.env.REGISTRY_USER
 				secret:   client.env.REGISTRY_PASS

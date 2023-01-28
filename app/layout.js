@@ -7,6 +7,7 @@ import { Footer } from '../components';
 import { NextSeo } from 'next-seo';
 import SEO from '../next-seo.config';
 import { ScrollProvider } from '../components/hooks/ScrollContext';
+
 export default function RootLayout({ children }) {
 	return (
 		<html>

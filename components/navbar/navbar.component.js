@@ -164,7 +164,7 @@ const Navbar = () => {
 				</Nav>
 			) : (
 				<div>
-					<Nav className={scroll ? 'sticky' : ''}>
+					<Nav className={scroll ? '' : 'is-hidden'}>
 						<NavbarContainer>
 							<LogoContainer>
 								<NavIconWrapper className={isMobile && scroll ? 'sticky' : ''}>

@@ -68,7 +68,7 @@ const Collection = ({ onPlay, play, pause, itemPlay, covers }) => {
 								<Image
 									src={
 										`https://pb.djsicrip.com/api/files/covers/${item.id}/${item.cover}` ??
-										'/Crip-Beatz.jpg'
+										'https://pb.djsicrip.com/api/files/xaxun5rjt3q4ncb/26w1c1e32p6nyz9/crip_beatz_KLML7YYccC.jpg'
 									}
 									alt="Cover"
 									fill

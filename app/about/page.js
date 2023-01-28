@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { FaqWrapper, ImageWrapper, Single } from '../../styles/about.styles';
 import { useEffect, useState } from 'react';
-import profile from '../../public/images/profile-green.jpg';
 import AboutCollapse from '../../components/collapse/about.collapse';
 
 export default function About() {
@@ -169,7 +168,8 @@ export default function About() {
 			</Single>
 			<ImageWrapper variants={image} initial="initial" animate="animate">
 				<Image
-					src={profile}
+					blurDataURL="https://pb.djsicrip.com/api/files/xaxun5rjt3q4ncb/4cemge11tngg9b2/profile_green_cOhqkENIBR.jpg?thumb=100x300"
+					src="https://pb.djsicrip.com/api/files/xaxun5rjt3q4ncb/4cemge11tngg9b2/profile_green_cOhqkENIBR.jpg"
 					alt="profile"
 					fill
 					placeholder="blur"

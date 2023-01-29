@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { Button, Switch } from '@nextui-org/react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FormContainer, FormHeader, Label } from '../../styles/booking.styles';
 import { SendButton } from '../../components/form/SendButton';
@@ -11,6 +11,8 @@ import { SendIcon } from '../../components/form/SendIcon';
 // Modal
 import { Modal, useModal, Text } from '@nextui-org/react';
 import { Fragment } from 'react';
+import Calendar from '../../components/bookingCalendar/calendar.component';
+// import { server } from '../../config/index';
 
 const FORM_VALIDATION = Yup.object().shape({
 	name: Yup.string()
@@ -42,8 +44,22 @@ const FORM_VALIDATION2 = Yup.object().shape({
 	device: Yup.string().required('Required'),
 	message: Yup.string(),
 });
+// async function getData() {
+// 	const res = await fetch(`${server}/api/event`);
+// 	// The return value is *not* serialized
+// 	// You can return Date, Map, Set, etc.
+
+// 	// Recommendation: handle errors
+// 	if (!res.ok) {
+// 		// This will activate the closest `error.js` Error Boundary
+// 		console.log('error');
+// 	}
+
+// 	return res.json();
+// }
 
 export default function Booking() {
+	// const data = await getData();
 	const [form, setForm] = useState(false);
 	const searchParams = useSearchParams();
 	useEffect(() => {
@@ -112,6 +128,9 @@ export default function Booking() {
 					</Button>
 				</Modal.Footer>
 			</Modal>
+			<Suspense fallback={<p>Loading calendar...</p>}>
+				<Calendar />
+			</Suspense>
 			<Formik
 				initialValues={INITIAL_FORM_STATE}
 				validationSchema={!form ? FORM_VALIDATION : FORM_VALIDATION2}

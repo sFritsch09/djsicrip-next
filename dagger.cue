@@ -13,6 +13,12 @@ dagger.#Plan & {
 			REGISTRY_IMAGETAG: string
 			REGISTRY_USER:     string | "_token_"
 			REGISTRY_PASS:     dagger.#Secret
+			KUBECONFIG:        *"~/.kube/config" | string
+		}
+		commands: kubeconfig: {
+			name: "cat"
+			args: ["\(env.KUBECONFIG)"]
+			stdout: dagger.#Secret
 		}
 		filesystem: {
 			".": read: {
@@ -56,6 +62,27 @@ dagger.#Plan & {
 			auth: {
 				username: client.env.REGISTRY_USER
 				secret:   client.env.REGISTRY_PASS
+			}
+		}
+		deploy: docker.#Run & {
+			always: true
+			_img:   docker.#Pull & {
+				source: "bitnami/kubectl"
+			}
+			input: _img.output
+			command: {
+				// kubectl set image deploy/app-djsicrip app=imageName -n app-djsicrip
+				name: "set"
+				args: ["image", "deployment", "app-djsicrip", "app=registry.djsicrip.com/webapp/djsicrip:0.8.2", "-n", "app-djsicrip"]
+			}
+			user:    "root"
+			workdir: "/workspace"
+			mounts: {
+				"/.kube/config": {
+					dest:     "/.kube/config"
+					type:     "secret"
+					contents: client.commands.kubeconfig.stdout
+				}
 			}
 		}
 	}

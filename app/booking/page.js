@@ -11,7 +11,7 @@ import { SendIcon } from '../../components/form/SendIcon';
 // Modal
 import { Modal, useModal, Text } from '@nextui-org/react';
 import { Fragment } from 'react';
-import Calendar from '../../components/bookingCalendar/calendar.component';
+import Calendar from './calendar.component';
 // import { server } from '../../config/index';
 
 const FORM_VALIDATION = Yup.object().shape({

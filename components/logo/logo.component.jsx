@@ -50,7 +50,7 @@ const vinylMotion = {
 	},
 };
 
-const Logo = ({ animation }) => {
+const Logo = ({ animation, vinyl }) => {
 	// const [animate, cycle] = useCycle(
 	// 	{ scale: 1, rotate: 0 },
 	// 	{ rotate: 360, transition: { ease: 'linear', duration: 2, repeat: Infinity } }

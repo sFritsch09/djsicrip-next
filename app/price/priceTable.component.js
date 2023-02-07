@@ -1,3 +1,4 @@
+'use client';
 import { Table } from '@nextui-org/react';
 
 export default function Price() {
@@ -8,7 +9,7 @@ export default function Price() {
 		},
 		{
 			key: 'price',
-			label: 'PRICE',
+			label: 'PRICE*',
 		},
 	];
 	const rows = [
@@ -20,17 +21,17 @@ export default function Price() {
 		{
 			key: '2',
 			name: 'Hochzeit',
-			price: '605',
+			price: '750',
 		},
 		{
 			key: '3',
 			name: 'Firmenfeier',
-			price: '600',
+			price: '800',
 		},
 		{
 			key: '4',
 			name: 'Abschlussfeier',
-			price: '450',
+			price: '650',
 		},
 	];
 	return (

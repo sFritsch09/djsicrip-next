@@ -1,5 +1,4 @@
-'use client';
-import PriceTable from '../../components/priceTable/priceTable.component';
+import PriceTable from './priceTable.component';
 import { Fragment } from 'react';
 
 export default function Price() {

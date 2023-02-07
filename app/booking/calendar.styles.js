@@ -1,4 +1,3 @@
-'use client';
 import styled from 'styled-components';
 // Booking Calendar
 export const BookingContainer = styled.div`
@@ -44,6 +43,9 @@ export const BookingContainer = styled.div`
 				background-color: ${(props) => props.theme.lightColor};
 				&.different-month {
 					color: ${(props) => props.theme.darkColor};
+					&.booked-day {
+						color: ${(props) => props.theme.lightColor};
+					}
 				}
 				&.selected {
 				}

@@ -22,8 +22,10 @@ export default function Calendar() {
 						<div className="free">Frei</div>
 						<div className="booked">Belegt</div>
 					</CalendarLegend>
-					<BookingCalendar bookings={data?.map((date) => date.start)} disableHistory={false} />
-					<div></div>
+					<BookingCalendar
+						bookings={data?.map((date) => new Date(date.start))}
+						disableHistory={false}
+					/>
 				</CalendarWrapper>
 			</BookingContainer>
 		</Fragment>

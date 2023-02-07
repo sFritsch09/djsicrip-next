@@ -54,7 +54,7 @@ export default async function handler(req, res) {
 		const eventList = [];
 		const resp = await calendar.events.list({
 			calendarId: process.env.GOOGLE_CALENDAR_ID,
-			timeMin: new Date().toISOString(),
+			timeMin: new Date('01-01-2023').toISOString(),
 			maxResults: 30,
 			singleEvents: true,
 			orderBy: 'startTime',

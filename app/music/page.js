@@ -1,10 +1,9 @@
-'use client';
 import { Container } from '../../styles/music.styles';
-import { SoundCloud } from '../../components/music/music.component';
+import { SoundCloud } from './music.component';
 
 export default function Music() {
 	return (
-		<div>
+		<div className="main">
 			<Container>
 				<SoundCloud />
 			</Container>

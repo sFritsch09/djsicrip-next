@@ -73,7 +73,7 @@ dagger.#Plan & {
 			command: {
 				// kubectl set image deploy/app-djsicrip app=imageName -n app-djsicrip
 				name: "set"
-				args: ["image", "deployment", "app-djsicrip", "app=registry.djsicrip.com/webapp/djsicrip:0.8.2", "-n", "app-djsicrip"]
+				args: ["image", "deployment", "app-djsicrip", "app=registry.djsicrip.com/webapp/djsicrip:0.9.1", "-n", "app-djsicrip"]
 			}
 			user:    "root"
 			workdir: "/workspace"

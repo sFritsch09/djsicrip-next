@@ -168,7 +168,7 @@ export default function FAQ() {
 			</Single>
 			<ImageWrapper variants={image} initial="initial" animate="animate">
 				<Image
-					blurDataURL="https://pb.djsicrip.com/api/files/xaxun5rjt3q4ncb/4cemge11tngg9b2/profile_green_cOhqkENIBR.jpg?thumb=100x300"
+					blurDataURL="https://pb.djsicrip.com/api/files/xaxun5rjt3q4ncb/4cemge11tngg9b2/profile_green_cOhqkENIBR.jpg?thumb=100x50f"
 					src="https://pb.djsicrip.com/api/files/xaxun5rjt3q4ncb/4cemge11tngg9b2/profile_green_cOhqkENIBR.jpg"
 					alt="profile"
 					fill

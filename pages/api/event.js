@@ -47,10 +47,14 @@ export default async function handler(req, res) {
 				console.log(event.data);
 			}
 		);
+		const allowedOrigins = ['https://*.mainzdj.de', 'https://*.djsicrip.com'];
+		const origin = req.headers.origin;
+		if (allowedOrigins.includes(origin)) {
+			res.setHeader('Access-Control-Allow-Origin', origin);
+		}
 		res.status(200).send({ success: 'Successfully booked!' });
 	} else {
 		// Handle any other HTTP method
-
 		const eventList = [];
 		const resp = await calendar.events.list({
 			calendarId: process.env.GOOGLE_CALENDAR_ID,
@@ -73,6 +77,15 @@ export default async function handler(req, res) {
 			});
 		} else {
 			console.log('No Events');
+		}
+		const allowedOrigins = [
+			'https://www.mainzdj.de',
+			'https://mainzdj.de',
+			'https://www.djsicrip.com',
+		];
+		const origin = req.headers.origin;
+		if (allowedOrigins.includes(origin)) {
+			res.setHeader('Access-Control-Allow-Origin', origin);
 		}
 		res.status(200).send(eventList);
 	}

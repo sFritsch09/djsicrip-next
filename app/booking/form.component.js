@@ -1,5 +1,4 @@
 'use client';
-import dynamic from 'next/dynamic';
 import { Button, Switch } from '@nextui-org/react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';

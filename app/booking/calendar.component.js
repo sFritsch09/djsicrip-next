@@ -5,7 +5,7 @@ import { server } from '../../config/index';
 import { BookingContainer, CalendarLegend, CalendarWrapper } from './calendar.styles';
 
 export default function Calendar() {
-	const [data, setData] = useState(null);
+	const [data, setData] = useState([new Date(Date.now())]);
 
 	useEffect(() => {
 		fetch(`${server}/api/event`)
@@ -23,7 +23,7 @@ export default function Calendar() {
 						<div className="booked">Belegt</div>
 					</CalendarLegend>
 					<BookingCalendar
-						bookings={data?.map((date) => new Date(date.start))}
+						bookings={data.map((date) => new Date(date.start))}
 						disableHistory={false}
 					/>
 				</CalendarWrapper>

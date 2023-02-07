@@ -1,7 +1,7 @@
 FROM alpine:latest
 LABEL "maintainer"="sfritsch09"
 
-ARG POCKETBASE_VERSION=0.10.0
+ARG POCKETBASE_VERSION=0.12.2
 ARG DOMAINLIST="*.djsicrip.com,djsicrip.com,xn--teichland-kapitne-4qb.de,*.xn--teichland-kapitne-4qb.de,teichland-kapitäne.de"
 
 RUN apk add --no-cache \

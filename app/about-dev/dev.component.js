@@ -23,13 +23,23 @@ import githubLogo from '../../public/images/techstack/github.webp';
 import kubernetesLogo from '../../public/images/techstack/Kubernetes.png';
 import nextLogo from '../../public/images/techstack/Next-logo.png';
 import digitaloceanLogo from '../../public/images/techstack/Digitalocean-logo.png';
-import { SocialProfileJsonLd } from 'next-seo';
 
 import { RiMailFill, RiLinkedinBoxFill, RiGithubFill } from 'react-icons/ri';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Dev() {
+	const socialProfile = {
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: 'DJ Si Crip - Sebastian Fritsch',
+		url: 'https://djsicrip.com',
+		sameAs: [
+			'https://www.instagram.com/djsicrip2',
+			'https://www.linkedin.com/in/sebastian-fritsch-3676831bb',
+			'https://github.com/sFritsch09',
+		],
+	};
 	const parentVariant = {
 		show: {
 			transition: { staggerChildren: 0.3, delayChildrend: 0.2 },
@@ -72,15 +82,9 @@ export default function Dev() {
 	};
 	return (
 		<div className="main">
-			<SocialProfileJsonLd
-				type="Person"
-				name="DJ Si Crip - Sebastian Fritsch"
-				url="https://djsicrip.com"
-				sameAs={[
-					'https://www.instagram.com/djsicrip2',
-					'https://www.linkedin.com/in/sebastian-fritsch-3676831bb',
-					'https://github.com/sFritsch09',
-				]}
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(socialProfile) }}
 			/>
 			<AboutContainer>
 				<AboutHeader>

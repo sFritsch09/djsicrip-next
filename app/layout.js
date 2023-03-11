@@ -4,10 +4,35 @@ import StyledComponentsRegistry from './lib/registry';
 import GlobalStyle from '../styles/globalStyles';
 import { Navbar } from '../components';
 import { Footer } from '../components';
-import { NextSeo } from 'next-seo';
-import SEO from '../next-seo.config';
 import { ScrollProvider } from '../components/hooks/ScrollContext';
 
+export const metadata = {
+	title: 'DJ Si Crip',
+	description: 'Best DJ in Mainz!',
+	themeColor: '#006d77',
+	icons: {
+		icon: '/logo512.png',
+	},
+	keywords: ['Mainz DJ', 'Hochzeit', 'Firmenfeier', 'Equipment', 'Musikanlage', 'Lichter'],
+	openGraph: {
+		type: 'website',
+		locale: 'de_DE',
+		url: 'https://mainzdj.de',
+		title: 'Best DJ Mainz',
+		description: 'Best DJ in Mainz!',
+		siteName: 'MainzDJ.de',
+		images: [
+			{
+				url: 'https://pb.djsicrip.com/api/files/images/9xhfn7yuzvhbvrq/light_fritsch09_ccT8SM8nZv.webp',
+				width: 800,
+				height: 600,
+			},
+		],
+	},
+	robots: {
+		index: true,
+	},
+};
 export default function RootLayout({ children }) {
 	return (
 		<html>
@@ -20,7 +45,6 @@ export default function RootLayout({ children }) {
 								<GlobalStyle />
 								<Navbar />
 								{children}
-								<NextSeo useAppDir={true} {...SEO} />
 								<Footer />
 							</StyledComponentsRegistry>
 						</ScrollProvider>

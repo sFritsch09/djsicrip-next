@@ -17,23 +17,27 @@ import {
 	RiSpotifyFill,
 	RiTwitterFill,
 } from 'react-icons/ri';
-import { SocialProfileJsonLd } from 'next-seo';
 
 export default function Footer() {
+	const socialProfile = {
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: 'DJ Si Crip - Sebastian Fritsch',
+		url: 'https://djsicrip.com',
+		sameAs: [
+			'https://www.instagram.com/djsicrip2',
+			'https://www.linkedin.com/in/sebastian-fritsch-3676831bb',
+			'https://open.spotify.com/artist/1Givl5CVSswZ3r5PKiqUKh?si=MWmuCfLsTZK8_rovu07NLg',
+			'https://twitter.com/DjSiCrip',
+			'https://soundcloud.com/sebastian-fitch',
+			'https://www.facebook.com/djsicrip',
+		],
+	};
 	return (
 		<FooterContainer>
-			<SocialProfileJsonLd
-				type="Person"
-				name="DJ Si Crip - Sebastian Fritsch"
-				url="https://djsicrip.com"
-				sameAs={[
-					'https://www.instagram.com/djsicrip2',
-					'https://www.linkedin.com/in/sebastian-fritsch-3676831bb',
-					'https://open.spotify.com/artist/1Givl5CVSswZ3r5PKiqUKh?si=MWmuCfLsTZK8_rovu07NLg',
-					'https://twitter.com/DjSiCrip',
-					'https://soundcloud.com/sebastian-fitch',
-					'https://www.facebook.com/djsicrip',
-				]}
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(socialProfile) }}
 			/>
 			<FooterWrapper>
 				<FooterSection>

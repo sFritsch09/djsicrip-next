@@ -11,14 +11,13 @@
 	},
 	"dependencies": {
 		"@nextui-org/react": "^1.0.0-beta.12",
-		"@svgr/webpack": "^6.3.1",
+		"@svgr/webpack": "^6.5.1",
 		"formik": "^2.2.9",
-		"framer-motion": "^8.5.0",
-		"googleapis": "^110.0.0",
-		"next": "^13.1.6",
-		"next-seo": "^5.15.0",
+		"framer-motion": "^10.2.4",
+		"googleapis": "^112.0.0",
+		"next": "^13.2.4",
 		"open-browser": "^3.6.0",
-		"pocketbase": "^0.10.1",
+		"pocketbase": "^0.12.1",
 		"react": "^18.2.0",
 		"react-booking-calendar": "^1.0.3",
 		"react-dom": "^18.2.0",
@@ -29,7 +28,7 @@
 		"react-soundcloud-embedded": "^2.0.7",
 		"sharp": "^0.31.3",
 		"slick-carousel": "^1.8.1",
-		"styled-components": "^5.3.6",
+		"styled-components": "^5.3.8",
 		"yup": "^0.32.11"
 	},
 	"devDependencies": {

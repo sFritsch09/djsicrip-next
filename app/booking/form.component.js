@@ -49,6 +49,22 @@ const FORM_VALIDATION2 = Yup.object().shape({
 	message: Yup.string(),
 });
 export default function Bookingform() {
+	async function postData(url = '', data = {}) {
+		// Default options are marked with *
+		const response = await fetch(url, {
+			method: 'POST', // *GET, POST, PUT, DELETE, etc.
+			mode: 'same-origin', // no-cors, *cors, same-origin
+			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+			credentials: 'same-origin', // include, *same-origin, omit
+			headers: {
+				'Content-Type': 'application/json',
+				// 'Content-Type': 'application/x-www-form-urlencoded',
+			},
+			referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+			body: JSON.stringify(data), // body data type must match "Content-Type" header
+		});
+		return response.json();
+	}
 	// const data = await getData();
 	const [form, setForm] = useState(false);
 	const searchParams = useSearchParams();
@@ -71,7 +87,6 @@ export default function Bookingform() {
 		message: '',
 		device: '',
 	};
-	const [booking, setBooking] = useState(INITIAL_FORM_STATE);
 	return (
 		<Fragment>
 			<Modal
@@ -109,8 +124,11 @@ export default function Bookingform() {
 				validationSchema={!form ? FORM_VALIDATION : FORM_VALIDATION2}
 				onSubmit={(values) => {
 					console.log(values);
-					setBooking(values);
-					console.log('renting: ', form);
+					if (form) {
+						postData('/api/event?form=renting', values);
+					} else {
+						postData('/api/event', values);
+					}
 				}}
 			>
 				<Form>
@@ -153,7 +171,7 @@ export default function Bookingform() {
 									<CustomCheckbox name="provided1" label="Musik Anlage" />
 									<br />
 									<br />
-									<CustomCheckbox name="provided1" label="Tisch 1,5m Länge" />
+									<CustomCheckbox name="provided2" label="Tisch 1,5m Länge" />
 								</div>
 							</Fragment>
 						) : (

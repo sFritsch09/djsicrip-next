@@ -21,8 +21,7 @@ import {
 import { Image } from '@nextui-org/react';
 import { useDarkMode } from '../components/hooks/DarkModeContext';
 import { CustomButton, LogoWrapper, ToolTip } from '../styles/globalStyles';
-// Modal
-import { Modal, useModal, Text } from '@nextui-org/react';
+import Link from 'next/link';
 
 export default function MusicSection() {
 	const [isDarkMode, _] = useDarkMode();
@@ -137,42 +136,13 @@ export default function MusicSection() {
 			ignore = true;
 		};
 	}, []);
-	const { setVisible, bindings } = useModal();
 	return (
 		<Fragment>
-			<Modal
-				blur
-				preventClose
-				width="600px"
-				aria-labelledby="modal-title"
-				aria-describedby="modal-description"
-				{...bindings}
-			>
-				<Modal.Header>
-					<Text id="modal-title" size={18}>
-						Hinweis!
-					</Text>
-				</Modal.Header>
-				<Modal.Body>
-					<Text id="modal-description" size={20}>
-						Meine Webseite ist noch nicht fertiggestellt und ist noch in Arbeit 🚧 Bis dahin können
-						Anfragen über Email oder Mobil angenommen werden ✨
-						<br />
-						<br />
-						📧 Email: sfritsch09@gmail.com
-						<br />
-						📱 Mobil: 017632694016
-					</Text>
-				</Modal.Body>
-				<Modal.Footer>
-					<CustomButton auto onClick={() => setVisible(false)}>
-						OK
-					</CustomButton>
-				</Modal.Footer>
-			</Modal>
 			<LogoWrapper>
 				<ToolTip onMouseMove={(e) => setXPosition(e.clientX)} position={xPosition}>
-					<CustomButton onClick={() => setVisible(true)}>Buchen</CustomButton>
+					<CustomButton>
+						<Link href="/booking">Buchen</Link>
+					</CustomButton>
 					<span className="tooltip">
 						<Image src="/images/speed.gif" alt="gif here" />
 					</span>

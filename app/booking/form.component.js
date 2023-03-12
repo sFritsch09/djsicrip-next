@@ -7,8 +7,6 @@ import { useSearchParams } from 'next/navigation';
 import { FormContainer, FormHeader, Label } from '../../styles/booking.styles';
 import { SendButton } from '../../components/form/SendButton';
 import { SendIcon } from '../../components/form/SendIcon';
-// Modal
-import { Modal, useModal, Text } from '@nextui-org/react';
 import {
 	TextInput,
 	TextMessage,
@@ -69,12 +67,10 @@ export default function Bookingform() {
 	const [form, setForm] = useState(false);
 	const searchParams = useSearchParams();
 	useEffect(() => {
-		if (searchParams.get('booking') === 'rent') {
+		if (searchParams.get('booking') === 'renting') {
 			setForm(true);
 		}
 	}, [searchParams]);
-	// Modal
-	const { setVisible, bindings } = useModal();
 	const date = new Date().toISOString().slice(0, 10);
 	// .replace(/(\.)/g, '-')
 	const INITIAL_FORM_STATE = {
@@ -89,36 +85,6 @@ export default function Bookingform() {
 	};
 	return (
 		<Fragment>
-			<Modal
-				blur
-				preventClose
-				width="600px"
-				aria-labelledby="modal-title"
-				aria-describedby="modal-description"
-				{...bindings}
-			>
-				<Modal.Header>
-					<Text id="modal-title" size={18}>
-						Hinweis!
-					</Text>
-				</Modal.Header>
-				<Modal.Body>
-					<Text id="modal-description" size={20}>
-						Meine Webseite ist noch nicht fertiggestellt und ist noch in Arbeit 🚧 Bis dahin können
-						Anfragen über Email oder Mobil angenommen werden ✨
-						<br />
-						<br />
-						📧 Email: sfritsch09@gmail.com
-						<br />
-						📱 Mobil: 017632694016
-					</Text>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button auto onClick={() => setVisible(false)}>
-						OK
-					</Button>
-				</Modal.Footer>
-			</Modal>
 			<Formik
 				initialValues={INITIAL_FORM_STATE}
 				validationSchema={!form ? FORM_VALIDATION : FORM_VALIDATION2}
@@ -188,7 +154,7 @@ export default function Bookingform() {
 							/>
 						</div>
 						<div>
-							<Button type="submit" onClick={() => setVisible(true)} auto>
+							<Button type="submit" auto>
 								Submit
 							</Button>
 						</div>

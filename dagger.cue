@@ -10,10 +10,10 @@ dagger.#Plan & {
 	client: {
 		network: "unix:///var/run/docker.sock": connect: dagger.#Socket
 		env: {
-			REGISTRY_IMAGETAG: string
-			REGISTRY_USER:     string | "_token_"
-			REGISTRY_PASS:     dagger.#Secret
-			KUBECONFIG:        *"~/.kube/config" | string
+			// REGISTRY_IMAGETAG: string
+			REGISTRY_USER: string | "_token_"
+			REGISTRY_PASS: dagger.#Secret
+			KUBECONFIG:    *"~/.kube/config" | string
 		}
 		commands: kubeconfig: {
 			name: "cat"
@@ -58,7 +58,7 @@ dagger.#Plan & {
 		}
 		push: docker.#Push & {
 			image: run.output
-			dest:  client.env.REGISTRY_IMAGETAG
+			dest:  "registry.djsicrip.com/webapp/djsicrip:0.9.3"
 			auth: {
 				username: client.env.REGISTRY_USER
 				secret:   client.env.REGISTRY_PASS
@@ -73,7 +73,7 @@ dagger.#Plan & {
 			command: {
 				// kubectl set image deploy/app-djsicrip app=imageName -n app-djsicrip
 				name: "set"
-				args: ["image", "deployment", "app-djsicrip", "app=registry.djsicrip.com/webapp/djsicrip:0.9.2", "-n", "app-djsicrip"]
+				args: ["image", "deployment", "app-djsicrip", "app=registry.djsicrip.com/webapp/djsicrip:0.9.3", "-n", "app-djsicrip"]
 			}
 			user:    "root"
 			workdir: "/workspace"

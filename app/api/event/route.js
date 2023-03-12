@@ -47,8 +47,10 @@ export async function GET() {
 		'https://www.djsicrip.com',
 	];
 	const origin = header.get('host');
-	if (allowedOrigins.includes(origin)) {
-		return Response.json(eventList);
+	if (allowedOrigins.some((url) => url.includes(origin))) {
+		return Response.json(eventList, {
+			headers: { 'Access-Control-Allow-Origin': `*${origin}` },
+		});
 	}
 	return new Response('You are not allowed to access this resource!', { status: 403 });
 }
@@ -75,7 +77,7 @@ export async function POST(req) {
 	}
 	const allowedOrigins = ['https://*.mainzdj.de', 'https://*.djsicrip.com'];
 	const origin = header.get('host');
-	if (allowedOrigins.includes(origin)) {
+	if (allowedOrigins.some((url) => url.includes(origin))) {
 		await calendar.events.insert(
 			{
 				calendarId: process.env.GOOGLE_CALENDAR_ID,
@@ -99,8 +101,10 @@ export async function POST(req) {
 				if (err) console.log('Error', err);
 			}
 		);
-		return Response.json('Successfully booked!');
-	} else if (!allowedOrigins.includes(origin)) {
+		return new Response('Successfully booked!', {
+			headers: { 'Access-Control-Allow-Origin': `*${origin}` },
+		});
+	} else if (!allowedOrigins.map((url) => url.includes(origin))) {
 		return new Response('You are not allowed to access this resource!', { status: 403 });
 	}
 	return new Response('Something went wrong!', { status: 500 });

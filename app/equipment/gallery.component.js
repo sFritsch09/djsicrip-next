@@ -40,7 +40,7 @@ const Gallery = ({ header, desc, image, title, arrowClick, imageClick, showButto
 	};
 	const router = useRouter();
 	const handleRenting = () => {
-		router.push('/booking?booking=rent');
+		router.push('/booking?booking=renting');
 	};
 
 	return (

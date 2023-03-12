@@ -53,7 +53,7 @@ export async function GET() {
 			headers: { 'Access-Control-Allow-Origin': origin },
 		});
 	}
-	return new Response('"You are not allowed to access this resource!"', { status: 403 });
+	return Response.json([], { status: 403 });
 }
 
 export async function POST(req) {
@@ -114,5 +114,5 @@ export async function POST(req) {
 	} else if (!allowedOrigins.map((url) => url.includes(origin))) {
 		return new Response('"You are not allowed to access this resource!"', { status: 403 });
 	}
-	return new Response('"Something went wrong!"', { status: 500 });
+	return Response.json({ api: 'Something went wrong!', status: 500 }, { status: 500 });
 }

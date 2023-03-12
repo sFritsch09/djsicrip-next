@@ -57,7 +57,6 @@ export default function Bookingform() {
 			credentials: 'same-origin', // include, *same-origin, omit
 			headers: {
 				'Content-Type': 'application/json',
-				// 'Content-Type': 'application/x-www-form-urlencoded',
 			},
 			referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 			body: JSON.stringify(data), // body data type must match "Content-Type" header
@@ -92,11 +91,15 @@ export default function Bookingform() {
 				onSubmit={(values) => {
 					console.log(values);
 					if (form) {
-						postData('/api/event?form=renting', values);
+						postData('/api/event?form=renting', values).then((res) =>
+							res.status === 200 ? router.push('/landing') : router.push('/landing?fail=true')
+						);
 					} else {
-						postData('/api/event', values);
+						postData('/api/event', values).then((res) =>
+							res.status === 200 ? router.push('/landing') : router.push('/landing?fail=true')
+						);
 					}
-					router.push('/landing');
+					// router.push('/landing');
 				}}
 			>
 				<Form>

@@ -45,14 +45,15 @@ export async function GET() {
 		'https://www.mainzdj.de',
 		'https://mainzdj.de',
 		'https://www.djsicrip.com',
+		'https://djsicrip.com',
 	];
-	const origin = header.get('host');
-	if (allowedOrigins.some((url) => url.includes(origin))) {
+	const origin = header.get('origin');
+	if (allowedOrigins.includes(origin)) {
 		return Response.json(eventList, {
-			headers: { 'Access-Control-Allow-Origin': `*${origin}` },
+			headers: { 'Access-Control-Allow-Origin': origin },
 		});
 	}
-	return new Response('You are not allowed to access this resource!', { status: 403 });
+	return new Response('"You are not allowed to access this resource!"', { status: 403 });
 }
 
 export async function POST(req) {
@@ -73,11 +74,17 @@ export async function POST(req) {
 	}
 	if (form === 'renting') {
 		subject = `Renting by: ${body.name}`;
-		description = `Event: ${body.event}, E-Mail: ${body.email}, Message: ${body.message}, device: ${body.device}`;
+		description = `E-Mail: ${body.email}, Message: ${body.message}, device: ${body.device}`;
 	}
-	const allowedOrigins = ['https://*.mainzdj.de', 'https://*.djsicrip.com'];
-	const origin = header.get('host');
-	if (allowedOrigins.some((url) => url.includes(origin))) {
+
+	const allowedOrigins = [
+		'https://www.mainzdj.de',
+		'https://mainzdj.de',
+		'https://www.djsicrip.com',
+		'https://djsicrip.com',
+	];
+	const origin = header.get('origin');
+	if (allowedOrigins.includes(origin)) {
 		await calendar.events.insert(
 			{
 				calendarId: process.env.GOOGLE_CALENDAR_ID,
@@ -101,11 +108,11 @@ export async function POST(req) {
 				if (err) console.log('Error', err);
 			}
 		);
-		return new Response('Successfully booked!', {
-			headers: { 'Access-Control-Allow-Origin': `*${origin}` },
+		return new Response('"Successfully booked!"', {
+			headers: { 'Access-Control-Allow-Origin': origin },
 		});
 	} else if (!allowedOrigins.map((url) => url.includes(origin))) {
-		return new Response('You are not allowed to access this resource!', { status: 403 });
+		return new Response('"You are not allowed to access this resource!"', { status: 403 });
 	}
-	return new Response('Something went wrong!', { status: 500 });
+	return new Response('"Something went wrong!"', { status: 500 });
 }

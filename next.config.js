@@ -27,19 +27,6 @@ const nextConfig = {
 		defaultLocale: 'de',
 		localeDetection: false,
 	},
-	// async headers() {
-	// 	return [
-	// 		{
-	// 			source: '/api/(.*)',
-	// 			headers: [
-	// 				{
-	// 					key: 'Access-Control-Allow-Origin',
-	// 					value: 'https://www.djsicrip.com',
-	// 				},
-	// 			],
-	// 		},
-	// 	];
-	// },
 };
 
 module.exports = nextConfig;

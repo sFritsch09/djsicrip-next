@@ -30,6 +30,7 @@ yarn-error.log*
 .env*.local
 .env
 cue.mod
+/storage
 
 # vercel
 .vercel

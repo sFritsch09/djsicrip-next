@@ -3,7 +3,7 @@ import { Button, Switch } from '@nextui-org/react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { FormContainer, FormHeader, Label } from '../../styles/booking.styles';
 import { SendButton } from '../../components/form/SendButton';
 import { SendIcon } from '../../components/form/SendIcon';
@@ -47,6 +47,7 @@ const FORM_VALIDATION2 = Yup.object().shape({
 	message: Yup.string(),
 });
 export default function Bookingform() {
+	const router = useRouter();
 	async function postData(url = '', data = {}) {
 		// Default options are marked with *
 		const response = await fetch(url, {
@@ -95,6 +96,7 @@ export default function Bookingform() {
 					} else {
 						postData('/api/event', values);
 					}
+					router.push('/landing');
 				}}
 			>
 				<Form>

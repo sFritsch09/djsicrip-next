@@ -198,6 +198,10 @@ export const NavMenu = styled.ul`
 	margin-right: 4em;
 	margin-bottom: 0;
 	z-index: 300;
+
+	@media screen and (min-width: 2100px) {
+		gap: 2em;
+	}
 `;
 export const NavMenuMotion = styled(motion.ul)`
 	z-index: 300;

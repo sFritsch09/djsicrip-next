@@ -140,9 +140,9 @@ export default function MusicSection() {
 		<Fragment>
 			<LogoWrapper>
 				<ToolTip onMouseMove={(e) => setXPosition(e.clientX)} position={xPosition}>
-					<CustomButton>
-						<Link href="/booking">Buchen</Link>
-					</CustomButton>
+					<Link href="/booking">
+						<CustomButton>Buchen</CustomButton>
+					</Link>
 					<span className="tooltip">
 						<Image src="/images/speed.gif" alt="gif here" />
 					</span>

@@ -14,7 +14,12 @@ import {
 	DateInput,
 	CustomCheckbox,
 } from '../../components/form';
+import dynamic from 'next/dynamic';
 import { Fragment } from 'react';
+
+const BookingCalendar = dynamic(() => import('./calendar.component'), {
+	ssr: false,
+});
 
 const FORM_VALIDATION = Yup.object().shape({
 	name: Yup.string()
@@ -85,6 +90,7 @@ export default function Bookingform() {
 	};
 	return (
 		<Fragment>
+			<BookingCalendar form={form} />
 			<Formik
 				initialValues={INITIAL_FORM_STATE}
 				validationSchema={!form ? FORM_VALIDATION : FORM_VALIDATION2}

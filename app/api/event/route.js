@@ -48,7 +48,8 @@ export async function GET() {
 		'https://djsicrip.com',
 	];
 	const origin = header.get('origin');
-	if (allowedOrigins.includes(origin)) {
+	const sameOrigin = header.get('sec-fetch-site');
+	if (allowedOrigins.includes(origin) || sameOrigin === 'same-origin') {
 		return Response.json(eventList, {
 			headers: { 'Access-Control-Allow-Origin': origin },
 		});
@@ -84,7 +85,8 @@ export async function POST(req) {
 		'https://djsicrip.com',
 	];
 	const origin = header.get('origin');
-	if (allowedOrigins.includes(origin)) {
+	const sameOrigin = header.get('sec-fetch-site');
+	if (allowedOrigins.includes(origin) || sameOrigin === 'same-origin') {
 		await calendar.events.insert(
 			{
 				calendarId: process.env.GOOGLE_CALENDAR_ID,
@@ -108,9 +110,12 @@ export async function POST(req) {
 				if (err) console.log('Error', err);
 			}
 		);
-		return new Response('"Successfully booked!"', {
-			headers: { 'Access-Control-Allow-Origin': origin },
-		});
+		return Response.json(
+			{ api: 'Successfully Booked!', status: 200 },
+			{
+				headers: { 'Access-Control-Allow-Origin': origin },
+			}
+		);
 	} else if (!allowedOrigins.map((url) => url.includes(origin))) {
 		return new Response('"You are not allowed to access this resource!"', { status: 403 });
 	}

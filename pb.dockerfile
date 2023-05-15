@@ -1,21 +1,17 @@
 FROM alpine:latest
-LABEL "maintainer"="sfritsch09"
 
-ARG POCKETBASE_VERSION=0.13.4
+ARG PB_VERSION=0.15.3
 ARG DOMAINLIST="*.djsicrip.com,djsicrip.com,xn--teichland-kapitne-4qb.de,*.xn--teichland-kapitne-4qb.de,teichland-kapitäne.de"
 
 RUN apk add --no-cache \
-    ca-certificates \
     unzip \
-    wget \
-    zip \
-    zlib-dev
+    ca-certificates
 
-ADD https://github.com/pocketbase/pocketbase/releases/download/v${POCKETBASE_VERSION}/pocketbase_${POCKETBASE_VERSION}_linux_amd64.zip /app/pocketbase/pocketbase.zip
-RUN unzip /app/pocketbase/pocketbase.zip -d /app/pocketbase
-RUN chmod +x /app/pocketbase/pocketbase
-RUN rm /app/pocketbase/pocketbase.zip
+# download and unzip PocketBase
+ADD https://github.com/pocketbase/pocketbase/releases/download/v${PB_VERSION}/pocketbase_${PB_VERSION}_linux_amd64.zip /tmp/pb.zip
+RUN unzip /tmp/pb.zip -d /pb/
 
-EXPOSE 8090
+EXPOSE 8080
 
-CMD  /app/pocketbase/pocketbase serve --http 0.0.0.0:8090
+# start PocketBase
+CMD ["/pb/pocketbase", "serve", "--http=0.0.0.0:8080"]

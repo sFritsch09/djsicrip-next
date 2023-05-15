@@ -122,7 +122,7 @@ export default function MusicSection() {
 	const [xPosition, setXPosition] = useState(0);
 	// // fetching covers
 	const [covers, setCovers] = useState([]);
-	const pb = new PocketBase('https://pb.djsicrip.com');
+	const pb = new PocketBase('https://pb.techchase.de');
 	const getCovers = async () => {
 		const covers = await pb.collection('covers').getList(1, 50, { $autoCancel: false });
 		setCovers(covers);
@@ -183,8 +183,8 @@ export default function MusicSection() {
 							<Fragment key={item.id}>
 								<Image
 									src={
-										`https://pb.djsicrip.com/api/files/covers/${item.id}/${item.cover}` ??
-										'https://pb.djsicrip.com/api/files/xaxun5rjt3q4ncb/26w1c1e32p6nyz9/crip_beatz_KLML7YYccC.jpg'
+										`https://pb.techchase.de/api/files/covers/${item.id}/${item.cover}` ??
+										'https://pb.techchase.de/api/files/xaxun5rjt3q4ncb/26w1c1e32p6nyz9/crip_beatz_KLML7YYccC.jpg'
 									}
 									alt="Cover"
 									placeholder="blur"
@@ -228,8 +228,8 @@ export default function MusicSection() {
 								<Fragment key={item.id}>
 									<Image
 										src={
-											`https://pb.djsicrip.com/api/files/covers/${item.id}/${item.cover}` ??
-											'https://pb.djsicrip.com/api/files/xaxun5rjt3q4ncb/26w1c1e32p6nyz9/crip_beatz_KLML7YYccC.jpg'
+											`https://pb.techchase.de/api/files/covers/${item.id}/${item.cover}` ??
+											'https://pb.techchase.de/api/files/xaxun5rjt3q4ncb/26w1c1e32p6nyz9/crip_beatz_KLML7YYccC.jpg'
 										}
 										alt="Cover"
 										placeholder="blur"

@@ -109,8 +109,8 @@ export default function Dev() {
 							fill
 							style={{ objectFit: 'cover', objectPosition: '50% 20%' }}
 							placeholder="blur"
-							blurDataURL="https://pb.djsicrip.com/api/files/xaxun5rjt3q4ncb/4qh90wbu0s351fe/me03_NLN4dW24Fk.jpeg?thumb=100x50f"
-							src="https://pb.djsicrip.com/api/files/xaxun5rjt3q4ncb/4qh90wbu0s351fe/me03_NLN4dW24Fk.jpeg"
+							blurDataURL="https://pb.techchase.de/api/files/xaxun5rjt3q4ncb/4qh90wbu0s351fe/me03_NLN4dW24Fk.jpeg?thumb=100x50f"
+							src="https://pb.techchase.de/api/files/xaxun5rjt3q4ncb/4qh90wbu0s351fe/me03_NLN4dW24Fk.jpeg"
 							sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw,18vw"
 						/>
 					</AboutImage>

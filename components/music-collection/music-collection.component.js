@@ -61,14 +61,14 @@ const Collection = ({ onPlay, play, pause, itemPlay, covers }) => {
 						}
 						<CoverWrapper
 							onClick={() =>
-								setAudioSrc(`https://pb.djsicrip.com/api/files/covers/${item.id}/${item.track}`)
+								setAudioSrc(`https://pb.techchase.de/api/files/covers/${item.id}/${item.track}`)
 							}
 						>
 							<div className="cover">
 								<Image
 									src={
-										`https://pb.djsicrip.com/api/files/covers/${item.id}/${item.cover}` ??
-										'https://pb.djsicrip.com/api/files/xaxun5rjt3q4ncb/26w1c1e32p6nyz9/crip_beatz_KLML7YYccC.jpg'
+										`https://pb.techchase.de/api/files/covers/${item.id}/${item.cover}` ??
+										'https://pb.techchase.de/api/files/xaxun5rjt3q4ncb/26w1c1e32p6nyz9/crip_beatz_KLML7YYccC.jpg'
 									}
 									alt="Cover"
 									fill

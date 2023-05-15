@@ -58,7 +58,7 @@ dagger.#Plan & {
 		}
 		push: docker.#Push & {
 			image: run.output
-			dest:  "registry.djsicrip.com/webapp/djsicrip:1.0.1"
+			dest:  "registry.djsicrip.com/webapp/djsicrip:1.0.2"
 			auth: {
 				username: client.env.REGISTRY_USER
 				secret:   client.env.REGISTRY_PASS
@@ -73,7 +73,7 @@ dagger.#Plan & {
 			command: {
 				// kubectl set image deploy/app-djsicrip app=imageName -n app-djsicrip
 				name: "set"
-				args: ["image", "deployment", "app-djsicrip", "app=registry.djsicrip.com/webapp/djsicrip:1.0.1", "-n", "app-djsicrip"]
+				args: ["image", "deployment", "app-djsicrip", "app=registry.djsicrip.com/webapp/djsicrip:1.0.2", "-n", "app-djsicrip"]
 			}
 			user:    "root"
 			workdir: "/workspace"

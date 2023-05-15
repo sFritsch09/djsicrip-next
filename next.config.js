@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ['pb.djsicrip.com', 'localhost'],
+		domains: ['pb.techchase.de', 'localhost'],
 	},
 	basePath: '',
 	experimental: {

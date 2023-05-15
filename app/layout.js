@@ -23,7 +23,7 @@ export const metadata = {
 		siteName: 'MainzDJ.de',
 		images: [
 			{
-				url: 'https://pb.djsicrip.com/api/files/images/9xhfn7yuzvhbvrq/light_fritsch09_ccT8SM8nZv.webp',
+				url: 'https://pb.techchase.de/api/files/images/9xhfn7yuzvhbvrq/light_fritsch09_ccT8SM8nZv.webp',
 				width: 800,
 				height: 600,
 			},

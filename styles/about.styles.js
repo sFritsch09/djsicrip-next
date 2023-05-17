@@ -55,10 +55,11 @@ export const Single = styled(motion.div)`
 
 export const ImageWrapper = styled(motion.div)`
 	position: relative;
+	width: 60%;
 	height: 850px;
 	border: 4px solid ${(props) => props.theme.lightColor};
 	border-radius: 20px;
-	margin: 0 6em;
+	margin: 0 auto;
 	overflow: hidden;
 
 	@media screen and (max-width: 980px) {

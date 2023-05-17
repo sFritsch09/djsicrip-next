@@ -63,8 +63,8 @@ export const ImageWrapper = styled(motion.div)`
 	overflow: hidden;
 
 	@media screen and (max-width: 980px) {
-		margin: 0 2em;
-		height: 600px;
+		width: 80%;
+		height: 500px;
 	}
 `;
 

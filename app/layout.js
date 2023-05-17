@@ -5,6 +5,7 @@ import GlobalStyle from '../styles/globalStyles';
 import { Navbar } from '../components';
 import { Footer } from '../components';
 import { ScrollProvider } from '../components/hooks/ScrollContext';
+import Googletag from './googletag';
 
 export const metadata = {
 	title: 'DJ Si Crip',
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html>
 			<head />
+			<Googletag />
 			<body>
 				<DarkModeProvider>
 					<MusicProvider>

@@ -3,16 +3,6 @@ const nextConfig = {
 	images: {
 		domains: ['pb.techchase.de', 'localhost'],
 	},
-	basePath: '',
-	experimental: {
-		appDir: true,
-	},
-	reactStrictMode: true,
-	swcMinify: true,
-	compiler: {
-		// ssr and displayName are configured by default
-		styledComponents: true,
-	},
 	webpack(config) {
 		config.module.rules.push({
 			test: /\.svg$/i,
@@ -22,11 +12,11 @@ const nextConfig = {
 
 		return config;
 	},
-	i18n: {
-		locales: ['en', 'de'],
-		defaultLocale: 'de',
-		localeDetection: false,
-	},
+	// i18n: {
+	// 	locales: ['en', 'de'],
+	// 	defaultLocale: 'de',
+	// 	localeDetection: false,
+	// },
 };
 
 module.exports = nextConfig;

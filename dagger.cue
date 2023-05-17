@@ -54,11 +54,11 @@ dagger.#Plan & {
 		load: cli.#Load & {
 			image: run.output
 			host:  client.network."unix:///var/run/docker.sock".connect
-			tag:   "djsicrip:0.8.2"
+			tag:   "djsicrip:1.0"
 		}
 		push: docker.#Push & {
 			image: run.output
-			dest:  "registry.djsicrip.com/webapp/djsicrip:1.0.2"
+			dest:  "registry.techchase.de/webapp/djsicrip:1.0"
 			auth: {
 				username: client.env.REGISTRY_USER
 				secret:   client.env.REGISTRY_PASS

@@ -2,7 +2,7 @@
 FROM node:21-alpine AS deps
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile --force
 
 # build image
 FROM node:21-alpine AS builder

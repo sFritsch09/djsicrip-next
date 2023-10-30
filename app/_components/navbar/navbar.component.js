@@ -1,10 +1,5 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { BiUser } from 'react-icons/bi';
-import { SunIcon } from '../../images/SunIcon';
-import { MoonIcon } from '../../images/MoonIcon';
-import { useDarkMode } from '../hooks/DarkModeContext';
 import Link from 'next/link';
 import { BiMusic, BiFace, BiBriefcaseAlt2, BiEuro, BiChat, BiHome } from 'react-icons/bi';
 import {
@@ -15,54 +10,24 @@ import {
 	NavItem,
 	NavLink,
 	NavMenu,
-	NavTools,
 	NavbarContainer,
 	NavDarkMode,
 	MobileIcon,
 	BurgerIcon,
-	DarkModeMobile,
 	NavMenuMotion,
 	NavItemMotion,
 	IconWrapper,
 	LinkWrapper,
 	MobileNav,
 } from './navbar.styles';
-import { Switch } from '@nextui-org/react';
+import ThemeSwitch from './themeSwitch.component';
 
 const Navbar = () => {
-	const [isDarkMode, setIsDarkMode] = useDarkMode();
 	const [isMobile, setIsMobile] = useState(true);
 	const [active, setActive] = useState(false);
 
 	const handleClick = () => setActive(!active);
-	const router = useRouter();
-	// const getLocale = () => {
-	// 	console.log(router);
-	// };
-	const changeLocale = (locale) => {
-		// router.push(
-		// 	{
-		// 		route: router.pathname,
-		// 		query: router.query,
-		// 	},
-		// 	router.asPath,
-		// 	{ locale }
-		// );
-		console.log('%c Language: ', 'color: yellow;', router.locale);
-	};
 
-	const setDarkMode = (prevTheme) => {
-		if (typeof window === 'undefined') {
-			return;
-		}
-		if (prevTheme === typeof Boolean) {
-			localStorage.setItem('theme', prevTheme);
-			setIsDarkMode(prevTheme);
-		} else {
-			localStorage.setItem('theme', !isDarkMode);
-			setIsDarkMode(!isDarkMode);
-		}
-	};
 	const windowDimension = () => {
 		if (window.innerWidth <= 980) {
 			setIsMobile(false);
@@ -135,8 +100,8 @@ const Navbar = () => {
 									<NavLink className={scroll ? 'sticky' : ''}>EQUIPMENT</NavLink>
 								</Link>
 							</NavItem>
-							<NavItem onClick={() => changeLocale()}>
-								<Link href="/price" locale="en">
+							<NavItem>
+								<Link href="/price">
 									<NavLink className={scroll ? 'sticky' : ''}>PREISE</NavLink>
 								</Link>
 							</NavItem>
@@ -145,19 +110,8 @@ const Navbar = () => {
 									<NavLink className={scroll ? 'sticky' : ''}>ANFRAGE</NavLink>
 								</Link>
 							</NavItem>
-							<Link href="/login">
-								<NavTools className={scroll ? 'sticky' : ''}>
-									<BiUser />
-								</NavTools>
-							</Link>
 							<NavDarkMode>
-								<Switch
-									css={{ color: '#006d77' }}
-									onChange={(e) => setDarkMode(e)}
-									checked={isDarkMode}
-									iconOn={<SunIcon filled />}
-									iconOff={<MoonIcon filled />}
-								/>
+								<ThemeSwitch />
 							</NavDarkMode>
 						</NavMenu>
 					</NavbarContainer>
@@ -182,7 +136,7 @@ const Navbar = () => {
 							</MobileIcon>
 						</NavbarContainer>
 					</Nav>
-					<MobileNav active={active}>
+					<MobileNav $active={active}>
 						<NavMenuMotion
 							onClick={handleClick}
 							$active={active}
@@ -263,14 +217,7 @@ const Navbar = () => {
 								</Link>
 							</NavItemMotion>
 							<NavItemMotion variants={navAnimation}>
-								<DarkModeMobile onClick={(e) => setDarkMode(e)}>
-									Theme
-									<NavDarkMode>
-										<div>
-											{isDarkMode ? <SunIcon fill="#FFDDD2" /> : <MoonIcon fill="#006d77" />}
-										</div>
-									</NavDarkMode>
-								</DarkModeMobile>
+								<ThemeSwitch mobile />
 							</NavItemMotion>
 						</NavMenuMotion>
 					</MobileNav>

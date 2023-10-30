@@ -32,8 +32,8 @@ export const ItemA = styled(motion.div)`
 	justify-content: stretch;
 	flex-direction: column;
 	align-items: center;
-	color: ${(props) => props.theme.color};
-	border-bottom: 2px solid ${(props) => props.theme.color};
+	color: var(--color);
+	border-bottom: 2px solid var(--color);
 	cursor: pointer;
 
 	@media screen and (max-width: 980px) {
@@ -124,7 +124,7 @@ export const ArtistTitle = styled.div`
 	width: 100%;
 	text-align: start;
 	font-size: 1em;
-	color: ${(props) => props.theme.color};
+	color: var(--color);
 	filter: brightness(70%);
 `;
 

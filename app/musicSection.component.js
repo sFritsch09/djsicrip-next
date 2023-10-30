@@ -1,8 +1,8 @@
 'use client';
 import { useState, useEffect, useRef, Fragment } from 'react';
-import { Logo, MusicCollection } from '../components';
+import { Logo, MusicCollection } from './_components';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
-import { useMusic, useMusicUpdate } from '../components/hooks/MusicContext';
+import { useMusic, useMusicUpdate } from './_components/hooks/MusicContext';
 import PocketBase from 'pocketbase';
 import {
 	MusicContainer,
@@ -18,14 +18,11 @@ import {
 	NavContainer,
 	NavItem,
 } from '../styles/home.styles';
-import { Image } from '@nextui-org/react';
-import { useDarkMode } from '../components/hooks/DarkModeContext';
 import { CustomButton, LogoWrapper, ToolTip } from '../styles/globalStyles';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function MusicSection() {
-	const [isDarkMode, _] = useDarkMode();
-
 	const [isMobile, setIsMobile] = useState(true);
 	const windowDimension = () => {
 		if (window.innerWidth <= 980) {
@@ -139,12 +136,12 @@ export default function MusicSection() {
 	return (
 		<Fragment>
 			<LogoWrapper>
-				<ToolTip onMouseMove={(e) => setXPosition(e.clientX)} position={xPosition}>
+				<ToolTip onMouseMove={(e) => setXPosition(e.clientX)} $position={xPosition}>
 					<Link href="/booking">
 						<CustomButton>Buchen</CustomButton>
 					</Link>
 					<span className="tooltip">
-						<Image src="/images/speed.gif" alt="gif here" />
+						<Image src="/images/speed.gif" width={250} height={150} alt="gif here" />
 					</span>
 				</ToolTip>
 				<Logo animation={pause === 'pause'} vinyl />
@@ -152,16 +149,16 @@ export default function MusicSection() {
 			<MusicContainer>
 				<MusicWrapper>
 					<NavContainer>
-						<NavItem active={status === 'house'} onClick={() => handleClick('showA')}>
+						<NavItem $active={status === 'house'} onClick={() => handleClick('showA')}>
 							House
 						</NavItem>
-						<NavItem active={status === 'classic'} onClick={() => handleClick('showB')}>
+						<NavItem $active={status === 'classic'} onClick={() => handleClick('showB')}>
 							Classics
 						</NavItem>
-						<NavItem active={status === 'party'} onClick={() => handleClick('showC')}>
+						<NavItem $active={status === 'party'} onClick={() => handleClick('showC')}>
 							Party
 						</NavItem>
-						<NavItem active={status === 'hip hop'} onClick={() => handleClick('showD')}>
+						<NavItem $active={status === 'hip hop'} onClick={() => handleClick('showD')}>
 							Hip Hop
 						</NavItem>
 					</NavContainer>
@@ -226,15 +223,17 @@ export default function MusicSection() {
 						{covers.items?.map((item) =>
 							playing.includes(item.id) ? (
 								<Fragment key={item.id}>
-									<Image
-										src={
-											`https://pb.techchase.de/api/files/covers/${item.id}/${item.cover}` ??
-											'https://pb.techchase.de/api/files/xaxun5rjt3q4ncb/26w1c1e32p6nyz9/crip_beatz_KLML7YYccC.jpg'
-										}
-										alt="Cover"
-										placeholder="blur"
-										sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw,18vw"
-									/>
+									<div className="image">
+										<Image
+											src={
+												`https://pb.techchase.de/api/files/covers/${item.id}/${item.cover}` ??
+												'https://pb.techchase.de/api/files/xaxun5rjt3q4ncb/26w1c1e32p6nyz9/crip_beatz_KLML7YYccC.jpg'
+											}
+											fill
+											alt="Cover"
+											sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw,18vw"
+										/>
+									</div>
 									<TitleWrapper>
 										<Artist>{item.artist}</Artist>
 										<SongTitle animate={animateTitle}>

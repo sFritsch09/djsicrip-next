@@ -5,15 +5,14 @@ import * as Yup from 'yup';
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FormContainer, FormHeader, Label } from '../../styles/booking.styles';
-import { SendButton } from '../../components/form/SendButton';
-import { SendIcon } from '../../components/form/SendIcon';
+import { SendIcon } from '../_components/form/SendIcon';
 import {
 	TextInput,
 	TextMessage,
 	RadioButton,
 	DateInput,
 	CustomCheckbox,
-} from '../../components/form';
+} from '../_components/form';
 import dynamic from 'next/dynamic';
 import { Fragment } from 'react';
 
@@ -127,9 +126,9 @@ export default function Bookingform() {
 							autoComplete="email"
 							contentRightStyling={false}
 							contentRight={
-								<SendButton>
+								<Button>
 									<SendIcon fill={'#006d77'} />
-								</SendButton>
+								</Button>
 							}
 						/>
 						<div>

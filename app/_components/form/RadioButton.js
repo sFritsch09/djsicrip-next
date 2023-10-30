@@ -1,4 +1,4 @@
-import { Radio } from '@nextui-org/react';
+import { Radio, RadioGroup } from '@nextui-org/react';
 import { useField } from 'formik';
 
 export default function RadioButton({ name, options, label, ...props }) {
@@ -25,7 +25,7 @@ export default function RadioButton({ name, options, label, ...props }) {
 		}
 	};
 	return (
-		<Radio.Group
+		<RadioGroup
 			label={label + helperText()}
 			value={meta.value}
 			onChange={helpers.setValue}
@@ -37,6 +37,6 @@ export default function RadioButton({ name, options, label, ...props }) {
 					{option}
 				</Radio>
 			))}
-		</Radio.Group>
+		</RadioGroup>
 	);
 }

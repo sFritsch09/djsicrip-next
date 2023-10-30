@@ -28,7 +28,7 @@ export const AboutContainer = styled.div`
 				position: absolute;
 				transform: scaleX(0);
 				height: inherit;
-				background: ${(props) => props.theme.contrastDark};
+				background: var(--contrastDark);
 				animation: mainBlock 1.4s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
 				-webkit-animation: mainBlock 1.4s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
 				display: flex;
@@ -37,7 +37,7 @@ export const AboutContainer = styled.div`
 
 			h1 {
 				font-family: 'Open Sans';
-				color: ${(props) => props.theme.color};
+				color: var(--color);
 				font-size: 72px;
 				-webkit-animation: mainFadeIn 1.6s forwards;
 				-o-animation: mainFadeIn 1.6s forwards;
@@ -54,7 +54,7 @@ export const AboutContainer = styled.div`
 					-webkit-border-radius: 50%;
 					-moz-border-radius: 50%;
 					border-radius: 50%;
-					background: ${(props) => props.theme.contrastDark};
+					background: var(--contrastDark);
 					-webkit-animation: load 0.6s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
 					animation: popIn 0.8s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
 					animation-delay: 1.8s;
@@ -89,7 +89,7 @@ export const AboutContainer = styled.div`
 				animation-delay: 3s;
 				opacity: 0;
 				font-family: 'Open Sans';
-				color: ${(props) => props.theme.color};
+				color: var(--color);
 				font-size: 28px;
 				text-transform: uppercase;
 				letter-spacing: 5px;
@@ -138,14 +138,14 @@ export const AboutContainer = styled.div`
 		0% {
 			width: 0px;
 			height: 0px;
-			background: ${(props) => props.theme.contrastDark};
+			background: var(--contrastDark);
 			border: 0px solid #ddd;
 			opacity: 0;
 		}
 		50% {
 			width: 10px;
 			height: 10px;
-			background: ${(props) => props.theme.contrastDark};
+			background: var(--contrastDark);
 			opacity: 1;
 			bottom: 45px;
 		}
@@ -163,7 +163,7 @@ export const AboutContainer = styled.div`
 		100% {
 			width: 7px;
 			height: 7px;
-			background: ${(props) => props.theme.contrastDark};
+			background: var(--contrastDark);
 			border: 0px solid #222;
 			bottom: 13px;
 		}
@@ -305,7 +305,7 @@ export const AboutContactLink = styled.span`
 	text-decoration: none;
 	color: inherit;
 	&:hover {
-		color: ${(props) => props.theme.lightColor};
+		color: var(--lightColor);
 	}
 	margin-left: 1em;
 `;

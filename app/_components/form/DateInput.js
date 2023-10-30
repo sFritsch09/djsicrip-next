@@ -1,7 +1,7 @@
-import { Textarea } from '@nextui-org/react';
+import { Input } from '@nextui-org/react';
 import { useField } from 'formik';
 
-export default function TextMessage({ name, label, placeholder, ...props }) {
+export default function DateInput({ name, label, ...props }) {
 	const [field, meta] = useField(name);
 
 	const helperText = () => {
@@ -25,15 +25,15 @@ export default function TextMessage({ name, label, placeholder, ...props }) {
 		}
 	};
 	return (
-		<Textarea
+		<Input
 			{...field}
 			{...props}
-			label={label}
-			placeholder={placeholder}
-			status={meta.error ? 'error' : 'default'}
-			helperText={helperText()}
+			labelPlaceholder={label}
+			isInvalid={meta.error}
+			errorMessage={helperText()}
 			helperColor={helperColor()}
 			name={name}
+			type="date"
 		/>
 	);
 }

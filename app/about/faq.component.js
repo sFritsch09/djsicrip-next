@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { FaqWrapper, ImageWrapper, Single } from '../../styles/about.styles';
 import { useEffect, useState } from 'react';
-import AboutCollapse from '../../components/collapse/about.collapse';
+import AboutCollapse from '../_components/collapse/about.collapse';
 
 export default function FAQ() {
 	// FAQ

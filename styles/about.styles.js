@@ -3,9 +3,12 @@ import { motion } from 'framer-motion';
 
 export const Single = styled(motion.div)`
 	.container {
+		padding-top: 6rem;
 		display: block;
+		@media screen and (max-width: 980px) {
+			padding-top: 0;
+		}
 		.top-row {
-			margin-top: 45px;
 			height: 50vh;
 			width: 100%;
 			align-items: flex-end;
@@ -31,7 +34,7 @@ export const Single = styled(motion.div)`
 					span {
 						display: inline-block;
 						position: relative;
-						color: ${(props) => props.theme.lightColor};
+						color: var(--lightColor);
 						font-weight: 400;
 						font-size: 180px;
 						@media screen and (max-width: 1500px) {
@@ -57,7 +60,7 @@ export const ImageWrapper = styled(motion.div)`
 	position: relative;
 	width: 60%;
 	height: 850px;
-	border: 4px solid ${(props) => props.theme.lightColor};
+	border: 4px solid var(--lightColor);
 	border-radius: 20px;
 	margin: 0 auto;
 	overflow: hidden;

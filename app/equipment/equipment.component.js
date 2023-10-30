@@ -1,7 +1,7 @@
 'use client';
 import { useRef, Fragment } from 'react';
-import { useScroll } from '../../components/hooks/ScrollContext';
-import useScrollBlock from '../../components/hooks/useScrollBlock';
+import { useScroll } from '../_components/hooks/ScrollContext';
+import useScrollBlock from '../_components/hooks/useScrollBlock';
 
 import Gallery from './gallery.component';
 import { Container, Section, Spacer } from '../../styles/equipment.styles';

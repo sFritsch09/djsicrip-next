@@ -1,7 +1,7 @@
 import { Input } from '@nextui-org/react';
 import { useField } from 'formik';
 
-export default function DateInput({ name, label, ...props }) {
+export default function TextInput({ name, label, ...props }) {
 	const [field, meta] = useField(name);
 
 	const helperText = () => {
@@ -29,11 +29,11 @@ export default function DateInput({ name, label, ...props }) {
 			{...field}
 			{...props}
 			labelPlaceholder={label}
-			status={meta.error ? 'error' : 'default'}
-			helperText={helperText()}
+			isInvalid={meta.error}
+			errorMessage={helperText()}
 			helperColor={helperColor()}
+			clearable
 			name={name}
-			type="date"
 		/>
 	);
 }

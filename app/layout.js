@@ -1,16 +1,24 @@
-import { DarkModeProvider } from '../components/hooks/DarkModeContext';
-import { MusicProvider } from '../components/hooks/MusicContext';
+import { DarkModeProvider } from './_components/hooks/DarkModeProvider';
+import { MusicProvider } from './_components/hooks/MusicContext';
 import StyledComponentsRegistry from './lib/registry';
 import GlobalStyle from '../styles/globalStyles';
-import { Navbar } from '../components';
-import { Footer } from '../components';
-import { ScrollProvider } from '../components/hooks/ScrollContext';
+import { Navbar } from './_components';
+import { Footer } from './_components';
+import { ScrollProvider } from './_components/hooks/ScrollContext';
 import Googletag from './googletag';
+import '@/styles/globals.css';
+import { ProviderUI } from './lib/nextui';
 
+export const viewport = {
+	themeColor: [
+		{ media: '(prefers-color-scheme: light)', color: '#FFDDD2' },
+		{ media: '(prefers-color-scheme: dark)', color: '#006d77' },
+	],
+};
 export const metadata = {
 	title: 'DJ Si Crip',
 	description: 'Best DJ in Mainz!',
-	themeColor: '#006d77',
+	metadataBase: new URL('https://mainzdj.de'),
 	icons: {
 		icon: '/logo512.png',
 	},
@@ -36,22 +44,24 @@ export const metadata = {
 };
 export default function RootLayout({ children }) {
 	return (
-		<html>
+		<html suppressHydrationWarning>
 			<head />
 			<Googletag />
 			<body>
-				<DarkModeProvider>
-					<MusicProvider>
-						<ScrollProvider>
-							<StyledComponentsRegistry>
-								<GlobalStyle />
-								<Navbar />
-								{children}
-								<Footer />
-							</StyledComponentsRegistry>
-						</ScrollProvider>
-					</MusicProvider>
-				</DarkModeProvider>
+				<StyledComponentsRegistry>
+					<DarkModeProvider>
+						<GlobalStyle />
+						<MusicProvider>
+							<ScrollProvider>
+								<ProviderUI>
+									<Navbar />
+									{children}
+									<Footer />
+								</ProviderUI>
+							</ScrollProvider>
+						</MusicProvider>
+					</DarkModeProvider>
+				</StyledComponentsRegistry>
 			</body>
 		</html>
 	);

@@ -1,5 +1,6 @@
 'use client';
-import { Table } from '@nextui-org/react';
+import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@nextui-org/react';
+import { PriceContainer } from './priceTable.styles';
 
 export default function Price() {
 	const columns = [
@@ -36,28 +37,30 @@ export default function Price() {
 	];
 	return (
 		<div className="main">
-			{
-				<Table
-					aria-label="Pricelist"
-					css={{
-						height: 'auto',
-						minWidth: '100%',
-					}}
-					bordered
-				>
-					<Table.Header columns={columns}>
-						{(column) => <Table.Column key={column.key}>{column.label}</Table.Column>}
-					</Table.Header>
-					<Table.Body items={rows}>
-						{(item) => (
-							<Table.Row key={item.key}>
-								{(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}
-							</Table.Row>
-						)}
-					</Table.Body>
-				</Table>
-			}
-			*Es kommen zusätzlich Fahrtkosten hinzu von 80 bis 100€
+			<PriceContainer>
+				{
+					<Table
+						aria-label="Pricelist"
+						css={{
+							height: 'auto',
+							minWidth: '100%',
+						}}
+						bordered
+					>
+						<TableHeader columns={columns}>
+							{(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
+						</TableHeader>
+						<TableBody items={rows}>
+							{(item) => (
+								<TableRow key={item.key}>
+									{(columnKey) => <TableCell>{item[columnKey]}</TableCell>}
+								</TableRow>
+							)}
+						</TableBody>
+					</Table>
+				}
+				*Es kommen zusätzlich Fahrtkosten hinzu von 80 bis 100€
+			</PriceContainer>
 		</div>
 	);
 }

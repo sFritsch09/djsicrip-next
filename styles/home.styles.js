@@ -5,7 +5,7 @@ import { VscClose } from 'react-icons/vsc';
 
 const Active = css`
 	width: 100%;
-	background: ${(props) => props.theme.lightColor};
+	background: var(--lightColor);
 	transition: width 0.2s;
 `;
 const TextAnimation = css`
@@ -16,7 +16,7 @@ export const Angle = styled.div`
 	position: relative;
 	height: 2em;
 	padding-bottom: 2em;
-	background-color: ${(props) => props.theme.Darkcolor};
+	background-color: var(--darkColor);
 	&:before {
 		transform: skewY(2.6deg);
 		transform-origin: 100% 0;
@@ -46,7 +46,7 @@ export const ImageWrapper = styled.div`
 	}
 `;
 export const CustomImage = styled(Image)`
-	filter: ${(props) => (props.theme.mode === 'Dark' ? 'brightness(70%)' : 'brightness(100%)')};
+	filter: brightness(70%);
 	transition: all 0.5s ease;
 	&:hover {
 		transform: scale(1.1);
@@ -129,8 +129,8 @@ export const PlayerContainer = styled.div`
 	transition: 0.6s;
 	bottom: 0;
 	display: ${(props) => (props.$show ? 'flex' : 'none')};
-	background-color: ${(props) =>
-		props.theme.mode === 'Dark' ? props.theme.darkColor : props.theme.contrastDark};
+	background-color: var(--darkColor);
+	//contrastDark
 	box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
 
 	@media screen and (max-width: 980px) {
@@ -140,8 +140,14 @@ export const PlayerContainer = styled.div`
 
 export const ImgContainer = styled.div`
 	width: 25%;
-	border-right: 1px solid ${(props) => props.theme.color};
+	border-right: 1px solid var(--color);
 	display: flex;
+	position: relative;
+
+	.image {
+		position: relative;
+		width: 20% !important;
+	}
 `;
 
 export const NavContainer = styled.div`
@@ -152,7 +158,7 @@ export const NavContainer = styled.div`
 	padding: 0 1em;
 	margin-bottom: 2em;
 	justify-content: space-evenly;
-	color: ${(props) => props.theme.color};
+	color: var(--color);
 
 	@media screen and (max-width: 680px) {
 		padding: 0;
@@ -173,11 +179,11 @@ export const NavItem = styled.div`
 		content: '';
 		display: block;
 		height: 3px;
-		${(props) => (props.active ? Active : null)}
+		${(props) => (props.$active ? Active : null)}
 	}
 
 	&:hover {
-		color: ${(props) => props.theme.contrastColor};
+		color: var(--contrastColor);
 		transition: width 0.3s;
 	}
 `;
@@ -190,10 +196,11 @@ export const TitleWrapper = styled.div`
 	padding: 5px 0;
 	margin: 0 10px;
 	overflow: hidden;
+	width: 75%;
 `;
 
 export const Artist = styled.div`
-	color: ${(props) => (props.theme.mode === 'Dark' ? props.theme.contrastDark : props.theme.color)};
+	color: var(--artistColor);
 	margin-bottom: 10px;
 	margin-top: 5px;
 	margin-left: 0.5em;
@@ -201,8 +208,8 @@ export const Artist = styled.div`
 
 export const SongTitle = styled.div`
 	white-space: nowrap;
-	color: ${(props) =>
-		props.theme.mode === 'Dark' ? props.theme.contrastColor : props.theme.lightColor};
+	color: var(--contrastColor);
+	//lightColor
 	${(props) => (props.animate ? TextAnimation : null)}
 
 	span {
@@ -233,7 +240,7 @@ export const CloseWrapper = styled.div`
 	width: 5%;
 	height: 100%;
 	cursor: pointer;
-	border-left: 1px solid ${(props) => props.theme.color};
+	border-left: 1px solid var(--color);
 
 	@media screen and (max-width: 900px) {
 		width: 25%;
@@ -242,7 +249,7 @@ export const CloseWrapper = styled.div`
 
 export const Close = styled(VscClose)`
 	font-size: 200%;
-	color: ${(props) => props.theme.color};
+	color: var(--color);
 `;
 export const PlayerWrapper = styled.div`
 	width: 70%;
@@ -258,8 +265,8 @@ export const PlayerWrapper = styled.div`
 		line-height: 1;
 		width: 100%;
 		padding: 10px 25px;
-		background-color: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.darkColor : props.theme.contrastDark};
+		background-color: var(--darkColor);
+		//contrastDark
 
 		@media screen and (max-width: 900px) {
 			padding: 2px 5px;
@@ -343,7 +350,7 @@ export const PlayerWrapper = styled.div`
 	}
 
 	.rhap_time {
-		color: ${(props) => props.theme.color};
+		color: var(--color);
 		font-size: 16px;
 		padding: 0 2px;
 		user-select: none;
@@ -351,7 +358,7 @@ export const PlayerWrapper = styled.div`
 	}
 
 	.customTime {
-		color: ${(props) => props.theme.color};
+		color: var(--color);
 	}
 	.rhap_progress-bar {
 		box-sizing: border-box;
@@ -359,8 +366,8 @@ export const PlayerWrapper = styled.div`
 		z-index: 0;
 		width: 100%;
 		height: 5px;
-		background-color: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.contrastColor : props.theme.contrastDark};
+		background-color: var(--contrastColor);
+		//color
 		border-radius: 2px;
 	}
 
@@ -368,22 +375,22 @@ export const PlayerWrapper = styled.div`
 		height: 100%;
 		position: absolute;
 		z-index: 2;
-		background-color: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.lightColor : props.theme.color};
+		background-color: var(--lightColor);
+		//color
 		border-radius: 2px;
 	}
 
 	.rhap_progress-bar-show-download {
-		background-color: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.contrastDark : props.theme.contrastColor};
+		background-color: var(--contrastDark);
+		//contrastcolor
 	}
 
 	.rhap_download-progress {
 		height: 100%;
 		position: absolute;
 		z-index: 1;
-		background-color: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.contrastColor : props.theme.lightColor};
+		background-color: var(--contrastColor);
+		//lightColor
 		border-radius: 2px;
 	}
 
@@ -395,10 +402,10 @@ export const PlayerWrapper = styled.div`
 		height: 20px;
 		margin-left: -10px;
 		top: -8px;
-		background: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.lightColor : props.theme.color};
+		background: var(--lightColor);
+		//color
 		border-radius: 50px;
-		box-shadow: ${(props) => props.theme.color} 0 0 5px;
+		box-shadow: var(--color) 0 0 5px;
 	}
 
 	.rhap_controls-section {
@@ -418,7 +425,7 @@ export const PlayerWrapper = styled.div`
 		font-size: 26px;
 		width: 26px;
 		height: 26px;
-		color: ${(props) => props.theme.color};
+		color: var(--color);
 		margin-right: 6px;
 	}
 
@@ -437,7 +444,7 @@ export const PlayerWrapper = styled.div`
 
 	.rhap_main-controls-button {
 		margin: 0 3px;
-		color: ${(props) => props.theme.color};
+		color: var(--color);
 		font-size: 35px;
 		width: 35px;
 		height: 35px;
@@ -461,7 +468,7 @@ export const PlayerWrapper = styled.div`
 		font-size: 26px;
 		width: 26px;
 		height: 26px;
-		color: ${(props) => props.theme.color};
+		color: var(--color);
 		margin-right: 6px;
 	}
 
@@ -489,7 +496,7 @@ export const PlayerWrapper = styled.div`
 		position: relative;
 		width: 100%;
 		height: 4px;
-		background: ${(props) => props.theme.contrastColor};
+		background: var(--contrastColor);
 		border-radius: 2px;
 	}
 
@@ -501,11 +508,11 @@ export const PlayerWrapper = styled.div`
 		margin-left: -6px;
 		left: 0;
 		top: -4px;
-		background: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.lightColor : props.theme.color};
+		background: var(--lightColor);
+		//color
 		opacity: 0.9;
 		border-radius: 50px;
-		box-shadow: ${(props) => props.theme.color} 0 0 3px;
+		box-shadow: var(--color) 0 0 3px;
 		cursor: pointer;
 
 		&:hover {
@@ -517,7 +524,7 @@ export const PlayerWrapper = styled.div`
 		height: 100%;
 		position: absolute;
 		z-index: 2;
-		background-color: ${(props) => props.theme.color};
+		background-color: var(--color);
 		border-radius: 2px;
 	}
 

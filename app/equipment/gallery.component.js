@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Product, ProductImage } from './gallery.styles.js';
-import { useScrollUpdate } from '../../components/hooks/ScrollContext';
+import { useScrollUpdate } from '../_components/hooks/ScrollContext.js';
 //icons
 import { BiChevronLeft as Chevron } from 'react-icons/bi';
 import { VscClose as Close } from 'react-icons/vsc';

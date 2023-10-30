@@ -15,7 +15,7 @@ export const FormContainer = styled.div`
 `;
 
 export const FormHeader = styled.h1`
-	color: ${(props) => props.theme.color};
+	color: var(--color);
 `;
 
 export const Label = styled.label`

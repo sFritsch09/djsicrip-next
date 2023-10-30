@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Logo from '../../images/Logo-sicrip.svg';
+import Logo from '../../../images/Logo-sicrip.svg';
 import { motion } from 'framer-motion';
 
 export const Nav = styled.nav`
@@ -45,11 +45,11 @@ export const MobileNav = styled.div`
 	left: 0;
 	right: 0;
 	bottom: 5rem;
-	transform: translateX(${({ active }) => (active ? '0' : '100%')});
-	-webkit-transform: -webkit-translateX(${({ active }) => (active ? '0' : '100%')});
+	transform: translateX(${({ $active }) => ($active ? '0' : '100%')});
+	-webkit-transform: -webkit-translateX(${({ $active }) => ($active ? '0' : '100%')});
 	transition: transform 0.3s ease-out;
 	-webkit-transition: -webkit-transform 0.3s ease-out;
-	background-color: ${(props) => props.theme.darkColor} !important;
+	background-color: var(--darkColor) !important;
 	opacity: 1;
 `;
 
@@ -75,7 +75,7 @@ export const NavbarContainer = styled.div`
 
 export const MobileIcon = styled.div`
 	display: none;
-	color: ${(props) => props.theme.darkColor};
+	color: var(--darkColor);
 
 	@media screen and (max-width: 980px) {
 		display: block;
@@ -88,7 +88,7 @@ export const MobileIcon = styled.div`
 `;
 
 export const BurgerIcon = styled.div`
-	color: ${(props) => props.theme.color};
+	color: var(--color);
 	width: 35px;
 	height: 30px;
 	margin: 10px 10px;
@@ -97,7 +97,7 @@ export const BurgerIcon = styled.div`
 	display: inline-block;
 	transform: ${(props) => (props.open ? 'rotate(45deg)' : null)};
 	span {
-		background-color: ${(props) => props.theme.color};
+		background-color: var(--color);
 		position: absolute;
 		border-radius: 2px;
 		transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
@@ -171,11 +171,11 @@ export const NavIcon = styled(Logo)`
 	width: 20rem;
 	margin-top: 6.2rem;
 	position: relative;
-	color: ${(props) => props.theme.color};
+	color: var(--color);
 	z-index: 1;
 
 	&:hover {
-		color: ${(props) => props.theme.lightColor};
+		color: var(--lightColor);
 	}
 	@media screen and (max-width: 1250px) {
 		width: 15rem;
@@ -216,7 +216,7 @@ export const NavMenuMotion = styled(motion.ul)`
 	top: 0 !important;
 	left: 0;
 	right: 0;
-	background: ${(props) => props.theme.darkColor} !important;
+	background: var(--darkColor) !important;
 `;
 
 // li tag
@@ -248,11 +248,11 @@ export const IconWrapper = styled.div`
 	align-items: center;
 	flex-direction: row;
 	margin-right: 1em;
-	color: ${(props) => props.theme.contrastColor};
+	color: var(--contrastColor);
 `;
 // a tag
 export const NavLink = styled.div`
-	color: ${(props) => props.theme.color};
+	color: var(--color);
 	align-items: center;
 	display: flex;
 	padding: 0.5rem 1rem;
@@ -267,7 +267,7 @@ export const NavLink = styled.div`
 		display: table;
 		align-items: center;
 		&:hover {
-			color: ${(props) => props.theme.color};
+			color: var(--color);
 			transition: all 0.3s ease;
 		}
 	}
@@ -281,7 +281,7 @@ export const NavLink = styled.div`
 			bottom: 0;
 			height: 4px;
 			left: 0;
-			background: ${(props) => props.theme.color};
+			background: var(--color);
 			transition: width 0.3s;
 			transform: scaleX(0);
 			transform-origin: bottom right;
@@ -312,7 +312,7 @@ export const NavTools = styled.span`
 	justify-content: space-between;
 	font-size: 32px;
 	margin-left: 2em;
-	color: ${(props) => props.theme.color};
+	color: var(--color);
 
 	&:hover {
 		color: ${(props) =>
@@ -334,8 +334,10 @@ export const NavTools = styled.span`
 
 export const NavDarkMode = styled.div`
 	padding-left: 1em;
+	margin-bottom: 0.5em;
 	display: flex;
 	align-items: center;
+	margin-left: 2em;
 	*:focus {
 		outline: none;
 	}
@@ -344,9 +346,33 @@ export const NavDarkMode = styled.div`
 		line-height: normal;
 		overflow: visible !important;
 	}
+	label {
+		div {
+			background: ${(props) =>
+				props.theme.mode === 'Dark' ? props.theme.lightColor : props.theme.Darkcolor};
+			&:hover {
+				background: ${(props) =>
+					props.theme.mode === 'Dark' ? props.theme.lightColor : props.theme.Darkcolor};
+			}
+		}
+	}
+	@media screen and (max-width: 1080px) {
+		margin-left: 0.5em;
+	}
 	@media screen and (max-width: 980px) {
-		width: 20%;
+		bottom: 2em;
+		text-align: center;
+		padding: 0.5rem 1rem;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: ${(props) =>
+			props.theme.mode === 'Dark' ? props.theme.lightColor : props.theme.Darkcolor};
 		&:hover {
+			color: ${(props) =>
+				props.theme.mode === 'Dark' ? props.theme.lightColor : props.theme.Darkcolor};
+			transition: all 0.3s ease;
 			border: none;
 		}
 	}
@@ -358,6 +384,6 @@ export const DarkModeMobile = styled.div`
 	width: 100%;
 	height: 100%;
 	padding: 1em;
-	color: ${(props) => props.theme.color};
+	color: var(--color);
 	cursor: pointer;
 `;

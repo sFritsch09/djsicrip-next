@@ -19,7 +19,7 @@ export const Product = styled.div`
 			}
 
 			.product-content-inner {
-				color: ${(props) => props.theme.lightColor};
+				color: var(--lightColor);
 				h4 {
 					font-size: 14px;
 					margin: 0 0 16px 0;
@@ -53,7 +53,7 @@ export const Product = styled.div`
 						z-index: 4;
 					}
 					svg {
-						color: ${(props) => props.theme.color};
+						color: var(--color);
 						margin-right: 24px;
 						font-size: 40px;
 						z-index: 2;
@@ -157,7 +157,7 @@ export const Product = styled.div`
 						padding-right: 0;
 					}
 					h6 {
-						color: ${(props) => props.theme.color};
+						color: var(--color);
 						font-size: 14px;
 						margin: 0;
 						margin-bottom: 24px;
@@ -167,14 +167,14 @@ export const Product = styled.div`
 						.arrow-left {
 							margin-right: 12px;
 							font-size: 24px;
-							color: ${(props) => props.theme.contrastColor};
+							color: var(--contrastColor);
 						}
 					}
 				}
 				.product-drag-progress-background {
 					width: 100%;
 					height: 1px;
-					background: ${(props) => props.theme.lightColor};
+					background: var(--lightColor);
 					position: relative;
 					.product-drag-progress {
 						width: 0%;

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 export const FooterContainer = styled.div`
 	display: flex;
-	background: ${(props) => props.theme.darkColor};
-	color: ${(props) => props.theme.color};
+	background: var(--darkColor);
+	color: var(--color);
 	padding-top: 2em;
 	flex-direction: column;
 	margin-top: 12em;
@@ -16,7 +16,7 @@ export const FooterContainer = styled.div`
 	}
 `;
 export const SeoText = styled.span`
-	color: ${(props) => props.theme.darkColor};
+	color: var(--darkColor);
 `;
 
 export const FooterWrapper = styled.div`
@@ -57,8 +57,8 @@ export const AboutWrapper = styled.div`
 	z-index: 21;
 
 	&:hover {
-		background-color: ${(props) => props.theme.lightColor};
-		color: ${(props) => props.theme.darkColor};
+		background-color: var(--lightColor);
+		color: var(--darkColor);
 		transition: all 0.3s ease-out;
 	}
 `;

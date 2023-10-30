@@ -1,4 +1,5 @@
-import ReactSoundCloud from 'react-soundcloud-embedded';
+'use client';
+import ReactSoundCloud from 'react-player';
 import { SoundCloudContainer } from './music.styles';
 
 export const SoundCloud = () => {
@@ -18,33 +19,33 @@ export const SoundCloud = () => {
 		<SoundCloudContainer>
 			<label>My Edits/Remix:</label>
 			<div>
-				<ReactSoundCloud url={Bodyswerve} visual={false} />
+				<ReactSoundCloud url={Bodyswerve} />
 			</div>
 			<div>
-				<ReactSoundCloud url={Kickerz} visual={false} />
+				<ReactSoundCloud url={Kickerz} />
 			</div>
 			<div>
-				<ReactSoundCloud url={BreakNight} visual={false} />
+				<ReactSoundCloud url={BreakNight} />
 			</div>
 			<label>My Songs:</label>
 			<div>
-				<ReactSoundCloud url={ModusSong} visual={false} />
+				<ReactSoundCloud url={ModusSong} />
 			</div>
 			<div>
-				<ReactSoundCloud url={HighriseSong} visual={false} />
+				<ReactSoundCloud url={HighriseSong} />
 			</div>
 			<div>
-				<ReactSoundCloud url={WellaSong} visual={false} />
+				<ReactSoundCloud url={WellaSong} />
 			</div>
 			<div>
-				<ReactSoundCloud url={FlowSong} visual={false} />
+				<ReactSoundCloud url={FlowSong} />
 			</div>
 			<label>My Mixtapes:</label>
 			<div>
-				<ReactSoundCloud url={MixE3} visual={false} />
+				<ReactSoundCloud url={MixE3} />
 			</div>
 			<div>
-				<ReactSoundCloud url={MixE2} visual={false} />
+				<ReactSoundCloud url={MixE2} />
 			</div>
 		</SoundCloudContainer>
 	);

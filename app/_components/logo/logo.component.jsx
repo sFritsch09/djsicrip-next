@@ -200,7 +200,6 @@ const Logo = ({ animation, vinyl }) => {
 					variants={vinylMotion}
 					whileHover="hover"
 					animate={animation ? 'hover' : 'rest'}
-					onTap="hover"
 				>
 					<VinylImg />
 				</VinylWrapper>

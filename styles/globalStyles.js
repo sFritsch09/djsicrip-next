@@ -4,6 +4,29 @@ import styled from 'styled-components';
 import { Button } from '@nextui-org/react';
 
 const GlobalStyle = createGlobalStyle`
+:root {
+	--darkColor: #FFDDD2;
+	--color: #006d77;
+    --lightColor: #83C5BE;
+	--contrastColor: #E29578;
+	--contrastDark: #FFDDD2;
+	--Darkcolor: #EDF6F9;
+
+	--artistColor: #006d77;
+	--calendarColor: #006d77;
+}	
+[class="dark"] {
+	--darkColor: #006d77;
+	--color: #EDF6F9;
+    --lightColor: #83C5BE;
+	--contrastColor: #FFDDD2;
+	--contrastDark: #E29578;
+	--Darkcolor: #002f33;
+
+	--artistColor: #E29578;
+	--calendarColor: #006d77;
+	--calendarColor: #FFDDD2;
+}
 *{
     box-sizing: border-box;
     margin: 0;
@@ -13,8 +36,8 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
-	background: ${(props) => props.theme.Darkcolor};
-	color: ${(props) => props.theme.color};
+	background: var(--Darkcolor);
+	color: var(--color);
 }
 
 .page-container {
@@ -27,25 +50,6 @@ body {
 	flex: 1;
 }
 
-:root {
-	--nextui-colors-primary: ${(props) => props.theme.contrastColor} !important;
-	--nextui-colors-secondary: ${(props) => props.theme.contrastDark} !important;
-	--nextui-colors-primarySolidContrast: ${(props) => props.theme.darkColor} !important;
-	--nextui-zIndices-2: 1 !important;
-	--nextui-zIndices-1: 1 !important;
-	--nextui-fontSizes-lg: 2.5rem;
-	--nextui-colors-border: ${(props) => props.theme.contrastDark} !important;
-	--nextui-colors-foreground: ${(props) => props.theme.contrastColor} !important;
-	--nextui-colors-text: ${(props) => props.theme.color} !important;
-	--nextui-colors-accents0: ${(props) => props.theme.darkColor} !important;
-	--nextui-colors-accents7: ${(props) =>
-		props.theme.mode === 'Dark' ? props.theme.darkColor : props.theme.color} !important;
-	--nextui-colors-primarySolidHover: ${(props) =>
-		props.theme.mode === 'Dark' ? props.theme.contrastDark : props.theme.darkColor} !important;
-	--nextui-colors-backgroundContrast: ${(props) => props.theme.darkColor} !important;
-}
-
-
 .no-scroll {
 	overflow-y: hidden;
 }
@@ -57,20 +61,15 @@ a:-webkit-any-link {
 }
 
 .main {
-	margin-top: 12em;
-	padding: 1em 15em;
-
-	@media screen and (max-width: 980px) {
-	margin-top: 0;
-		padding: 1em 2em;
-	}
-
-	thead > tr:first-child, th {
-		background-color: ${(props) => props.theme.lightColor};
-	}
-
+	display: block;
+	margin: 0 auto;
+	padding-top: 8rem;
+	width: 80%;
 	div {
-		border-color: ${(props) => props.theme.lightColor}; 
+		border-color: var(--lightColor); 
+	}
+	@media screen and (max-width: 980px) {
+		padding-top: 0;
 	}
 }
 `;
@@ -83,9 +82,8 @@ export const FourOhFourContainer = styled.div`
 	flex-direction: column;
 `;
 export const CustomButton = styled(Button)`
-	background-color: ${(props) => props.theme.contrastColor};
-	color: ${(props) => props.theme.darkColor};
-	font-size: 2.5rem !important;
+	background-color: var(--contrastColor);
+	color: var(--darkColor);
 	padding: 2rem !important;
 	z-index: 3;
 	position: relative;
@@ -98,8 +96,8 @@ export const CustomButton = styled(Button)`
 
 	&:hover {
 		background-color: initial;
-		border: 3px solid ${(props) => props.theme.contrastColor};
-		color: ${(props) => props.theme.contrastColor};
+		border: 3px solid var(--contrastColor);
+		color: var(--contrastColor);
 	}
 `;
 
@@ -114,7 +112,7 @@ export const ToolTip = styled.div`
 		display: block;
 		opacity: 0;
 		visibility: hidden;
-		transform: translateX(-15rem) translateX(${(props) => props.position}px);
+		transform: translateX(-15rem) translateX(${(props) => props.$position}px);
 		z-index: 6;
 	}
 

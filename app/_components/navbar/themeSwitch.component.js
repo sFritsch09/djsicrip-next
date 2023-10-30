@@ -28,11 +28,9 @@ export default function ThemeSwitch({ mobile }) {
 					{mobile ? (
 						<NavDarkMode onClick={() => setDarkMode(theme)}>
 							<IconWrapper>
-								{theme === 'dark' ? <SunIcon fill="#55b3f3" /> : <MoonIcon fill="#55b3f3" />}
+								{theme === 'dark' ? <SunIcon fill="#FFDDD2" /> : <MoonIcon fill="#E29578" />}
 							</IconWrapper>
-							<div style={{ marginRight: '4em' }}>
-								{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-							</div>
+							<div className="icon">{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</div>
 						</NavDarkMode>
 					) : (
 						<Switch

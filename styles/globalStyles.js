@@ -14,6 +14,11 @@ const GlobalStyle = createGlobalStyle`
 
 	--artistColor: #006d77;
 	--calendarColor: #006d77;
+	--nav: rgba(255, 255, 255, 0);
+	--navBg: #83C5BE;
+	--navTools: #EDF6F9;
+	--product: #EDF6F9; 
+	--about: #83C5BE; 
 }	
 [class="dark"] {
 	--darkColor: #006d77;
@@ -26,6 +31,10 @@ const GlobalStyle = createGlobalStyle`
 	--artistColor: #E29578;
 	--calendarColor: #006d77;
 	--calendarColor: #FFDDD2;
+	--navBg: #006d77;
+	--navTools: #83C5BE;
+	--product: #EDF6F9; 
+	--about: #E29578; 
 }
 *{
     box-sizing: border-box;

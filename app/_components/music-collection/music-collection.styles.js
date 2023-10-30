@@ -66,8 +66,7 @@ export const CoverWrapper = styled.div`
 `;
 
 export const PlayWrapper = styled.div`
-	border: 1px solid
-		${(props) => (props.theme.mode === 'Dark' ? props.theme.color : props.theme.Darkcolor)};
+	border: 1px solid var(--product);
 	border-radius: 50%;
 	width: 5em;
 	height: 5em;
@@ -90,12 +89,12 @@ export const PlayWrapper = styled.div`
 export const CoverPlay = styled(BiPlay)`
 	font-size: 3em;
 	margin-left: 8%;
-	color: ${(props) => (props.theme.mode === 'Dark' ? props.theme.color : props.theme.Darkcolor)};
+	color: var(--product);
 	z-index: 1;
 `;
 export const CoverPause = styled(IoPauseOutline)`
 	font-size: 3em;
-	color: ${(props) => (props.theme.mode === 'Dark' ? props.theme.color : props.theme.Darkcolor)};
+	color: var(--product);
 	z-index: 1;
 `;
 

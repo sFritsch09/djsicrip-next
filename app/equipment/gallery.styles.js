@@ -98,8 +98,7 @@ export const Product = styled.div`
 				top: 0px;
 			}
 			.company-name {
-				color: ${(props) =>
-					props.theme.mode === 'Dark' ? props.theme.color : props.theme.Darkcolor};
+				color: var(--product);
 				font-size: 3rem;
 				font-weight: 700;
 
@@ -108,8 +107,7 @@ export const Product = styled.div`
 				}
 			}
 			.close {
-				color: ${(props) =>
-					props.theme.mode === 'Dark' ? props.theme.color : props.theme.Darkcolor};
+				color: var(--product);
 				font-size: 2.5rem;
 				font-weight: 700;
 				display: flex;
@@ -179,8 +177,7 @@ export const Product = styled.div`
 					.product-drag-progress {
 						width: 0%;
 						height: 1px;
-						background: ${(props) =>
-							props.theme.mode === 'Dark' ? props.theme.color : props.theme.Darkcolor};
+						background: var(--product);
 						position: absolute;
 						z-index: 2;
 						right: 0;

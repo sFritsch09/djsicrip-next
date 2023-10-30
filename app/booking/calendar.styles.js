@@ -38,12 +38,6 @@ export const BookingContainer = styled.div`
 		}
 
 		.week {
-			&.names {
-				.day-box .day {
-					color: ${(props) =>
-						props.theme.mode === 'Dark' ? props.theme.color : props.theme.Darkcolor};
-				}
-			}
 			.day-box .day {
 				background-color: var(--lightColor);
 				&.different-month {

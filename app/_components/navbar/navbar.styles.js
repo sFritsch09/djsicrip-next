@@ -13,16 +13,14 @@ export const Nav = styled.nav`
 	top: 0;
 	z-index: 20;
 	transition: background 0.3s ease-out;
-	background: ${(props) => (props.theme.mode === 'Dark' ? '' : 'rgba(255, 255, 255, 0)')};
+	background: var(--nav);
 	backdrop-filter: blur(2px);
 
 	&.sticky {
-		background: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.darkColor : props.theme.lightColor};
+		background: var(--navBg);
 	}
 	@media screen and (max-width: 980px) {
-		background: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.darkColor : props.theme.lightColor};
+		background: var(--navBg);
 		bottom: 0 !important;
 		left: 0 !important;
 		top: initial;
@@ -30,10 +28,6 @@ export const Nav = styled.nav`
 		display: block;
 		width: 100%;
 		opacity: 1;
-		&.is-hidden {
-			opacity: 0;
-			transition: transform 0.4s, opacity 0.2s;
-		}
 	}
 `;
 
@@ -185,7 +179,7 @@ export const NavIcon = styled(Logo)`
 	}
 
 	&.sticky {
-		color: ${(props) => (props.theme.mode === 'Dark' ? props.theme.color : props.theme.color)};
+		color: var(--color);
 	}
 `;
 
@@ -295,7 +289,7 @@ export const NavLink = styled.div`
 	}
 
 	&.sticky {
-		color: ${(props) => (props.theme.mode === 'Dark' ? props.theme.color : props.theme.color)};
+		color: var(--color);
 	}
 `;
 
@@ -315,8 +309,7 @@ export const NavTools = styled.span`
 	color: var(--color);
 
 	&:hover {
-		color: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.lightColor : props.theme.lightColor};
+		color: var(--lightColor);
 	}
 
 	@media screen and (max-width: 900px) {
@@ -324,10 +317,9 @@ export const NavTools = styled.span`
 	}
 
 	&.sticky {
-		color: ${(props) => (props.theme.mode === 'Dark' ? props.theme.color : props.theme.color)};
+		color: var(--color);
 		&:hover {
-			color: ${(props) =>
-				props.theme.mode === 'Dark' ? props.theme.lightColor : props.theme.Darkcolor};
+			color: var(--navTools);
 		}
 	}
 `;
@@ -338,6 +330,10 @@ export const NavDarkMode = styled.div`
 	display: flex;
 	align-items: center;
 	margin-left: 2em;
+	.icon {
+		margin-right: 4em;
+		color: var(--color);
+	}
 	*:focus {
 		outline: none;
 	}
@@ -348,11 +344,9 @@ export const NavDarkMode = styled.div`
 	}
 	label {
 		div {
-			background: ${(props) =>
-				props.theme.mode === 'Dark' ? props.theme.lightColor : props.theme.Darkcolor};
+			background: var(--navTools);
 			&:hover {
-				background: ${(props) =>
-					props.theme.mode === 'Dark' ? props.theme.lightColor : props.theme.Darkcolor};
+				background: var(--navTools);
 			}
 		}
 	}
@@ -367,11 +361,9 @@ export const NavDarkMode = styled.div`
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: ${(props) =>
-			props.theme.mode === 'Dark' ? props.theme.lightColor : props.theme.Darkcolor};
+		color: var(--navTools);
 		&:hover {
-			color: ${(props) =>
-				props.theme.mode === 'Dark' ? props.theme.lightColor : props.theme.Darkcolor};
+			color: var(--navTools);
 			transition: all 0.3s ease;
 			border: none;
 		}

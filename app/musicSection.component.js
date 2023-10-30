@@ -184,7 +184,8 @@ export default function MusicSection() {
 										'https://pb.techchase.de/api/files/xaxun5rjt3q4ncb/26w1c1e32p6nyz9/crip_beatz_KLML7YYccC.jpg'
 									}
 									alt="Cover"
-									placeholder="blur"
+									width={80}
+									height={80}
 									sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw,18vw"
 								/>
 							</Fragment>

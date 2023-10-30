@@ -78,8 +78,7 @@ export const FaqWrapper = styled.div`
 	width: 100%;
 	margin-top: 2em;
 	padding: 2em 12em;
-	color: ${(props) =>
-		props.theme.mode === 'Dark' ? props.theme.contrastDark : props.theme.lightColor};
+	color: var(--about);
 
 	@media screen and (max-width: 980px) {
 		padding: 1em 2em;

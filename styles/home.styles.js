@@ -68,7 +68,7 @@ export const ImageText = styled.div`
 		display: inline;
 		font-size: 10em;
 		background: ${(props) =>
-			`linear-gradient(45deg, ${props.theme.contrastColor} 40%, ${props.theme.contrastDark} 50%)`};
+			`linear-gradient(45deg, var(--contrastColor) 40%, var(--contrastDark) 50%)`};
 		background-clip: text;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;

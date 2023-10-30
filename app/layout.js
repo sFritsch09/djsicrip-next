@@ -5,7 +5,6 @@ import GlobalStyle from '../styles/globalStyles';
 import { Navbar } from './_components';
 import { Footer } from './_components';
 import { ScrollProvider } from './_components/hooks/ScrollContext';
-import Googletag from './googletag';
 import '@/styles/globals.css';
 import { ProviderUI } from './lib/nextui';
 
@@ -46,7 +45,6 @@ export default function RootLayout({ children }) {
 	return (
 		<html suppressHydrationWarning>
 			<head />
-			<Googletag />
 			<body>
 				<StyledComponentsRegistry>
 					<DarkModeProvider>

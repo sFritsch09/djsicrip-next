@@ -210,7 +210,7 @@ export const SongTitle = styled.div`
 	white-space: nowrap;
 	color: var(--contrastColor);
 	//lightColor
-	${(props) => (props.animate ? TextAnimation : null)}
+	${(props) => (props.$animate == 'true' ? TextAnimation : null)}
 
 	span {
 		margin-left: 0.5em;

@@ -1,8 +1,8 @@
-import { Radio, RadioGroup } from '@nextui-org/react';
+import { Select, SelectItem } from '@nextui-org/react';
 import { useField } from 'formik';
 
-export default function RadioButton({ name, options, label, ...props }) {
-	const [_, meta, helpers] = useField(name);
+export default function RadioButton({ name, options, label, placeholder }) {
+	const [field, meta, helpers] = useField(name);
 
 	const helperText = () => {
 		if (meta.touched && meta.error) {
@@ -25,20 +25,21 @@ export default function RadioButton({ name, options, label, ...props }) {
 		}
 	};
 	return (
-		<RadioGroup
-			{...props}
-			label={label + helperText()}
-			value={meta.value}
-			onChange={helpers.setValue}
+		<Select
+			{...field}
+			label={label}
 			errorMessage={helperText()}
 			isInvalid={meta.error}
 			color={helperColor()}
+			placeholder={placeholder}
+			labelPlacement="outside"
+			selectionMode="single"
 		>
-			{options.map((option, index) => (
-				<Radio key={index} value={option}>
-					{option}
-				</Radio>
+			{options.map((item) => (
+				<SelectItem key={item.value} value={item.value}>
+					{item.label}
+				</SelectItem>
 			))}
-		</RadioGroup>
+		</Select>
 	);
 }

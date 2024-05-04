@@ -32,7 +32,7 @@ export default function CustomCheckbox({ name, label, ...props }) {
 				status={meta.error ? 'error' : 'default'}
 				color={helperColor()}
 				name={name}
-				onChange={helpers.setValue}
+				onValueChange={helpers.setValue}
 			>
 				{label}
 			</Checkbox>

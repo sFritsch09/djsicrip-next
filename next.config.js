@@ -1,7 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ['pb.techchase.de', 'localhost'],
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'pb.techchase.de',
+			},
+			{
+				protocol: 'http',
+				hostname: 'localhost',
+			},
+		],
 	},
 	webpack(config) {
 		config.module.rules.push({
@@ -12,6 +21,10 @@ const nextConfig = {
 
 		return config;
 	},
+	compiler: {
+		styledComponents: true,
+	},
+	output: 'standalone',
 	// i18n: {
 	// 	locales: ['en', 'de'],
 	// 	defaultLocale: 'de',

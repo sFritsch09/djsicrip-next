@@ -1,3 +1,5 @@
 node_modules
 .next
 techchase-calendar.json
+.yarn
+.yarnrc.yml

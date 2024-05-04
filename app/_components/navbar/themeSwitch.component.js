@@ -2,7 +2,7 @@
 import { useTheme } from 'next-themes';
 import { SunIcon } from './SunIcon';
 import { MoonIcon } from './MoonIcon';
-import { Switch } from '@nextui-org/react';
+import { Switch } from '@nextui-org/switch';
 import { Fragment, useEffect, useState } from 'react';
 import { IconWrapper, NavDarkMode } from './navbar.styles';
 

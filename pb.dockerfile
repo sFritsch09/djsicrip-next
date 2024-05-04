@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-ARG PB_VERSION=0.19.0
+ARG PB_VERSION=0.21.2
 ARG DOMAINLIST="*.djsicrip.com,djsicrip.com,xn--teichland-kapitne-4qb.de,*.xn--teichland-kapitne-4qb.de,teichland-kapitäne.de"
 
 RUN apk add --no-cache \

@@ -30,6 +30,8 @@ export default function TextInput({ name, label, ...props }) {
 			{...props}
 			labelPlaceholder={label}
 			isInvalid={meta.error}
+			labelPlacement="outside"
+			label={label}
 			errorMessage={helperText()}
 			helperColor={helperColor()}
 			clearable

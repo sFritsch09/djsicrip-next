@@ -30,7 +30,7 @@ func Build() {
 	reg_pass := client.SetSecret("reg-pass", os.Getenv("REGISTRY_PASS"))
 	// dockerfile code base
 	contextDir := client.Host().Directory(".", dagger.HostDirectoryOpts{
-		Exclude: []string{".next", "node_modules", ".env", "pb.dockerfile", "dagger.cue", "imageBuild.txt", "magefiles", "go.*"},
+		Exclude: []string{".next", "node_modules", ".env", "pb.dockerfile", ".yarnrc.yml", ".yarn", "dagger.cue", "imageBuild.txt", "magefiles", "go.*"},
 	})
 	// init container registry
 	ctr := client.Pipeline("Build", dagger.PipelineOpts{Description: "Building Image"}).Container(dagger.ContainerOpts{Platform: "linux/amd64"}).WithRegistryAuth(tag, reg_user, reg_pass)

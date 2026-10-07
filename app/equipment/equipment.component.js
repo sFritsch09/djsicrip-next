@@ -54,7 +54,7 @@ export default function DJTools() {
             imageClick={handleClick5}
             header="DJ Controller"
             desc="Traktor Kontrol S2 MK3 von Native Instruments"
-            image="https://pb.techchase.de/api/files/baa8qw390ee8nzl/s69bfx907b4murs/kontroll_s2_front_9_s0mjv_nubm_Gsex2jPnw3.png"
+            image="https://s3.techchase.de/djsicrip/kontroll_s2_front.png"
             title="Traktor Kontrol S2 MK3"
           />
         </Section>
@@ -64,7 +64,7 @@ export default function DJTools() {
             imageClick={handleClick}
             header="DJ Programm"
             desc="Traktor Pro 3 von Native Instruments für ein professionelles auflegen auf dem Macbook Pro"
-            image="https://pb.techchase.de/api/files/baa8qw390ee8nzl/t5f9j2ak04dfccc/traktor_pro_new_c4_xnfnsa0_t_u7F4UILWX8.png"
+            image="https://s3.techchase.de/djsicrip/traktor_pro_new.png"
             title="Traktor Pro 3"
           />
         </Section>
@@ -75,7 +75,7 @@ export default function DJTools() {
             imageClick={handleClick2}
             header="Soundanlage"
             desc="Soundboks 3"
-            image="https://pb.techchase.de/api/files/baa8qw390ee8nzl/wrv7hxz1k7x1rft/sound_boks_ck1_fasn_q9x_1gYBcqfDU7.png"
+            image="https://s3.techchase.de/djsicrip/sound_boks.png"
             title="Soundboks 3"
           />
         </Section>
@@ -85,7 +85,7 @@ export default function DJTools() {
             imageClick={handleClick3}
             header="DJ Controller"
             desc="Traktor Kontrol Z2 von Native Instruments"
-            image="https://pb.techchase.de/api/files/baa8qw390ee8nzl/umgppr09w4dvh2q/traktor_z2wide_6_gah6dv_y9_q_XMg54AgzX5.png"
+            image="https://s3.techchase.de/djsicrip/traktor_z2.png"
             title="Kontrol Z2"
           />
         </Section>
@@ -95,7 +95,7 @@ export default function DJTools() {
             imageClick={handleClick4}
             header="Turntables x 2"
             desc="High-Torque DJ-Plattenspieler ST.150 von Stanton"
-            image="https://pb.techchase.de/api/files/baa8qw390ee8nzl/y2yks10mdv36710/turntable_xd_cxstdi_ey_H2nxkgDkU3.png"
+            image="https://s3.techchase.de/djsicrip/turntable_xd.png"
             title="Stanton ST.150"
           />
         </Section>

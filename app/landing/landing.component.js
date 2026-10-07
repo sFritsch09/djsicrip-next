@@ -14,7 +14,7 @@ export default function LandingComponent() {
 					<span className="header">Successfully Booked!</span>
 					<ImageWrapper>
 						<Image
-							src="https://pb.techchase.de/api/files/xaxun5rjt3q4ncb/we5mquac053349w/giphy_S6NUckttrp.gif"
+							src="https://s3.techchase.de/djsicrip/giphy_s6.gif"
 							fill
 							sizes="(max-width: 768px) 90vw, (max-width: 1200px) 25vw,18vw"
 							alt="gif"
@@ -26,7 +26,7 @@ export default function LandingComponent() {
 					<span className="header">Booking Failed!</span>
 					<ImageWrapper>
 						<Image
-							src="http://pb.techchase.de/api/files/xaxun5rjt3q4ncb/ter07rbgf7h6t7v/dj_fail_RcDyBIqewc.gif"
+							src="https://s3.techchase.de/djsicrip/dj_fail.gif"
 							fill
 							sizes="(max-width: 768px) 90vw, (max-width: 1200px) 25vw,18vw"
 							alt="gif"

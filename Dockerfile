@@ -1,26 +1,40 @@
-# build image
-FROM node:21-alpine AS builder
-WORKDIR /app
-RUN yarn set version stable
-RUN corepack enable
-COPY package.json yarn.lock ./
-RUN echo "nodeLinker: node-modules" > .yarnrc.yml
-RUN yarn install
-COPY . .
-RUN yarn build
+# syntax=docker/dockerfile:1.7
 
-# build output image
-FROM node:21-alpine AS runner
-ENV NODE_ENV production
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
+# ---- deps ------------------------------------------------------------------
+FROM --platform=linux/amd64 dhi.io/bun:1-alpine-dev AS deps
 WORKDIR /app
-COPY --from=builder --chown=nextjs:nodejs /app/package.json /app/yarn.lock ./
-COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=builder --chown=nextjs:nodejs /app/public ./.next/standalone/public
-RUN cp -r .next/static ./.next/standalone/.next/static
-COPY --from=builder /app/next.config.js ./next.config.js
-USER nextjs
+COPY package.json bun.lock ./
+# Persist bun's download cache across builds (BuildKit cache mount).
+RUN --mount=type=cache,target=/root/.bun/install/cache \
+    bun install --frozen-lockfile
+
+# ---- build -----------------------------------------------------------------
+FROM --platform=linux/amd64 dhi.io/bun:1-alpine-dev AS builder
+WORKDIR /app
+ENV NEXT_TELEMETRY_DISABLED=1
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+# .next/cache holds the incremental compiler + image cache; keeping it between
+# builds makes unchanged routes near-instant. It is NOT shipped in the image.
+RUN --mount=type=cache,target=/app/.next/cache \
+    bun run build
+
+# ---- runtime ---------------------------------------------------------------
+# Non-dev image: no shell, no package manager, ~half the size of *-dev.
+FROM --platform=linux/amd64 dhi.io/node:26-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production \
+    NEXT_TELEMETRY_DISABLED=1 \
+    HOSTNAME=0.0.0.0 \
+    PORT=3000
+
+# `output: "standalone"` already contains server.js, the traced node_modules,
+# .next/server and the config. Only public/ and .next/static are not included
+# and must be copied alongside.
+COPY --from=builder --chown=65532:65532 /app/.next/standalone ./
+COPY --from=builder --chown=65532:65532 /app/.next/static ./.next/static
+COPY --from=builder --chown=65532:65532 /app/public ./public
+
+USER 65532
 EXPOSE 3000
-CMD [ "node", ".next/standalone/server.js" ]
+CMD ["node", "server.js"]

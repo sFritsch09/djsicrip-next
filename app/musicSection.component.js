@@ -3,7 +3,7 @@ import { useState, useEffect, useRef, Fragment } from "react";
 import { Logo, MusicCollection } from "./_components";
 import AudioPlayer, { RHAP_UI } from "react-h5-audio-player";
 import { useMusic, useMusicUpdate } from "./_components/hooks/MusicContext";
-import PocketBase from "pocketbase";
+import { DJSICRIP_RECORDS } from "./lib/djsicrip-records";
 import {
   MusicContainer,
   MusicWrapper,
@@ -21,6 +21,7 @@ import {
 import { CustomButton, LogoWrapper, ToolTip } from "../styles/globalStyles";
 import Link from "next/link";
 import Image from "next/image";
+import { djsicripFileUrl } from "./lib/djsicrip-files";
 
 export default function MusicSection() {
   const [isMobile, setIsMobile] = useState(true);
@@ -94,7 +95,7 @@ export default function MusicSection() {
         setState({ status: "house" });
         break;
       case "showB":
-        setState({ status: "classic" });
+        setState({ status: "classics" });
         break;
       case "showC":
         setState({ status: "party" });
@@ -107,24 +108,8 @@ export default function MusicSection() {
     }
   };
   const [xPosition, setXPosition] = useState(0);
-  // // fetching covers
-  const [covers, setCovers] = useState([]);
-  const pb = new PocketBase("https://pb.techchase.de");
-  const getCovers = async () => {
-    const covers = await pb
-      .collection("djsicrip_cover")
-      .getList(1, 50, { $autoCancel: false });
-    setCovers(covers);
-  };
-  useEffect(() => {
-    let ignore = false;
-    if (!ignore) {
-      getCovers();
-    }
-    return () => {
-      ignore = true;
-    };
-  }, []);
+  // Track list is a static snapshot; see lib/djsicrip-records.js.
+  const covers = { items: DJSICRIP_RECORDS };
   return (
     <Fragment>
       <LogoWrapper>
@@ -157,7 +142,7 @@ export default function MusicSection() {
               House
             </NavItem>
             <NavItem
-              $active={status === "classic"}
+              $active={status === "classics"}
               onClick={() => handleClick("showB")}
             >
               Classics
@@ -193,8 +178,8 @@ export default function MusicSection() {
               <Fragment key={item.id}>
                 <Image
                   src={
-                    `https://pb.techchase.de/api/files/djsicrip_cover/${item.id}/${item.cover}` ??
-                    "https://pb.techchase.de/api/files/baa8qw390ee8nzl/szi9lgoxtjvioih/crip_beatz_klml7_yycc_c_IlxhX4srxo.jpg"
+                    djsicripFileUrl(item, "image") ??
+                    "https://s3.techchase.de/djsicrip/dark_logo_old.jpg"
                   }
                   alt="Cover"
                   width={80}
@@ -202,7 +187,7 @@ export default function MusicSection() {
                   sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw,18vw"
                 />
               </Fragment>
-            ) : null
+            ) : null,
           )}
           <PlayerWrapper>
             <AudioPlayer
@@ -240,8 +225,8 @@ export default function MusicSection() {
                   <div className="image">
                     <Image
                       src={
-                        `https://pb.techchase.de/api/files/djsicrip_cover/${item.id}/${item.cover}` ??
-                        "https://pb.techchase.de/api/files/baa8qw390ee8nzl/szi9lgoxtjvioih/crip_beatz_klml7_yycc_c_IlxhX4srxo.jpg"
+                        djsicripFileUrl(item, "image") ??
+                        "https://s3.techchase.de/djsicrip/crip_beatz.jpg"
                       }
                       fill
                       alt="Cover"
@@ -255,7 +240,7 @@ export default function MusicSection() {
                     </SongTitle>
                   </TitleWrapper>
                 </Fragment>
-              ) : null
+              ) : null,
             )}
           </ImgContainer>
           <PlayerWrapper>

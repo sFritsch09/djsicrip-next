@@ -2,6 +2,7 @@
 import { Fragment, useState, useEffect } from "react";
 import { useMusicUpdate } from "../hooks/MusicContext";
 import Image from "next/image";
+import { djsicripFileUrl } from "../../lib/djsicrip-files";
 import {
   CoverPause,
   CoverPlay,
@@ -62,15 +63,15 @@ const Collection = ({ onPlay, play, pause, itemPlay, covers }) => {
             <CoverWrapper
               onClick={() =>
                 setAudioSrc(
-                  `https://pb.techchase.de/api/files/djsicrip_cover/${item.id}/${item.track}`
+                  djsicripFileUrl(item, "mp3"),
                 )
               }
             >
               <div className="cover">
                 <Image
                   src={
-                    `https://pb.techchase.de/api/files/djsicrip_cover/${item.id}/${item.cover}` ??
-                    "https://pb.techchase.de/api/files/baa8qw390ee8nzl/szi9lgoxtjvioih/crip_beatz_klml7_yycc_c_IlxhX4srxo.jpg"
+                    djsicripFileUrl(item, "image") ??
+                    "https://s3.techchase.de/djsicrip/crip_beatz.jpg"
                   }
                   alt="Cover"
                   fill
